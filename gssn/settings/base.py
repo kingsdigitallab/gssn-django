@@ -67,7 +67,23 @@ INSTALLED_APPS = (
 )
 
 INSTALLED_APPS += (
-    # your project apps here
+    'wagtail.wagtailcore',
+    'wagtail.wagtailadmin',
+    'wagtail.wagtaildocs',
+    'wagtail.wagtailsnippets',
+    'wagtail.wagtailusers',
+    'wagtail.wagtailimages',
+    'wagtail.wagtailembeds',
+    'wagtail.wagtailsearch',
+    'wagtail.wagtailredirects',
+    'wagtail.wagtailforms',
+    'wagtail.wagtailsites',
+    'wagtail.contrib.wagtailroutablepage',
+)
+
+INSTALLED_APPS += (
+    'cms',
+    'gssn',
 )
 
 INTERNAL_IPS = ('127.0.0.1', )
