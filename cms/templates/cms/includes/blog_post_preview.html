@@ -1,0 +1,35 @@
+{% extends "cms/includes/blog_post_body.html" %}
+{% load cms_tags wagtailimages_tags %}
+
+{% if post %}
+{% load wagtailcore_tags %}
+
+{% block blog_post_title %}
+<h2 class="posttitle">
+    <a href="{% pageurl post %}">{{ post.title }}</a>
+</h2>
+{% endblock %}
+
+{% block blog_post_content %}
+<section class="postcontent preview">
+	<div class="row">
+		<div class="large-{% if post.feed_image %}9{% else %}12{% endif %} columns">
+			<p>
+			    {% if post.search_description %}
+			    {{ post.search_description }} <a href="{% pageurl post %}">Read more...</a>
+			    {% endif %}
+		    </p>
+		</div>
+		{% if post.feed_image %}
+		<div class="large-3 columns">
+			{% image post.feed_image max-600x300 as tmp_image %}
+			<img src="{{ tmp_image.url }}" width="100%" alt="{{ tmp_image.alt }}">
+		</div>
+		{% endif %}
+	</div>
+</section>
+{% endblock %}
+
+{% block share_on_twitter %}{% endblock %}
+
+{% endif %}

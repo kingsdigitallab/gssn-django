@@ -1,0 +1,30 @@
+{% extends "cms/index_page.html" %}
+{% load wagtailcore_tags %}
+
+{% block title %}<h1 class="cat-title"><span class="bookmark reviewpage"></span> Reviews</h1>{% endblock %}
+
+{% block main %}
+
+{% block posts_by %}
+{% if filter_type == 'author' %}
+<h4 class="filter-description">Reviews by <strong>{{ filter|safe }}</strong> <a href="{% pageurl self %}" class="small button float-right">Show all</a></h4>
+{% endif %}
+{% endblock %}
+
+{% block posts_tagged_as %}
+{% if filter_type == 'category' %}
+<h4 class="filter-description">Reviews for <strong>{{ filter|safe }}</strong> <a href="{% pageurl self %}" class="small button float-right">Show all</a></h4>
+{% endif %}
+{% endblock %}
+
+{% block posts_by_date %}
+{% if filter_type == 'date' %}
+<h4 class="filter-description">Reviews on <strong>{{ filter|date:filter_format }}</strong> <a href="{% pageurl self %}" class="small button float-right">Show all</a></h4>
+{% endif %}
+{% endblock %}
+
+{% block index_page_children %}
+{% include "cms/includes/review_index_reviews.html" with class="reviews" %}
+{% endblock %}
+
+{% endblock %}

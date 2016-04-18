@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load cms_tags wagtailcore_tags %}
+
+{% block meta_title %}{{ self.title }}{% endblock %}
+
+{% block title %}
+<h1 class="cat-title">
+    <span class="bookmark">&nbsp;</span> {{ self.title }}
+</h1>
+{% endblock %}
+
+{% block main_menu %}
+{% get_site_root as site_root %}
+{% main_menu root=site_root current_page=self %}
+{% endblock %}
+
+{% block main %}
+{{ self.body | richtext }}
+{% endblock %}
+
+{% block footer_scripts %}{% endblock %}

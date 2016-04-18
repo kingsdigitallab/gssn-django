@@ -1,0 +1,29 @@
+{% extends "cms/rich_text_page.html" %}
+{% load cms_tags wagtailcore_tags %}
+
+{% block title %}{% endblock %}
+
+{% block main %}
+
+{% include "cms/includes/blog_post_body.html" with post=self %}
+
+{% block related_links %}
+{{ block.super }}
+{% endblock %}
+
+{% are_comments_allowed as allow_comments %}
+{% if allow_comments %}
+{% block comments %}
+<div id="disqus_thread"></div>
+{% endblock %}
+{% endif %}
+
+{% endblock %}
+
+{% are_comments_allowed as allow_comments %}
+{% if allow_comments %}
+{% block footer_scripts %}
+{% include "cms/includes/disqus_setup.html" %}
+<script id="dsq-count-scr" src="//shakespeare400.disqus.com/count.js" async></script>
+{% endblock %}
+{% endif %}

@@ -1,0 +1,18 @@
+{% load wagtailimages_tags wagtailembeds_tags %}
+
+{% if self.carousel_items %}
+<div class="slider-home">
+    {% for item in carousel_items %}
+    <div>
+        <a href="{{ item.link }}" class="image">
+            {% image item.image width-500 as carouselimage %}
+            <img src="{{ carouselimage.url }}" alt="{{ carouselimage.alt }}">
+        </a>
+
+        {% if item.caption %}
+        <figcaption>{{ item.caption }}</figcaption>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}

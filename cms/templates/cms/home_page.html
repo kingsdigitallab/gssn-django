@@ -1,0 +1,33 @@
+{% extends "cms/base.html" %}
+{% load wagtailcore_tags %}
+
+{% block title %}{% endblock %}
+
+{% block main %}
+
+<div class="row">
+    <div class="large-12 columns">
+        <div class="home-splash">
+            {% include "cms/includes/streamfield.html" with content=self.body %}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="medium-8 columns">
+        <div class="row" data-equalizer data-equalize-on="medium">
+            {% include "cms/includes/featured_pages.html" with featured_pages=self.featured_pages.all %}
+        </div>
+    </div>
+    <div class="medium-4 columns sidebar">
+        {% include "cms/includes/carousel.html" with carousel_items=self.carousel_items.all %}
+
+        {% include "includes/latest_tweets.html" %}
+
+        {% if self.announcement %}
+        <div class="announcement">
+        {% include "cms/includes/streamfield.html" with content=self.announcement %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

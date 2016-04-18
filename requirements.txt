@@ -3,6 +3,7 @@ django-compressor
 django-grappelli
 django-libsass
 django-model-utils
+django-modelcluster
 django-redis
 django-require
 django-taggit

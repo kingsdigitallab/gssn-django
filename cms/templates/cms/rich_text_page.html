@@ -1,0 +1,10 @@
+{% extends "cms/base.html" %}
+
+{% block main %}
+{{ block.super }}
+
+{% block related_links %}
+{% include "cms/includes/related_links.html" with related_links=self.related_links.all title="Related links" %}
+{% endblock %}
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% load wagtailimages_tags wagtailroutablepage_tags %}
+
+<div class="row" data-equalizer data-equalize-on="medium">
+    {% for collection in collections %}
+    <div class="medium-6 large-4 columns end collection-preview" data-equalizer-watch>
+        {% image collection.preview width-600 as img %}
+
+        <h3><a href="{% routablepageurl self 'gallery_collection' collection.id %}" rel="collection">{{ collection.collection.name }}</a></h3>
+
+        <a href="{% routablepageurl self 'gallery_collection' collection.id %}" rel="collection">
+            <img class="thumbnail" src="{{ img.url }}" alt="{{ img.image.title }}">
+        </a>
+        <p>{{ collection.description }}</p>
+    </div>
+    {% endfor %}
+</div>

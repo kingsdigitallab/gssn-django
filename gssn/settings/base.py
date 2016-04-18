@@ -56,6 +56,10 @@ TEMPLATE_DEBUG = False
 
 INSTALLED_APPS = (
     'grappelli',
+    'modelcluster',
+    'rest_framework',
+    'taggit',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -63,6 +67,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'compressor',
     'require',
 )
 
@@ -123,22 +128,22 @@ LOGGING = {
         }
     },
     'loggers': {
+        'cms': {
+            'handlers': ['console', 'file'],
+            'level': LOGGING_LEVEL,
+            'propagate': True
+        },
         'django': {
             'handlers': ['file'],
             'level': LOGGING_LEVEL,
             'propagate': True
         },
-        # 'django_auth_ldap': {
-        #     'handlers': ['file'],
-        #     'level': LOGGING_LEVEL,
-        #     'propagate': True
-        # },
-        'gssn': {
+        'elasticsearch': {
             'handlers': ['file'],
             'level': LOGGING_LEVEL,
             'propagate': True
         },
-        'elasticsearch': {
+        'gssn': {
             'handlers': ['file'],
             'level': LOGGING_LEVEL,
             'propagate': True
@@ -156,6 +161,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'wagtail.wagtailcore.middleware.SiteMiddleware',
+    'wagtail.wagtailredirects.middleware.RedirectMiddleware',
 )
 
 ROOT_URLCONF = PROJECT_NAME + '.urls'
@@ -200,6 +208,9 @@ WSGI_APPLICATION = PROJECT_NAME + '.wsgi.application'
 
 # AUTH_LDAP_REQUIRE_GROUP = 'cn=GROUP_NAME,' + LDAP_BASE_OU
 
+LOGIN_URL = 'wagtailadmin_login'
+LOGIN_REDIRECT_URL = 'wagtailadmin_home'
+
 
 # -----------------------------------------------------------------------------
 # Static files (CSS, JavaScript, Images)
@@ -239,6 +250,13 @@ SESSION_COOKIE_SECURE = True
 # -----------------------------------------------------------------------------
 # Installed Applications Settings
 # -----------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------
+# CMS
+# -----------------------------------------------------------------------------
+
+EVENT_CATEGORIES = ['Conference', 'Exhibition', 'Performance', 'Publication',
+                    'Screening', 'Talk']
 
 # -----------------------------------------------------------------------------
 # Django Compressor
@@ -319,3 +337,26 @@ FABRIC_USER = getpass.getuser()
 # Google Analytics ID
 GA_ID = ''
 
+# -----------------------------------------------------------------------------
+# Wagtail
+# http://wagtail.readthedocs.org/en/latest/
+# -----------------------------------------------------------------------------
+
+WAGTAIL_SITE_NAME = PROJECT_TITLE
+
+WAGTAILSEARCH_RESULTS_TEMPLATE = 'search_results.html'
+
+WAGTAILSEARCH_INDEX = PROJECT_NAME
+
+WAGTAILSEARCH_BACKENDS = {
+    'default': {
+        'BACKEND':
+            'wagtail.wagtailsearch.backends.elasticsearch.ElasticSearch',
+        'URLS': ['http://127.0.0.1:9200'],
+        'INDEX': WAGTAILSEARCH_INDEX,
+        'TIMEOUT': 5,
+        'FORCE_NEW': False,
+    }
+}
+
+ITEMS_PER_PAGE = 10

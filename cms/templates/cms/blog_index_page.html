@@ -1,0 +1,30 @@
+{% extends "cms/index_page.html" %}
+{% load wagtailcore_tags %}
+
+{% block title %}<h1 class="cat-title"><span class="bookmark blogpost"></span> <a href="/blog">Blog</a></h1>{% endblock %}
+
+{% block main %}
+
+{% block posts_by %}
+{% if filter_type == 'author' %}
+<h4 class="filter-description">Posts by <strong>{{ filter|safe }}</strong> <a href="{% pageurl self %}" class="small button float-right">Show all</a></h4>
+{% endif %}
+{% endblock %}
+
+{% block posts_tagged_as %}
+{% if filter_type == 'tag' %}
+<h4 class="filter-description">Tagged as <strong>{{ filter|safe }}</strong> <a href="{% pageurl self %}" class="small button float-right">Show all</a></h4>
+{% endif %}
+{% endblock %}
+
+{% block posts_by_date %}
+{% if filter_type == 'date' %}
+<h4 class="filter-description">Posts on <strong>{{ filter|date:filter_format }}</strong> <a href="{% pageurl self %}" class="small button float-right">Show all</a></h4>
+{% endif %}
+{% endblock %}
+
+{% block index_page_children %}
+{% include "cms/includes/blog_index_posts.html" with class="posts" %}
+{% endblock %}
+
+{% endblock %}
