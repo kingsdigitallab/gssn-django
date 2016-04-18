@@ -17,7 +17,7 @@ You can now access the site locally at: `http://localhost:8000/`
 
 ## Wagtail
 In order to access Wagtail, you might need to create a superuser account.
-To do so run this in the virtual environment: `./manage.py createsuperuser` and follow the instructions in the terminal.
+To do so, run this in the virtual environment: `./manage.py createsuperuser` and follow the instructions in the terminal.
 
 Last few steps to actually get the site running:
 
