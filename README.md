@@ -5,7 +5,7 @@ German Screen Studies Network website
 ## Getting started - Set up locally 
 
 1. Clone this repository: `git clone git@github.com:kingsdigitallab/gssn-django.git`
-2. Add a `local.py` file in `PROJECT_ROOT_FOLDER/gssn/settings/`
+2. Add a `local.py` file in `gssn-django/gssn/settings/`
 3. Run `bower install bower.json` to install the dependencies
 4. Start the virtual environment: `vagrant up` and then `vagrant ssh`
 5. Install the requirements: `pip install -U -r requirements.txt`
