@@ -58,6 +58,7 @@ target/
 
 # Vagrant
 .vagrant/
+playbook.retry
 
 # Local
 .DS_Store
