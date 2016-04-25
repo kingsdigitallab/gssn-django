@@ -9,7 +9,8 @@
         "motion-ui": null,
         "r.js": null,
         "requirejs": null,
-        "requirejs-babel": null
+        "requirejs-babel": null,
+        "slick-carousel": null
     },
     "main": "assets/js/main.js",
     "ignore": [
