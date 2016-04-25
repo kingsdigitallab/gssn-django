@@ -1,6 +1,11 @@
 @import 'settings';
 @import '../vendor/foundation-sites/scss/foundation';
 
+@import '../vendor/motion-ui/motion-ui';
+
+@import '../vendor/slick-carousel/slick/slick.scss';
+@import 'slick-theme';
+
 /** Your custom scss here **/
 
 @include foundation-everything;

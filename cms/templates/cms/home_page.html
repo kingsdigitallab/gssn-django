@@ -8,6 +8,7 @@
 <div class="row">
     <div class="large-12 columns">
         <div class="home-splash">
+        	{% include "cms/includes/carousel.html" with carousel_items=self.carousel_items.all %}
             {% include "cms/includes/streamfield.html" with content=self.body %}
         </div>
     </div>

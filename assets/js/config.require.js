@@ -26,6 +26,8 @@ requirejs.config({
 
         'modernizr': '../vendor/modernizr/modernizr',
 
+        'slick': '../vendor/slick-carousel/slick/slick',
+
         'requirejs': '../vendor/requirejs/require',
     },
     shim: {

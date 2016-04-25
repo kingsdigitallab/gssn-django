@@ -4,7 +4,8 @@ require([
     'jquery',
     'modernizr',
     'fn',
-    'ga'
+    'ga',
+    'sl'
 ], function(r, $) {
     'use strict';
 
