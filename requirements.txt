@@ -9,6 +9,6 @@ django-require
 django-taggit
 elasticsearch
 libsass==0.10.0
+pillow
 psycopg2
-redis
 wagtail
