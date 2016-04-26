@@ -15,12 +15,13 @@ requirejs.config({
         // Foundation
         'foundation': '../vendor/foundation-sites/js/foundation.core',
         'foundation.dropdown': '../vendor/foundation-sites/js/foundation.dropdown',
+        'foundation.drilldown': '../vendor/foundation-sites/js/foundation.drilldown',
         'foundation.equalizer': '../vendor/foundation-sites/js/foundation.equalizer',
-        'foundation.orbit': '../vendor/foundation-sites/js/foundation.orbit',
         'foundation.util.box': '../vendor/foundation-sites/js/foundation.util.box',
         'foundation.util.keyboard': '../vendor/foundation-sites/js/foundation.util.keyboard',
         'foundation.util.mediaQuery': '../vendor/foundation-sites/js/foundation.util.mediaQuery',
         'foundation.util.motion': '../vendor/foundation-sites/js/foundation.util.motion',
+        'foundation.util.nest': '../vendor/foundation-sites/js/foundation.util.nest',
         'foundation.util.timerAndImageLoader': '../vendor/foundation-sites/js/foundation.util.timerAndImageLoader',
         'foundation.util.touch': '../vendor/foundation-sites/js/foundation.util.touch',
 
@@ -58,6 +59,11 @@ requirejs.config({
                 'foundation'
             ],
         },
+        'foundation.util.nest': {
+            deps: [
+                'foundation'
+            ],
+        },
         'foundation.util.timerAndImageLoader': {
             deps: [
                 'foundation'
@@ -66,6 +72,14 @@ requirejs.config({
         'foundation.util.touch': {
             deps: [
                 'foundation'
+            ],
+        },
+        'foundation.drilldown': {
+            deps: [
+                'foundation',
+                'foundation.util.keyboard',
+                'foundation.util.motion',
+                'foundation.util.nest'
             ],
         },
         'foundation.dropdown': {
@@ -81,20 +95,17 @@ requirejs.config({
                 'foundation.util.mediaQuery'
             ],
         },
-        'foundation.orbit': {
-            deps: [
-                'foundation',
-                'foundation.util.keyboard',
-                'foundation.util.motion',
-                'foundation.util.timerAndImageLoader',
-                'foundation.util.touch'
-            ],
+        'ga': {
+            exports: '__ga__'
         },
         'modernizr': {
             exports: 'Modernizr'
         },
-        'ga': {
-            exports: '__ga__'
+        'slick': {
+            deps: [
+                'jquery'
+            ],
+            exports: 'Slick'
         },
     }
 });
