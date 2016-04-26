@@ -24,6 +24,7 @@ requirejs.config({
         'foundation.util.nest': '../vendor/foundation-sites/js/foundation.util.nest',
         'foundation.util.timerAndImageLoader': '../vendor/foundation-sites/js/foundation.util.timerAndImageLoader',
         'foundation.util.touch': '../vendor/foundation-sites/js/foundation.util.touch',
+        'foundation.util.touch': '../vendor/foundation-sites/js/foundation.util.triggers',
 
         'modernizr': '../vendor/modernizr/modernizr',
 
@@ -74,6 +75,11 @@ requirejs.config({
                 'foundation'
             ],
         },
+        'foundation.util.triggers': {
+            deps: [
+                'foundation'
+            ],
+        },
         'foundation.drilldown': {
             deps: [
                 'foundation',
@@ -86,7 +92,8 @@ requirejs.config({
             deps: [
                 'foundation',
                 'foundation.util.box',
-                'foundation.util.keyboard'
+                'foundation.util.keyboard',
+                'foundation.util.triggers'
             ],
         },
         'foundation.equalizer': {
