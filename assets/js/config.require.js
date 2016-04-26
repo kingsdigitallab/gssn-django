@@ -14,8 +14,8 @@ requirejs.config({
 
         // Foundation
         'foundation': '../vendor/foundation-sites/js/foundation.core',
-        'foundation.dropdown': '../vendor/foundation-sites/js/foundation.dropdown',
         'foundation.drilldown': '../vendor/foundation-sites/js/foundation.drilldown',
+        'foundation.dropdown': '../vendor/foundation-sites/js/foundation.dropdown',
         'foundation.equalizer': '../vendor/foundation-sites/js/foundation.equalizer',
         'foundation.util.box': '../vendor/foundation-sites/js/foundation.util.box',
         'foundation.util.keyboard': '../vendor/foundation-sites/js/foundation.util.keyboard',
@@ -24,7 +24,7 @@ requirejs.config({
         'foundation.util.nest': '../vendor/foundation-sites/js/foundation.util.nest',
         'foundation.util.timerAndImageLoader': '../vendor/foundation-sites/js/foundation.util.timerAndImageLoader',
         'foundation.util.touch': '../vendor/foundation-sites/js/foundation.util.touch',
-        'foundation.util.touch': '../vendor/foundation-sites/js/foundation.util.triggers',
+        'foundation.util.triggers': '../vendor/foundation-sites/js/foundation.util.triggers',
 
         'modernizr': '../vendor/modernizr/modernizr',
 
