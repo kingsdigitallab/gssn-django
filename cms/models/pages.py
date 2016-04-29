@@ -64,7 +64,7 @@ class HomePage(Page, WithStreamField):
     )
 
     subpage_types = ['IndexPage', 'BlogIndexPage', 'EventIndexPage',
-                     'RichTextPage']
+                     'SymposiumIndexPage', 'RichTextPage']
 
     class Meta:
         verbose_name = 'Homepage'
@@ -413,6 +413,108 @@ EventPage.promote_panels = Page.promote_panels + [
 
 
 @receiver(pre_save, sender=EventPage)
+def default_date_to(sender, instance, **kwargs):
+    # checks the date to is empty
+    if not instance.date_to:
+        # sets date_to to the same as date_from
+        instance.date_to = instance.date_from
+
+
+# Symposium
+# SymposiumIndexPage
+class SymposiumIndexPageRelatedLink(Orderable, AbstractRelatedLink):
+    page = ParentalKey('SymposiumIndexPage', related_name='related_links')
+
+
+class SymposiumIndexPage(RoutablePageMixin, Page, WithIntroduction):
+    search_fields = Page.search_fields + (
+        index.SearchField('intro'),
+    )
+
+    subpage_types = ['SymposiumPage']
+
+    @property
+    def symposiums(self):
+        symposiums = SymposiumPage.objects.live().descendant_of(self)
+        symposiums = symposiums.order_by('-date_from')
+
+        return symposiums
+
+    @route(r'^$', name='all_symposiums')
+    def get_all_symposiums(self, request):
+        symposiums = self.symposiums
+        logger.debug('Live symposiums: {}'.format(symposiums))
+
+        return render(request, self.get_template(request),
+                      {'self': self,
+                       'symposiums': _paginate(request, symposiums)})
+
+SymposiumIndexPage.content_panels = [
+    FieldPanel('title', classname='full title'),
+    StreamFieldPanel('intro'),
+    InlinePanel('related_links', label='Related links'),
+]
+
+EventIndexPage.promote_panels = Page.promote_panels
+
+
+# SymposiumPage
+class SymposiumPageCarouselItem(Orderable, AbstractCarouselItem):
+    page = ParentalKey('SymposiumPage', related_name='carousel_items')
+
+
+class SymposiumPageRelatedLink(Orderable, AbstractRelatedLink):
+    page = ParentalKey('SymposiumPage', related_name='related_links')
+
+
+class SymposiumPage(Page, WithFeedImage, WithStreamField):
+    date_from = models.DateField('Start date')
+    date_to = models.DateField(
+        'End date', null=True, blank=True,
+        help_text='Not required if event is on a single day'
+    )
+    time_from = models.TimeField('Start time', null=True, blank=True)
+    time_to = models.TimeField('End time', null=True, blank=True)
+    location = models.CharField(max_length=256)
+    signup_link = models.URLField(null=True, blank=True)
+
+    search_fields = Page.search_fields + (
+        index.SearchField('location'),
+        index.SearchField('body'),
+    )
+
+    subpage_types = []
+
+    @property
+    def symposium_index(self):
+        # finds closest ancestor which is a symposium index
+        return self.get_ancestors().type(SymposiumIndexPage).last()
+
+SymposiumPage.content_panels = [
+    FieldPanel('title', classname='full title'),
+    MultiFieldPanel([
+        FieldRowPanel([
+            FieldPanel('date_from', classname='col6'),
+            FieldPanel('date_to', classname='col6'),
+        ], classname='full'),
+        FieldRowPanel([
+            FieldPanel('time_from', classname='col6'),
+            FieldPanel('time_to', classname='col6'),
+        ], classname='full'),
+    ], 'Dates'),
+    FieldPanel('location'),
+    InlinePanel('carousel_items', label='Carousel items'),
+    StreamFieldPanel('body'),
+    FieldPanel('signup_link'),
+    InlinePanel('related_links', label='Related links'),
+]
+
+SymposiumPage.promote_panels = Page.promote_panels + [
+    ImageChooserPanel('feed_image'),
+]
+
+
+@receiver(pre_save, sender=SymposiumPage)
 def default_date_to(sender, instance, **kwargs):
     # checks the date to is empty
     if not instance.date_to:

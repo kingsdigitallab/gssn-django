@@ -2,7 +2,7 @@ import datetime
 
 from cms.models.pages import (
     BlogIndexPage, BlogPost, EventIndexPage, EventPage, Gallery, HomePage,
-    IndexPage, RichTextPage, _paginate
+    IndexPage, RichTextPage, SymposiumIndexPage, _paginate
 )
 from django.contrib.auth.models import User
 from django.test import RequestFactory, TestCase
@@ -36,7 +36,8 @@ class TestHomePage(WagtailPageTests):
 
     def test_subpage_types(self):
         self.assertAllowedSubpageTypes(HomePage, {
-            IndexPage, BlogIndexPage, EventIndexPage, RichTextPage})
+            IndexPage, BlogIndexPage, EventIndexPage, SymposiumIndexPage,
+            RichTextPage})
 
 
 class TestIndexPage(WagtailPageTests):

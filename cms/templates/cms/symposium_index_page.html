@@ -1,0 +1,27 @@
+{% extends "cms/index_page.html" %}
+{% load wagtailcore_tags wagtailroutablepage_tags %}
+
+{% block title %}
+<h1 class="cat-title">
+    <span class="bookmark symposiumpage"></span>
+    {{ self.title }}
+</h1>
+{% endblock %}
+
+{% block main %}
+
+{% block index_page_introduction %}
+{% include "cms/includes/introduction.html" with introduction=self.intro only %}
+{% endblock %}
+
+{% block posts_tagged_as %}
+{% if filter_type == 'tag' %}
+<h4 class="filter-description">Events tagged as <strong>{{ filter|safe }}</strong> <a href="{% pageurl self %}" class="small button float-right">Show all</a></h4>
+{% endif %}
+{% endblock %}
+
+{% block index_page_children %}
+{% include "cms/includes/symposium_index_symposiums.html" with class="symposium" %}
+{% endblock %}
+
+{% endblock %}
