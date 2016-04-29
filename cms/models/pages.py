@@ -327,7 +327,7 @@ class EventIndexPage(RoutablePageMixin, Page, WithIntroduction):
 
         events = self.events.filter(
             categories__category__title=category)
-        events = events.order_by(date_from)
+        events = events.order_by('date_from')
 
         return render(
             request, self.get_template(request), {
