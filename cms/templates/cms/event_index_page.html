@@ -1,9 +1,18 @@
 {% extends "cms/index_page.html" %}
 {% load wagtailcore_tags wagtailroutablepage_tags %}
 
-{% block title %}<h1 class="cat-title"><span class="bookmark eventpage"></span> {% if filter_type == 'past' %}Past{% else %}Live{% endif %} events <a href="{% if filter_type == 'past' %}{% routablepageurl self 'live_events' %}{% else %}{% routablepageurl self 'past_events' %}{% endif %}" class="button secondary float-right">Show {% if filter_type == 'past' %}live{% else %}past{% endif %} events</a></h1>{% endblock %}
+{% block title %}
+<h1 class="cat-title">
+    <span class="bookmark eventpage"></span>
+    {{ self.title }}
+</h1>
+{% endblock %}
 
 {% block main %}
+
+{% block index_page_introduction %}
+{% include "cms/includes/introduction.html" with introduction=self.intro only %}
+{% endblock %}
 
 {% block posts_tagged_as %}
 {% if filter_type == 'tag' %}
