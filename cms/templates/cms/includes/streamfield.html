@@ -35,8 +35,20 @@
                     </div>
                 {% endif %}
             </div>
-        {% elif child.block_type == 'page' %}
-            <a href="{% pageurl child.value.page %}" class="button">{{ child.value.label }}</a>
+        {% elif child.block_type == 'link' %}
+            <a
+            {% if child.value.page %}
+                href="{% pageurl child.value.page %}"
+            {% elif child.value.url %}
+                href="{{ child.value.url }}"
+            {% elif child.value.document %}
+                href="{{ child.value.document.url }}"
+            {% elif child.value.email %}
+                href="mailto:{{ child.value.email }}"
+            {% else %}
+                href="#"
+            {% endif %}
+            class="button">{{ child.value.label }}</a>
         {% elif child.block_type == 'html' %}
             <div class="iframe-container">
             {% if child.value.alignment == 'normal' %}
