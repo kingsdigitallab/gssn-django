@@ -1,4 +1,4 @@
-{% load wagtailimages_tags wagtailembeds_tags %}
+{% load wagtailcore_tags wagtailimages_tags wagtailembeds_tags %}
 
 {% if self.carousel_items %}
 <div class="slider-home">
@@ -11,6 +11,10 @@
 
         {% if item.caption %}
         <figcaption>{{ item.caption }}</figcaption>
+        {% endif %}
+
+        {% if item.description %}
+        {{ item.description|richtext }}
         {% endif %}
     </div>
     {% endfor %}
