@@ -2,8 +2,6 @@ from django import template
 from django.conf import settings
 from django.template.defaultfilters import stringfilter
 
-from ..models.pages import EventCategory
-
 register = template.Library()
 
 
@@ -11,11 +9,6 @@ register = template.Library()
 def are_comments_allowed():
     """Returns True if commenting on the site is allowed, False otherwise."""
     return getattr(settings, 'ALLOW_COMMENTS', False)
-
-
-@register.assignment_tag(takes_context=False)
-def get_event_categories():
-    return EventCategory.objects.all()
 
 
 @register.assignment_tag(takes_context=True)
