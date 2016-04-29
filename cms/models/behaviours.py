@@ -18,7 +18,7 @@ class WithFeedImage(models.Model):
 
 
 class WithIntroduction(models.Model):
-    intro = RichTextField(blank=True)
+    intro = StreamField(CMSStreamBlock())
 
     class Meta:
         abstract = True
