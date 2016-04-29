@@ -6,8 +6,8 @@
 {% block main %}
 
 {% block posts_tagged_as %}
-{% if filter_type == 'category' %}
-<h4 class="filter-description">Events in <strong>{{ filter|safe }}</strong> <a href="{% pageurl self %}" class="small button float-right">Show all</a></h4>
+{% if filter_type == 'tag' %}
+<h4 class="filter-description">Events tagged as <strong>{{ filter|safe }}</strong> <a href="{% pageurl self %}" class="small button float-right">Show all</a></h4>
 {% endif %}
 {% endblock %}
 
