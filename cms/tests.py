@@ -2,7 +2,7 @@ import datetime
 
 from cms.models.pages import (
     BlogIndexPage, BlogPost, EventIndexPage, EventPage, Gallery, HomePage,
-    IndexPage, ReviewIndexPage, ReviewPage, RichTextPage, _paginate
+    IndexPage, RichTextPage, _paginate
 )
 from django.contrib.auth.models import User
 from django.test import RequestFactory, TestCase
@@ -36,9 +36,7 @@ class TestHomePage(WagtailPageTests):
 
     def test_subpage_types(self):
         self.assertAllowedSubpageTypes(HomePage, {
-            BlogIndexPage, EventIndexPage, IndexPage, ReviewIndexPage,
-            RichTextPage, Gallery}
-        )
+            IndexPage, BlogIndexPage, EventIndexPage, RichTextPage})
 
 
 class TestIndexPage(WagtailPageTests):
@@ -154,29 +152,3 @@ class TestEventPage(WagtailPageTests):
         expected = EventIndexPage.objects.get(url_path='/home/events/')
 
         self.assertEqual(expected, event.event_index.specific)
-
-
-class TestReviewIndexPage(WagtailPageTests):
-    fixtures = ['test.json']
-
-    def test_subpage_types(self):
-        self.assertAllowedSubpageTypes(ReviewIndexPage, {ReviewPage})
-
-    def test_reviews(self):
-        rip = ReviewIndexPage.objects.get(url_path='/home/reviews/')
-
-        self.assertEqual(1, rip.reviews.count())
-        self.assertEqual('my-first-review', rip.reviews.first().slug)
-
-
-class TestReviewPage(WagtailPageTests):
-    fixtures = ['test.json']
-
-    def test_subpage_types(self):
-        self.assertAllowedSubpageTypes(ReviewPage, {})
-
-    def test_review_index(self):
-        review = ReviewPage.objects.first()
-        expected = ReviewIndexPage.objects.get(url_path='/home/reviews/')
-
-        self.assertEqual(expected, review.review_index.specific)
