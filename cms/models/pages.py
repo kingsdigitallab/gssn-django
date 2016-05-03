@@ -18,17 +18,14 @@ from wagtail.wagtailadmin.edit_handlers import (
     FieldPanel, FieldRowPanel, InlinePanel, MultiFieldPanel, PageChooserPanel,
     StreamFieldPanel
 )
-from wagtail.wagtailcore.fields import RichTextField, StreamField
+from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore.models import Orderable, Page
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
-from wagtail.wagtailimages.models import Image
 from wagtail.wagtailsearch import index
-from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
-from wagtail.wagtailsnippets.models import register_snippet
 
 from .behaviours import WithFeedImage, WithIntroduction, WithStreamField
 from .carousel import AbstractCarouselItem
-from .links import AbstractLinkFields, AbstractRelatedLink
+from .links import AbstractRelatedLink
 from .streamfield import CMSStreamBlock
 
 logger = logging.getLogger(__name__)
@@ -303,7 +300,7 @@ class EventIndexPage(RoutablePageMixin, Page, WithIntroduction):
         events = EventPage.objects.live().descendant_of(self)
 
         today = date.today()
-        events = events.filter(date_to__lte=today)
+        events = events.filter(Q(date_from__lte=today) | Q(date_to__lte=today))
         events = events.order_by('-date_from')
 
         return events
@@ -413,7 +410,7 @@ EventPage.promote_panels = Page.promote_panels + [
 
 
 @receiver(pre_save, sender=EventPage)
-def default_date_to(sender, instance, **kwargs):
+def event_page_default_date_to(sender, instance, **kwargs):
     # checks the date to is empty
     if not instance.date_to:
         # sets date_to to the same as date_from
@@ -515,7 +512,7 @@ SymposiumPage.promote_panels = Page.promote_panels + [
 
 
 @receiver(pre_save, sender=SymposiumPage)
-def default_date_to(sender, instance, **kwargs):
+def symposium_page_efault_date_to(sender, instance, **kwargs):
     # checks the date to is empty
     if not instance.date_to:
         # sets date_to to the same as date_from

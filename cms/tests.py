@@ -1,8 +1,8 @@
 import datetime
 
 from cms.models.pages import (
-    BlogIndexPage, BlogPost, EventIndexPage, EventPage, Gallery, HomePage,
-    IndexPage, RichTextPage, SymposiumIndexPage, _paginate
+    BlogIndexPage, BlogPost, EventIndexPage, EventPage, HomePage, IndexPage,
+    RichTextPage, SymposiumIndexPage, _paginate
 )
 from django.contrib.auth.models import User
 from django.test import RequestFactory, TestCase
@@ -98,7 +98,7 @@ class TestEventIndexPage(WagtailPageTests):
 
         past_events = eip.past_events
         self.assertEqual(2, past_events.count())
-        self.assertEqual('event-1', past_events.first().slug)
+        self.assertEqual('event-2', past_events.first().slug)
 
         # view
         response = eip.get_past_events(self.request)
@@ -111,14 +111,14 @@ class TestEventIndexPage(WagtailPageTests):
         live_events = eip.live_events
         self.assertEqual(0, live_events.count())
 
-        event = EventPage.objects.get(pk=12)
+        event = EventPage.objects.get(url_path='/home/events/event-1/')
         event.date_from = datetime.date.today()
         event.save()
 
         live_events = eip.live_events
         self.assertEqual(1, live_events.count())
 
-        event = EventPage.objects.get(pk=13)
+        event = EventPage.objects.get(url_path='/home/events/event-2/')
         event.date_from = datetime.date.today()
         event.save()
 
@@ -131,7 +131,7 @@ class TestEventIndexPage(WagtailPageTests):
         self.assertEqual(200, response.status_code)
 
     def test_pre_save_signal(self):
-        event = EventPage.objects.get(pk=13)
+        event = EventPage.objects.get(url_path='/home/events/event-1/')
         event.date_to = None
 
         self.assertIsNone(event.date_to)
