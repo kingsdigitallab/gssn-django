@@ -275,7 +275,8 @@ class EventIndexPage(RoutablePageMixin, Page, WithIntroduction):
     subpage_types = ['EventPage']
 
     @property
-    def events(self):
+    def all_events(self):
+        # gets list of live event pages that are descendants of this page
         events = EventPage.objects.live().descendant_of(self)
         events = events.order_by('-date_from')
 
@@ -297,11 +298,10 @@ class EventIndexPage(RoutablePageMixin, Page, WithIntroduction):
     @property
     def past_events(self):
         # gets list of live event pages that are descendants of this page
-        events = EventPage.objects.live().descendant_of(self)
+        events = self.all_events
 
         today = date.today()
         events = events.filter(Q(date_from__lte=today) | Q(date_to__lte=today))
-        events = events.order_by('-date_from')
 
         return events
 
@@ -329,7 +329,7 @@ class EventIndexPage(RoutablePageMixin, Page, WithIntroduction):
             logger.error('Invalid tag filter')
             return self.get_live_events(request)
 
-        posts = self.events.filter(tags__name=tag)
+        posts = self.all_events.filter(tags__name=tag)
 
         return render(
             request, self.get_template(request), {
@@ -466,10 +466,7 @@ class SymposiumPageRelatedLink(Orderable, AbstractRelatedLink):
 
 class SymposiumPage(Page, WithFeedImage, WithStreamField):
     date_from = models.DateField('Start date')
-    date_to = models.DateField(
-        'End date', null=True, blank=True,
-        help_text='Not required if event is on a single day'
-    )
+    date_to = models.DateField('End date')
     time_from = models.TimeField('Start time', null=True, blank=True)
     time_to = models.TimeField('End time', null=True, blank=True)
     location = models.CharField(max_length=256)
