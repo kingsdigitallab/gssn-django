@@ -92,6 +92,13 @@ class TestEventIndexPage(WagtailPageTests):
     def test_subpage_types(self):
         self.assertAllowedSubpageTypes(EventIndexPage, {EventPage})
 
+    def test_all_events(self):
+        eip = EventIndexPage.objects.get(url_path='/home/events/')
+
+        all_events = eip.all_events
+        self.assertEqual(2, all_events.count())
+        self.assertEqual('event-2', all_events.first().slug)
+
     def test_past_events(self):
         # property
         eip = EventIndexPage.objects.get(url_path='/home/events/')
