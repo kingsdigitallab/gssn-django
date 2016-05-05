@@ -320,7 +320,7 @@ class EventIndexPage(RoutablePageMixin, Page, WithIntroduction):
 
         return render(request, self.get_template(request),
                       {'self': self, 'filter_type': 'past',
-                      'events': _paginate(request, events)})
+                       'events': _paginate(request, events)})
 
     @route(r'^tag/(?P<tag>[\w\- ]+)/$')
     def tag(self, request, tag=None):

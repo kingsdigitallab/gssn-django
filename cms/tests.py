@@ -165,11 +165,35 @@ class TestEventPage(WagtailPageTests):
 class TestSymposiumIndexPage(WagtailPageTests):
     fixtures = ['test.json']
 
+    def setUp(self):
+        factory = RequestFactory()
+        self.request = factory.get('/home/symposium')
+        self.request.site = Site.find_for_request(self.request)
+        self.request.user = User.objects.create_user(username='test')
+
     def test_subpage_types(self):
         self.assertAllowedSubpageTypes(SymposiumIndexPage, {SymposiumPage})
 
     def test_symposiums(self):
         sip = SymposiumIndexPage.objects.get(url_path='/home/symposium/')
+
         self.assertEqual(2, sip.symposiums.count())
         self.assertEqual(9, sip.symposiums.first().pk)
         self.assertEqual(10, sip.symposiums.last().pk)
+
+        # view
+        response = sip.get_all_symposiums(self.request)
+        self.assertEqual(200, response.status_code)
+
+
+class TestSymposiumPage(WagtailPageTests):
+    fixtures = ['test.json']
+
+    def test_subpage_types(self):
+        self.assertAllowedSubpageTypes(EventPage, {})
+
+    def test_symposium_index(self):
+        s = SymposiumPage.objects.first()
+        expected = SymposiumIndexPage.objects.get(url_path='/home/symposium/')
+
+        self.assertEqual(expected, s.symposium_index.specific)
