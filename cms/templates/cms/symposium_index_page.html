@@ -3,7 +3,7 @@
 
 {% block title %}
 <h1 class="cat-title">
-    <span class="bookmark eventpage"></span>
+    <span class="bookmark symposiumpage"></span>
     {{ self.title }}
 </h1>
 {% endblock %}
@@ -21,7 +21,7 @@
 {% endblock %}
 
 {% block index_page_children %}
-{% include "cms/includes/event_index_events.html" with class="events" %}
+{% include "cms/includes/symposium_index_symposiums.html" with class="symposium" %}
 {% endblock %}
 
 {% endblock %}

@@ -4,7 +4,7 @@ from django import forms
 
 from wagtail.wagtailcore.blocks import (
     CharBlock, FieldBlock, PageChooserBlock, RawHTMLBlock, RichTextBlock,
-    StreamBlock, StructBlock, TextBlock
+    StreamBlock, StructBlock, TextBlock, URLBlock
 )
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtaildocs.blocks import DocumentChooserBlock
@@ -38,9 +38,18 @@ class ImageBlock(StructBlock):
     alignment = ImageFormatChoiceBlock()
 
 
-class PageLinkBlock(StructBlock):
-    page = PageChooserBlock()
-    label = CharBlock()
+class EmailBlock(FieldBlock):
+    def __init__(self, required=True, help_text=None, **kwargs):
+        self.field = forms.EmailField(help_text=help_text, required=required)
+        super(EmailBlock, self).__init__(**kwargs)
+
+
+class LinkBlock(StructBlock):
+    page = PageChooserBlock(icon='wagtail', required=False)
+    url = URLBlock(icon='link', required=False)
+    document = DocumentChooserBlock(icon='doc-full-inverse', required=False)
+    email = EmailBlock(icon='mail', required=False)
+    label = CharBlock(max_length=32)
 
     class Meta:
         icon = 'link'
@@ -55,19 +64,18 @@ class PullQuoteBlock(StructBlock):
 
 
 class CMSStreamBlock(StreamBlock):
-    h2 = CharBlock(icon='title', classname='title')
-    h3 = CharBlock(icon='title', classname='title')
-    h4 = CharBlock(icon='title', classname='title')
-    h5 = CharBlock(icon='title', classname='title')
+    h2 = CharBlock(classname='title', icon='title')
+    h3 = CharBlock(classname='title', icon='title')
+    h4 = CharBlock(classname='title', icon='title')
+    h5 = CharBlock(classname='title', icon='title')
     intro = RichTextBlock(icon='pilcrow')
     paragraph = RichTextBlock(icon='pilcrow')
     pullquote = PullQuoteBlock()
 
-    image = ImageBlock(label='Aligned image', icon='image')
-    document = DocumentChooserBlock(icon='doc-full-inverse')
-    page = PageLinkBlock(icon='link')
+    image = ImageBlock(icon='image', label='Aligned image')
+    link = LinkBlock()
 
     embed = EmbedBlock(icon='media')
 
-    html = AlignedHTMLBlock(icon='code', label='Raw HTML')
-    map_html = AlignedHTMLBlock(icon='code', label='Map HTML')
+    html = AlignedHTMLBlock(label='Raw HTML')
+    map_html = AlignedHTMLBlock(label='Map HTML')

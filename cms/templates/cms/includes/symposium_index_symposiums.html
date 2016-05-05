@@ -1,0 +1,13 @@
+{% load wagtailcore_tags %}
+
+<ul class="no-bullet index">
+    {% for event in symposiums %}
+    <li>
+        {% include "cms/includes/symposium_preview.html" with event=event %}
+    </li>
+    {% empty %}
+        <li>Sorry, nothing to show here.</li>
+    {% endfor %}
+</ul>
+
+{% include "cms/includes/pagination.html" with pages=symposiums %}

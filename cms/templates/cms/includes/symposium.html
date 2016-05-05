@@ -1,0 +1,26 @@
+{% if event %}
+{% load cms_tags wagtailcore_tags wagtailroutablepage_tags %}
+
+<article class="post" id="post{{ event.id }}">
+    <header>
+        {% block event_title %}
+        <h1 class="posttitle">{{ event.title }}</h1>
+        {% endblock %}
+
+        {% block event_author %}
+        <p class="byline">
+            <time datetime="{{ event.date_from|date:'c' }}"><i class="fa fa-calendar"></i> {{ event.date_from }}{% if event.date_to %} - {{ event.date_to }}{% endif %}</time>
+        </p>
+        <p class="byline">
+            <i class="fa fa-map-marker"></i> {{ event.location }}
+        </p>
+        {% endblock %}
+    </header>
+
+    {% block event_content %}
+    <section class="postcontent">
+        {% include "cms/includes/streamfield.html" with content=event.body %}
+    </section>
+    {% endblock %}
+</article>
+{% endif %}
