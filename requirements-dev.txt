@@ -3,3 +3,4 @@ django-extensions
 django-debug-toolbar
 Fabric
 ipython
+tox
