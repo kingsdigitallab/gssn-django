@@ -1,20 +1,20 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from fabric.api import task, prefix, run, sudo, env, require, cd, quiet
+import os.path
+import sys
+from functools import wraps
+
+from django.conf import settings
+from fabric.api import cd, env, prefix, quiet, require, run, sudo, task
 from fabric.colors import green, yellow
 from fabric.contrib import django
-from functools import wraps
-import sys
-import os.path
-
 
 # put project directory in path
 project_root = os.path.abspath(os.path.dirname(__file__))
 sys.path.append(project_root)
 
 django.project('gssn')
-from django.conf import settings
 
 REPOSITORY = ''
 
