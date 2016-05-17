@@ -1,429 +1,464 @@
-[{
-    "model": "wagtailcore.site",
-    "fields": {
-        "hostname": "localhost",
-        "port": 80,
-        "site_name": "",
-        "root_page": 3,
-        "is_default_site": true
+[
+    {
+        "fields": {
+            "hostname": "localhost",
+            "is_default_site": true,
+            "port": 80,
+            "root_page": 3,
+            "site_name": ""
+        },
+        "model": "wagtailcore.site"
+    },
+    {
+        "fields": {
+            "content_type": [
+                "wagtailcore",
+                "page"
+            ],
+            "depth": 1,
+            "expire_at": null,
+            "expired": false,
+            "first_published_at": null,
+            "go_live_at": null,
+            "has_unpublished_changes": false,
+            "latest_revision_created_at": null,
+            "live": true,
+            "locked": false,
+            "numchild": 1,
+            "owner": null,
+            "path": "0001",
+            "search_description": "",
+            "seo_title": "",
+            "show_in_menus": false,
+            "slug": "root",
+            "title": "Root",
+            "url_path": "/"
+        },
+        "model": "wagtailcore.page",
+        "pk": 1
+    },
+    {
+        "fields": {
+            "content_type": [
+                "cms",
+                "homepage"
+            ],
+            "depth": 2,
+            "expire_at": null,
+            "expired": false,
+            "first_published_at": "2016-04-26T08:31:45.998Z",
+            "go_live_at": null,
+            "has_unpublished_changes": false,
+            "latest_revision_created_at": "2016-05-03T11:34:24.785Z",
+            "live": true,
+            "locked": false,
+            "numchild": 5,
+            "owner": null,
+            "path": "00010002",
+            "search_description": "",
+            "seo_title": "",
+            "show_in_menus": false,
+            "slug": "home",
+            "title": "Home",
+            "url_path": "/home/"
+        },
+        "model": "wagtailcore.page",
+        "pk": 3
+    },
+    {
+        "fields": {
+            "content_type": [
+                "cms",
+                "indexpage"
+            ],
+            "depth": 3,
+            "expire_at": null,
+            "expired": false,
+            "first_published_at": "2016-04-29T14:52:11.966Z",
+            "go_live_at": null,
+            "has_unpublished_changes": false,
+            "latest_revision_created_at": "2016-05-03T11:34:59.281Z",
+            "live": true,
+            "locked": false,
+            "numchild": 0,
+            "owner": null,
+            "path": "000100010001",
+            "search_description": "",
+            "seo_title": "",
+            "show_in_menus": true,
+            "slug": "about",
+            "title": "About",
+            "url_path": "/home/about/"
+        },
+        "model": "wagtailcore.page",
+        "pk": 4
+    },
+    {
+        "fields": {
+            "content_type": [
+                "cms",
+                "blogindexpage"
+            ],
+            "depth": 3,
+            "expire_at": null,
+            "expired": false,
+            "first_published_at": "2016-04-29T14:52:57.449Z",
+            "go_live_at": null,
+            "has_unpublished_changes": false,
+            "latest_revision_created_at": "2016-04-29T14:52:57.417Z",
+            "live": true,
+            "locked": false,
+            "numchild": 2,
+            "owner": null,
+            "path": "000100010004",
+            "search_description": "",
+            "seo_title": "",
+            "show_in_menus": true,
+            "slug": "blog",
+            "title": "Blog",
+            "url_path": "/home/blog/"
+        },
+        "model": "wagtailcore.page",
+        "pk": 5
+    },
+    {
+        "fields": {
+            "content_type": [
+                "cms",
+                "indexpage"
+            ],
+            "depth": 3,
+            "expire_at": null,
+            "expired": false,
+            "first_published_at": "2016-04-29T14:53:36.937Z",
+            "go_live_at": null,
+            "has_unpublished_changes": false,
+            "latest_revision_created_at": "2016-04-29T14:53:36.904Z",
+            "live": true,
+            "locked": false,
+            "numchild": 0,
+            "owner": null,
+            "path": "000100010005",
+            "search_description": "",
+            "seo_title": "",
+            "show_in_menus": true,
+            "slug": "resources",
+            "title": "Resources",
+            "url_path": "/home/resources/"
+        },
+        "model": "wagtailcore.page",
+        "pk": 6
+    },
+    {
+        "fields": {
+            "content_type": [
+                "cms",
+                "eventindexpage"
+            ],
+            "depth": 3,
+            "expire_at": null,
+            "expired": false,
+            "first_published_at": "2016-04-29T14:54:06.625Z",
+            "go_live_at": null,
+            "has_unpublished_changes": false,
+            "latest_revision_created_at": "2016-04-29T14:54:06.577Z",
+            "live": true,
+            "locked": false,
+            "numchild": 2,
+            "owner": null,
+            "path": "000100010003",
+            "search_description": "",
+            "seo_title": "",
+            "show_in_menus": true,
+            "slug": "events",
+            "title": "Events",
+            "url_path": "/home/events/"
+        },
+        "model": "wagtailcore.page",
+        "pk": 7
+    },
+    {
+        "fields": {
+            "content_type": [
+                "cms",
+                "eventpage"
+            ],
+            "depth": 4,
+            "expire_at": null,
+            "expired": false,
+            "first_published_at": "2016-04-29T16:06:02.617Z",
+            "go_live_at": null,
+            "has_unpublished_changes": false,
+            "latest_revision_created_at": "2016-04-29T16:06:02.565Z",
+            "live": true,
+            "locked": false,
+            "numchild": 0,
+            "owner": null,
+            "path": "0001000100030001",
+            "search_description": "",
+            "seo_title": "",
+            "show_in_menus": false,
+            "slug": "living-pasts-unfolding-futures",
+            "title": "Living Pasts, Unfolding Futures",
+            "url_path": "/home/events/living-pasts-unfolding-futures/"
+        },
+        "model": "wagtailcore.page",
+        "pk": 9
+    },
+    {
+        "fields": {
+            "content_type": [
+                "cms",
+                "eventpage"
+            ],
+            "depth": 4,
+            "expire_at": null,
+            "expired": false,
+            "first_published_at": "2016-05-03T11:38:49.047Z",
+            "go_live_at": null,
+            "has_unpublished_changes": false,
+            "latest_revision_created_at": "2016-05-03T11:38:49.006Z",
+            "live": true,
+            "locked": false,
+            "numchild": 0,
+            "owner": null,
+            "path": "0001000100030002",
+            "search_description": "",
+            "seo_title": "",
+            "show_in_menus": false,
+            "slug": "screening-work",
+            "title": "SCREENING WORK",
+            "url_path": "/home/events/screening-work/"
+        },
+        "model": "wagtailcore.page",
+        "pk": 10
+    },
+    {
+        "fields": {
+            "content_type": [
+                "cms",
+                "eventpage"
+            ],
+            "depth": 4,
+            "expire_at": null,
+            "expired": false,
+            "first_published_at": "2016-05-03T11:39:53.112Z",
+            "go_live_at": null,
+            "has_unpublished_changes": false,
+            "latest_revision_created_at": "2016-05-03T11:39:53.029Z",
+            "live": true,
+            "locked": false,
+            "numchild": 0,
+            "owner": null,
+            "path": "0001000100030003",
+            "search_description": "",
+            "seo_title": "",
+            "show_in_menus": false,
+            "slug": "event-1",
+            "title": "Event 1",
+            "url_path": "/home/events/event-1/"
+        },
+        "model": "wagtailcore.page",
+        "pk": 11
+    },
+    {
+        "fields": {
+            "content_type": [
+                "cms",
+                "eventpage"
+            ],
+            "depth": 4,
+            "expire_at": null,
+            "expired": false,
+            "first_published_at": "2016-05-03T11:40:26.121Z",
+            "go_live_at": null,
+            "has_unpublished_changes": false,
+            "latest_revision_created_at": "2016-05-03T11:40:26.087Z",
+            "live": true,
+            "locked": false,
+            "numchild": 0,
+            "owner": null,
+            "path": "0001000100030004",
+            "search_description": "",
+            "seo_title": "",
+            "show_in_menus": false,
+            "slug": "event-2",
+            "title": "Event 2",
+            "url_path": "/home/events/event-2/"
+        },
+        "model": "wagtailcore.page",
+        "pk": 12
+    },
+    {
+        "fields": {
+            "content_type": [
+                "cms",
+                "blogpost"
+            ],
+            "depth": 4,
+            "expire_at": null,
+            "expired": false,
+            "first_published_at": "2016-05-03T11:40:59.655Z",
+            "go_live_at": null,
+            "has_unpublished_changes": false,
+            "latest_revision_created_at": "2016-05-03T11:41:39.605Z",
+            "live": true,
+            "locked": false,
+            "numchild": 0,
+            "owner": null,
+            "path": "0001000100040001",
+            "search_description": "",
+            "seo_title": "",
+            "show_in_menus": false,
+            "slug": "post-1",
+            "title": "Post 1",
+            "url_path": "/home/blog/post-1/"
+        },
+        "model": "wagtailcore.page",
+        "pk": 13
+    },
+    {
+        "fields": {
+            "content_type": [
+                "cms",
+                "blogpost"
+            ],
+            "depth": 4,
+            "expire_at": null,
+            "expired": false,
+            "first_published_at": "2016-05-03T11:41:29.089Z",
+            "go_live_at": null,
+            "has_unpublished_changes": false,
+            "latest_revision_created_at": "2016-05-03T11:41:29.052Z",
+            "live": true,
+            "locked": false,
+            "numchild": 0,
+            "owner": null,
+            "path": "0001000100040002",
+            "search_description": "",
+            "seo_title": "",
+            "show_in_menus": false,
+            "slug": "post-2",
+            "title": "Post 2",
+            "url_path": "/home/blog/post-2/"
+        },
+        "model": "wagtailcore.page",
+        "pk": 14
+    },
+    {
+        "fields": {
+            "announcement": "[]",
+            "body": "[{\"type\": \"intro\", \"value\": \"<p>International network, symposium and showcase for German language film\\n</p>\"}]"
+        },
+        "model": "cms.homepage",
+        "pk": 3
+    },
+    {
+        "fields": {
+            "feed_image": null,
+            "intro": "[{\"type\": \"intro\", \"value\": \"<p>The German Screen Studies Network was founded in June 2012 and has three principal aims:</p>\\n<ul><li>to provide through its annual symposium a UK-based forum for discussion and debate on German language films.</li><li>to provide a public platform for lesser-known German language films that may otherwise not be available to UK audiences.</li><li>to provide a resource for the next generation of German film \\nscholars and critics to encounter new films, meet peers and experts, and\\n develop new ways of approaching unfamiliar material.</li></ul><p>This initiative is inspired by the highly-influential biennial <a href=\\\"http://t.umblr.com/redirect?z=https%3A%2F%2Fwww.lsa.umich.edu%2Fgerman%2Flanguageprograms%2Fgermanfilminstitute&amp;t=MTNiOTAwZjIxYTcxNTRkZTkwNWYzY2FhODViMjIzOThiNzU1ZjdiNixUbU4zdWpESg%3D%3D\\\">German Film Institute</a> in the US, founded by <a href=\\\"http://t.umblr.com/redirect?z=http%3A%2F%2Fgerman.berkeley.edu%2Fauthor%2Ftkaes%2F&amp;t=Mzg4OGIxMThkZDc4MWI3NmViMjk2ZWIxZjBmY2I2NDhhMzgyOWVjMCxUbU4zdWpESg%3D%3D\\\">Anton Kaes</a> (Berkeley) and <a href=\\\"http://t.umblr.com/redirect?z=http%3A%2F%2Fgerman.fas.harvard.edu%2Fpeople%2Feric-rentschler&amp;t=YjE1OGZlNjJjNjQ0NDg3MmQzY2ZhODMyMTZjYTBlN2FlZmZiZDg4ZixUbU4zdWpESg%3D%3D\\\">Eric Rentschler</a> (Harvard). As this resource has been so highly-valued by young German film scholars in the US, <a href=\\\"http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.kcl.ac.uk%2Fartshums%2Fdepts%2Fgerman%2Fpeople%2Fstaff%2Facademic%2Fcartere.aspx&amp;t=M2Q4MzEyNDcwMTE2MzRlNTZjNDIzZjY4MjQyMThkNWJkMGE3NDVhZSxUbU4zdWpESg%3D%3D\\\">Erica Carter</a> and <a href=\\\"http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.kcl.ac.uk%2Fartshums%2Fdepts%2Fgerman%2Fpeople%2Fstaff%2Facademic%2Fbradym.aspx&amp;t=OTFlOTJlMWJjNzI0NjQxOTczYjEwYmY0N2ZiZDMzNTQwZWEyMTZkYSxUbU4zdWpESg%3D%3D\\\">Martin Brady</a> of <a href=\\\"http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.kcl.ac.uk%2Fartshums%2Fdepts%2Fgerman%2Findex.aspx&amp;t=OWYxMzhlMGQ5OWMxMjkxYTMzZjczYmRhYzQyY2FmZWNhODJhYzE0MixUbU4zdWpESg%3D%3D\\\">Kings College</a> decided to set up a similar network in the UK.</p>\\n<p>This project is made possible by ongoing collaborations with our <a href=\\\"http://germanscreenstudies.co.uk/network\\\">network partners and network members</a>.</p>\"}]"
+        },
+        "model": "cms.indexpage",
+        "pk": 4
+    },
+    {
+        "fields": {
+            "feed_image": null,
+            "intro": "[{\"type\": \"intro\", \"value\": \"<p>You can add resources under this page.<br/></p>\"}]"
+        },
+        "model": "cms.indexpage",
+        "pk": 6
+    },
+    {
+        "fields": {
+            "intro": "[{\"type\": \"intro\", \"value\": \"<p>This is the blog index page<br/></p>\"}]"
+        },
+        "model": "cms.blogindexpage",
+        "pk": 5
+    },
+    {
+        "fields": {
+            "body": "[{\"type\": \"intro\", \"value\": \"<p>Unit testing<br/></p>\"}]",
+            "date": "2016-05-01",
+            "feed_image": null
+        },
+        "model": "cms.blogpost",
+        "pk": 13
+    },
+    {
+        "fields": {
+            "body": "[{\"type\": \"intro\", \"value\": \"<p>Continuous integration<br/></p>\"}]",
+            "date": "2016-05-03",
+            "feed_image": null
+        },
+        "model": "cms.blogpost",
+        "pk": 14
+    },
+    {
+        "fields": {
+            "intro": "[{\"type\": \"intro\", \"value\": \"<p>Live events are shown by default<br/></p>\"}]"
+        },
+        "model": "cms.eventindexpage",
+        "pk": 7
+    },
+    {
+        "fields": {
+            "body": "[{\"type\": \"h2\", \"value\": \"Public Symposium\"}, {\"type\": \"intro\", \"value\": \"<p>This year\\u2019s symposium focus is on Living\\n Pasts, Unfolding Futures. Since the inception of cinema, commentators \\non film have observed the medium\\u2019s special capacity to shape experiences\\n of past, present and future time. Writers on early film aesthetics \\nmarvelled at film\\u2019s modernist ability to remodel time; new cinematic \\ntechnologies (parallel montage, superimposition) collapsed past, present\\n and future into filmic moments of simultaneity; emergent genres \\u2013 \\nhistorical drama, but also fantasy film or science fiction \\u2013 made of the\\n past a usable experience in present time or, conversely, projected \\nvisions of dystopian or utopian futures.</p>\"}]",
+            "date_from": "2016-09-08",
+            "date_to": "2016-09-10",
+            "feed_image": null,
+            "is_symposium": true,
+            "location": "King’s College London & Queen Mary University of London",
+            "signup_link": "",
+            "time_from": null,
+            "time_to": null
+        },
+        "model": "cms.eventpage",
+        "pk": 9
+    },
+    {
+        "fields": {
+            "body": "[{\"type\": \"intro\", \"value\": \"<p>At <em>Screening Work</em>, students, academics and interested members of the public are invited to explore, through subtitled film screenings and talks, the changing depiction of work in German-language moving image culture. \\u00a0Filmmaker Carmen Losmann will attend the symposium and present her award-winning film <em>Work Hard Play Hard </em>(2011).\\n Distinguished speakers include the film theorist and critic Professor \\nGertrud Koch (Freie Universit\\u00e4t Berlin), and Professor Annette \\nBrauerhoch (University of Paderborn), co-editor of the feminist film \\njournal <em>frauen und film</em>. </p>\"}]",
+            "date_from": "2015-09-08",
+            "date_to": "2015-09-10",
+            "feed_image": null,
+            "is_symposium": true,
+            "location": "University of Cambridge, 8 Mill Lane, Cambridge",
+            "signup_link": "",
+            "time_from": null,
+            "time_to": null
+        },
+        "model": "cms.eventpage",
+        "pk": 10
+    },
+    {
+        "fields": {
+            "body": "[{\"type\": \"intro\", \"value\": \"<p>Event 1<br/></p>\"}]",
+            "date_from": "2016-03-31",
+            "date_to": null,
+            "feed_image": null,
+            "is_symposium": false,
+            "location": "KCL",
+            "signup_link": "",
+            "time_from": null,
+            "time_to": null
+        },
+        "model": "cms.eventpage",
+        "pk": 11
+    },
+    {
+        "fields": {
+            "body": "[{\"type\": \"intro\", \"value\": \"<p>Event 2<br/></p>\"}]",
+            "date_from": "2016-04-01",
+            "date_to": null,
+            "feed_image": null,
+            "is_symposium": false,
+            "location": "KCL",
+            "signup_link": "",
+            "time_from": null,
+            "time_to": null
+        },
+        "model": "cms.eventpage",
+        "pk": 12
     }
-}, {
-    "model": "wagtailcore.page",
-    "pk": 1,
-    "fields": {
-        "path": "0001",
-        "depth": 1,
-        "numchild": 1,
-        "title": "Root",
-        "slug": "root",
-        "content_type": ["wagtailcore", "page"],
-        "live": true,
-        "has_unpublished_changes": false,
-        "url_path": "/",
-        "owner": null,
-        "seo_title": "",
-        "show_in_menus": false,
-        "search_description": "",
-        "go_live_at": null,
-        "expire_at": null,
-        "expired": false,
-        "locked": false,
-        "first_published_at": null,
-        "latest_revision_created_at": null
-    }
-}, {
-    "model": "wagtailcore.page",
-    "pk": 3,
-    "fields": {
-        "path": "00010002",
-        "depth": 2,
-        "numchild": 5,
-        "title": "Home",
-        "slug": "home",
-        "content_type": ["cms", "homepage"],
-        "live": true,
-        "has_unpublished_changes": false,
-        "url_path": "/home/",
-        "owner": null,
-        "seo_title": "",
-        "show_in_menus": false,
-        "search_description": "",
-        "go_live_at": null,
-        "expire_at": null,
-        "expired": false,
-        "locked": false,
-        "first_published_at": "2016-04-26T08:31:45.998Z",
-        "latest_revision_created_at": "2016-05-03T11:34:24.785Z"
-    }
-}, {
-    "model": "wagtailcore.page",
-    "pk": 4,
-    "fields": {
-        "path": "000100010001",
-        "depth": 3,
-        "numchild": 0,
-        "title": "About",
-        "slug": "about",
-        "content_type": ["cms", "indexpage"],
-        "live": true,
-        "has_unpublished_changes": false,
-        "url_path": "/home/about/",
-        "owner": null,
-        "seo_title": "",
-        "show_in_menus": true,
-        "search_description": "",
-        "go_live_at": null,
-        "expire_at": null,
-        "expired": false,
-        "locked": false,
-        "first_published_at": "2016-04-29T14:52:11.966Z",
-        "latest_revision_created_at": "2016-05-03T11:34:59.281Z"
-    }
-}, {
-    "model": "wagtailcore.page",
-    "pk": 5,
-    "fields": {
-        "path": "000100010004",
-        "depth": 3,
-        "numchild": 2,
-        "title": "Blog",
-        "slug": "blog",
-        "content_type": ["cms", "blogindexpage"],
-        "live": true,
-        "has_unpublished_changes": false,
-        "url_path": "/home/blog/",
-        "owner": null,
-        "seo_title": "",
-        "show_in_menus": true,
-        "search_description": "",
-        "go_live_at": null,
-        "expire_at": null,
-        "expired": false,
-        "locked": false,
-        "first_published_at": "2016-04-29T14:52:57.449Z",
-        "latest_revision_created_at": "2016-04-29T14:52:57.417Z"
-    }
-}, {
-    "model": "wagtailcore.page",
-    "pk": 6,
-    "fields": {
-        "path": "000100010005",
-        "depth": 3,
-        "numchild": 0,
-        "title": "Resources",
-        "slug": "resources",
-        "content_type": ["cms", "indexpage"],
-        "live": true,
-        "has_unpublished_changes": false,
-        "url_path": "/home/resources/",
-        "owner": null,
-        "seo_title": "",
-        "show_in_menus": true,
-        "search_description": "",
-        "go_live_at": null,
-        "expire_at": null,
-        "expired": false,
-        "locked": false,
-        "first_published_at": "2016-04-29T14:53:36.937Z",
-        "latest_revision_created_at": "2016-04-29T14:53:36.904Z"
-    }
-}, {
-    "model": "wagtailcore.page",
-    "pk": 7,
-    "fields": {
-        "path": "000100010003",
-        "depth": 3,
-        "numchild": 2,
-        "title": "Events",
-        "slug": "events",
-        "content_type": ["cms", "eventindexpage"],
-        "live": true,
-        "has_unpublished_changes": false,
-        "url_path": "/home/events/",
-        "owner": null,
-        "seo_title": "",
-        "show_in_menus": true,
-        "search_description": "",
-        "go_live_at": null,
-        "expire_at": null,
-        "expired": false,
-        "locked": false,
-        "first_published_at": "2016-04-29T14:54:06.625Z",
-        "latest_revision_created_at": "2016-04-29T14:54:06.577Z"
-    }
-}, {
-    "model": "wagtailcore.page",
-    "pk": 8,
-    "fields": {
-        "path": "000100010002",
-        "depth": 3,
-        "numchild": 2,
-        "title": "Symposium",
-        "slug": "symposium",
-        "content_type": ["cms", "symposiumindexpage"],
-        "live": true,
-        "has_unpublished_changes": false,
-        "url_path": "/home/symposium/",
-        "owner": null,
-        "seo_title": "",
-        "show_in_menus": true,
-        "search_description": "",
-        "go_live_at": null,
-        "expire_at": null,
-        "expired": false,
-        "locked": false,
-        "first_published_at": "2016-04-29T15:55:38.134Z",
-        "latest_revision_created_at": "2016-04-29T15:56:06.096Z"
-    }
-}, {
-    "model": "wagtailcore.page",
-    "pk": 9,
-    "fields": {
-        "path": "0001000100020001",
-        "depth": 4,
-        "numchild": 0,
-        "title": "Living Pasts, Unfolding Futures",
-        "slug": "living-pasts-unfolding-futures",
-        "content_type": ["cms", "symposiumpage"],
-        "live": true,
-        "has_unpublished_changes": false,
-        "url_path": "/home/symposium/living-pasts-unfolding-futures/",
-        "owner": null,
-        "seo_title": "",
-        "show_in_menus": false,
-        "search_description": "",
-        "go_live_at": null,
-        "expire_at": null,
-        "expired": false,
-        "locked": false,
-        "first_published_at": "2016-04-29T16:06:02.617Z",
-        "latest_revision_created_at": "2016-04-29T16:06:02.565Z"
-    }
-}, {
-    "model": "wagtailcore.page",
-    "pk": 10,
-    "fields": {
-        "path": "0001000100020002",
-        "depth": 4,
-        "numchild": 0,
-        "title": "SCREENING WORK",
-        "slug": "screening-work",
-        "content_type": ["cms", "symposiumpage"],
-        "live": true,
-        "has_unpublished_changes": false,
-        "url_path": "/home/symposium/screening-work/",
-        "owner": null,
-        "seo_title": "",
-        "show_in_menus": false,
-        "search_description": "",
-        "go_live_at": null,
-        "expire_at": null,
-        "expired": false,
-        "locked": false,
-        "first_published_at": "2016-05-03T11:38:49.047Z",
-        "latest_revision_created_at": "2016-05-03T11:38:49.006Z"
-    }
-}, {
-    "model": "wagtailcore.page",
-    "pk": 11,
-    "fields": {
-        "path": "0001000100030001",
-        "depth": 4,
-        "numchild": 0,
-        "title": "Event 1",
-        "slug": "event-1",
-        "content_type": ["cms", "eventpage"],
-        "live": true,
-        "has_unpublished_changes": false,
-        "url_path": "/home/events/event-1/",
-        "owner": null,
-        "seo_title": "",
-        "show_in_menus": false,
-        "search_description": "",
-        "go_live_at": null,
-        "expire_at": null,
-        "expired": false,
-        "locked": false,
-        "first_published_at": "2016-05-03T11:39:53.112Z",
-        "latest_revision_created_at": "2016-05-03T11:39:53.029Z"
-    }
-}, {
-    "model": "wagtailcore.page",
-    "pk": 12,
-    "fields": {
-        "path": "0001000100030002",
-        "depth": 4,
-        "numchild": 0,
-        "title": "Event 2",
-        "slug": "event-2",
-        "content_type": ["cms", "eventpage"],
-        "live": true,
-        "has_unpublished_changes": false,
-        "url_path": "/home/events/event-2/",
-        "owner": null,
-        "seo_title": "",
-        "show_in_menus": false,
-        "search_description": "",
-        "go_live_at": null,
-        "expire_at": null,
-        "expired": false,
-        "locked": false,
-        "first_published_at": "2016-05-03T11:40:26.121Z",
-        "latest_revision_created_at": "2016-05-03T11:40:26.087Z"
-    }
-}, {
-    "model": "wagtailcore.page",
-    "pk": 13,
-    "fields": {
-        "path": "0001000100040001",
-        "depth": 4,
-        "numchild": 0,
-        "title": "Post 1",
-        "slug": "post-1",
-        "content_type": ["cms", "blogpost"],
-        "live": true,
-        "has_unpublished_changes": false,
-        "url_path": "/home/blog/post-1/",
-        "owner": null,
-        "seo_title": "",
-        "show_in_menus": false,
-        "search_description": "",
-        "go_live_at": null,
-        "expire_at": null,
-        "expired": false,
-        "locked": false,
-        "first_published_at": "2016-05-03T11:40:59.655Z",
-        "latest_revision_created_at": "2016-05-03T11:41:39.605Z"
-    }
-}, {
-    "model": "wagtailcore.page",
-    "pk": 14,
-    "fields": {
-        "path": "0001000100040002",
-        "depth": 4,
-        "numchild": 0,
-        "title": "Post 2",
-        "slug": "post-2",
-        "content_type": ["cms", "blogpost"],
-        "live": true,
-        "has_unpublished_changes": false,
-        "url_path": "/home/blog/post-2/",
-        "owner": null,
-        "seo_title": "",
-        "show_in_menus": false,
-        "search_description": "",
-        "go_live_at": null,
-        "expire_at": null,
-        "expired": false,
-        "locked": false,
-        "first_published_at": "2016-05-03T11:41:29.089Z",
-        "latest_revision_created_at": "2016-05-03T11:41:29.052Z"
-    }
-}, {
-    "model": "cms.homepage",
-    "pk": 3,
-    "fields": {
-        "body": "[{\"type\": \"intro\", \"value\": \"<p>International network, symposium and showcase for German language film\\n</p>\"}]",
-        "announcement": "[]"
-    }
-}, {
-    "model": "cms.indexpage",
-    "pk": 4,
-    "fields": {
-        "feed_image": null,
-        "intro": "[{\"type\": \"intro\", \"value\": \"<p>The German Screen Studies Network was founded in June 2012 and has three principal aims:</p>\\n<ul><li>to provide through its annual symposium a UK-based forum for discussion and debate on German language films.</li><li>to provide a public platform for lesser-known German language films that may otherwise not be available to UK audiences.</li><li>to provide a resource for the next generation of German film \\nscholars and critics to encounter new films, meet peers and experts, and\\n develop new ways of approaching unfamiliar material.</li></ul><p>This initiative is inspired by the highly-influential biennial <a href=\\\"http://t.umblr.com/redirect?z=https%3A%2F%2Fwww.lsa.umich.edu%2Fgerman%2Flanguageprograms%2Fgermanfilminstitute&amp;t=MTNiOTAwZjIxYTcxNTRkZTkwNWYzY2FhODViMjIzOThiNzU1ZjdiNixUbU4zdWpESg%3D%3D\\\">German Film Institute</a> in the US, founded by <a href=\\\"http://t.umblr.com/redirect?z=http%3A%2F%2Fgerman.berkeley.edu%2Fauthor%2Ftkaes%2F&amp;t=Mzg4OGIxMThkZDc4MWI3NmViMjk2ZWIxZjBmY2I2NDhhMzgyOWVjMCxUbU4zdWpESg%3D%3D\\\">Anton Kaes</a> (Berkeley) and <a href=\\\"http://t.umblr.com/redirect?z=http%3A%2F%2Fgerman.fas.harvard.edu%2Fpeople%2Feric-rentschler&amp;t=YjE1OGZlNjJjNjQ0NDg3MmQzY2ZhODMyMTZjYTBlN2FlZmZiZDg4ZixUbU4zdWpESg%3D%3D\\\">Eric Rentschler</a> (Harvard). As this resource has been so highly-valued by young German film scholars in the US, <a href=\\\"http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.kcl.ac.uk%2Fartshums%2Fdepts%2Fgerman%2Fpeople%2Fstaff%2Facademic%2Fcartere.aspx&amp;t=M2Q4MzEyNDcwMTE2MzRlNTZjNDIzZjY4MjQyMThkNWJkMGE3NDVhZSxUbU4zdWpESg%3D%3D\\\">Erica Carter</a> and <a href=\\\"http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.kcl.ac.uk%2Fartshums%2Fdepts%2Fgerman%2Fpeople%2Fstaff%2Facademic%2Fbradym.aspx&amp;t=OTFlOTJlMWJjNzI0NjQxOTczYjEwYmY0N2ZiZDMzNTQwZWEyMTZkYSxUbU4zdWpESg%3D%3D\\\">Martin Brady</a> of <a href=\\\"http://t.umblr.com/redirect?z=http%3A%2F%2Fwww.kcl.ac.uk%2Fartshums%2Fdepts%2Fgerman%2Findex.aspx&amp;t=OWYxMzhlMGQ5OWMxMjkxYTMzZjczYmRhYzQyY2FmZWNhODJhYzE0MixUbU4zdWpESg%3D%3D\\\">Kings College</a> decided to set up a similar network in the UK.</p>\\n<p>This project is made possible by ongoing collaborations with our <a href=\\\"http://germanscreenstudies.co.uk/network\\\">network partners and network members</a>.</p>\"}]"
-    }
-}, {
-    "model": "cms.indexpage",
-    "pk": 6,
-    "fields": {
-        "feed_image": null,
-        "intro": "[{\"type\": \"intro\", \"value\": \"<p>You can add resources under this page.<br/></p>\"}]"
-    }
-}, {
-    "model": "cms.blogindexpage",
-    "pk": 5,
-    "fields": {
-        "intro": "[{\"type\": \"intro\", \"value\": \"<p>This is the blog index page<br/></p>\"}]"
-    }
-}, {
-    "model": "cms.blogpost",
-    "pk": 13,
-    "fields": {
-        "feed_image": null,
-        "body": "[{\"type\": \"intro\", \"value\": \"<p>Unit testing<br/></p>\"}]",
-        "date": "2016-05-01"
-    }
-}, {
-    "model": "cms.blogpost",
-    "pk": 14,
-    "fields": {
-        "feed_image": null,
-        "body": "[{\"type\": \"intro\", \"value\": \"<p>Continuous integration<br/></p>\"}]",
-        "date": "2016-05-03"
-    }
-}, {
-    "model": "cms.eventindexpage",
-    "pk": 7,
-    "fields": {
-        "intro": "[{\"type\": \"intro\", \"value\": \"<p>Live events are shown by default<br/></p>\"}]"
-    }
-}, {
-    "model": "cms.eventpage",
-    "pk": 11,
-    "fields": {
-        "feed_image": null,
-        "body": "[{\"type\": \"intro\", \"value\": \"<p>Event 1<br/></p>\"}]",
-        "date_from": "2016-03-31",
-        "date_to": null,
-        "time_from": null,
-        "time_to": null,
-        "location": "KCL",
-        "signup_link": ""
-    }
-}, {
-    "model": "cms.eventpage",
-    "pk": 12,
-    "fields": {
-        "feed_image": null,
-        "body": "[{\"type\": \"intro\", \"value\": \"<p>Event 2<br/></p>\"}]",
-        "date_from": "2016-04-01",
-        "date_to": null,
-        "time_from": null,
-        "time_to": null,
-        "location": "KCL",
-        "signup_link": ""
-    }
-}, {
-    "model": "cms.symposiumindexpage",
-    "pk": 8,
-    "fields": {
-        "intro": "[{\"type\": \"intro\", \"value\": \"<p>This is the intro to the symposium pages<br/></p>\"}]"
-    }
-}, {
-    "model": "cms.symposiumpage",
-    "pk": 9,
-    "fields": {
-        "feed_image": null,
-        "body": "[{\"type\": \"h2\", \"value\": \"Public Symposium\"}, {\"type\": \"intro\", \"value\": \"<p>This year\\u2019s symposium focus is on Living\\n Pasts, Unfolding Futures. Since the inception of cinema, commentators \\non film have observed the medium\\u2019s special capacity to shape experiences\\n of past, present and future time. Writers on early film aesthetics \\nmarvelled at film\\u2019s modernist ability to remodel time; new cinematic \\ntechnologies (parallel montage, superimposition) collapsed past, present\\n and future into filmic moments of simultaneity; emergent genres \\u2013 \\nhistorical drama, but also fantasy film or science fiction \\u2013 made of the\\n past a usable experience in present time or, conversely, projected \\nvisions of dystopian or utopian futures.</p>\"}]",
-        "date_from": "2016-09-08",
-        "date_to": "2016-09-10",
-        "time_from": null,
-        "time_to": null,
-        "location": "King\u2019s College London & Queen Mary University of London",
-        "signup_link": ""
-    }
-}, {
-    "model": "cms.symposiumpage",
-    "pk": 10,
-    "fields": {
-        "feed_image": null,
-        "body": "[{\"type\": \"intro\", \"value\": \"<p>At <em>Screening Work</em>, students, academics and interested members of the public are invited to explore, through subtitled film screenings and talks, the changing depiction of work in German-language moving image culture. \\u00a0Filmmaker Carmen Losmann will attend the symposium and present her award-winning film <em>Work Hard Play Hard </em>(2011).\\n Distinguished speakers include the film theorist and critic Professor \\nGertrud Koch (Freie Universit\\u00e4t Berlin), and Professor Annette \\nBrauerhoch (University of Paderborn), co-editor of the feminist film \\njournal <em>frauen und film</em>. </p>\"}]",
-        "date_from": "2015-09-08",
-        "date_to": "2015-09-10",
-        "time_from": null,
-        "time_to": null,
-        "location": "University of Cambridge, 8 Mill Lane, Cambridge",
-        "signup_link": ""
-    }
-}]
+]
