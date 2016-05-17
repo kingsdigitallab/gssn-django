@@ -1,6 +1,8 @@
 from django import template
 from django.conf import settings
 from django.template.defaultfilters import stringfilter
+from django.utils.dateformat import DateFormat
+from django.utils.safestring import mark_safe
 
 register = template.Library()
 
@@ -9,6 +11,16 @@ register = template.Library()
 def are_comments_allowed():
     """Returns True if commenting on the site is allowed, False otherwise."""
     return getattr(settings, 'ALLOW_COMMENTS', False)
+
+
+@register.filter(name='date_as_block')
+def date_as_block_filter(value):
+    df = DateFormat(value)
+    result = '''<{0} class="day">{1}</{0}>
+        <{0} class="month">{2}</{0}>
+        <{0} class="year">{3}</{0}>'''.format(
+        'span', df.format('d'), df.format('M'), df.format('Y'))
+    return mark_safe(result)
 
 
 @register.assignment_tag(takes_context=True)
