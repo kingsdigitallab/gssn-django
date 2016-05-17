@@ -34,7 +34,7 @@ class ImageFormatChoiceBlock(FieldBlock):
 
 class ImageBlock(StructBlock):
     image = ImageChooserBlock()
-    caption = RichTextBlock()
+    caption = RichTextBlock(blank=True, null=True)
     alignment = ImageFormatChoiceBlock()
 
 
