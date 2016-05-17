@@ -274,6 +274,8 @@ class EventIndexPage(RoutablePageMixin, Page, WithIntroduction):
 
     subpage_types = ['EventPage']
 
+    subnav_items = ['live', 'symposium', 'past']
+
     @property
     def all_events(self):
         # gets list of live event pages that are descendants of this page
@@ -321,7 +323,8 @@ class EventIndexPage(RoutablePageMixin, Page, WithIntroduction):
         logger.debug('Live events: {}'.format(events))
 
         return render(request, self.get_template(request),
-                      {'self': self, 'events': _paginate(request, events)})
+                      {'self': self, 'filter_type': 'live',
+                      'events': _paginate(request, events)})
 
     @route(r'^past/$', name='past_events')
     def get_past_events(self, request):
@@ -338,7 +341,7 @@ class EventIndexPage(RoutablePageMixin, Page, WithIntroduction):
         logger.debug('Symposiums: {}'.format(events))
 
         return render(request, self.get_template(request),
-                      {'self': self, 'filter_type': 'symposiums',
+                      {'self': self, 'filter_type': 'symposium',
                        'events': _paginate(request, events)})
 
     @route(r'^tag/(?P<tag>[\w\- ]+)/$')
