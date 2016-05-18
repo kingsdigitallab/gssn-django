@@ -3,7 +3,7 @@
 
 {% block title %}{% endblock %}
 
-{% block main %}
+{% block base %}
 <div class="row">
     <div class="large-12 columns">
         <div class="home-splash">
@@ -11,5 +11,43 @@
             {% include "cms/includes/streamfield.html" with content=self.body %}
         </div>
     </div>
+</div>
+<div class="row">
+    <div class="large-12 columns">
+        <h3>Latest News</h3>
+        <hr>
+        <div class="large-{% if post.feed_image %}9{% else %}12{% endif %} columns">
+            <p>
+                {% if post.search_description %}
+                {{ post.search_description }} <a href="{% pageurl post %}">Read more...</a>
+                {% endif %}
+            </p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="medium-8 large-8 columns">
+        <h3>Upcoming Events</h3>
+        <hr>
+        <ul class="no-bullet index">
+            {% for event in events %}
+            <li>
+                {% include "cms/includes/event_preview.html" with event=event %}
+            </li>
+            {% empty %}
+            <li>Sorry, nothing to show here.</li>
+            {% endfor %}
+        </ul>
+        <h3>Latest Resources</h3>
+        <hr>
+        <ul class="no-bullet index">
+        <li></li>
+        <li>Sorry, nothing to show here.</li>
+        </ul>
+    </div>
+    <div class="medium-4 large-4 columns">
+    <h3>Tweets</h3>
+    <hr>
+</div>
 </div>
 {% endblock %}
