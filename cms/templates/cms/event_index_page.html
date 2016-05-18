@@ -8,10 +8,8 @@
 </h1>
 {% endblock %}
 
-{% block main %}
-
 {% block subnav %}
-<ul class="inline-list">
+<ul class="subnav">
 {% for item in self.subnav_items %}
     <li class="{% if item == filter_type %}active{% elif item == 'live' and not filter_type %}active{% endif %}">
         <a href="{% routablepageurl self item|add:'_events' %}">{{ item|title }}</a>
@@ -19,6 +17,8 @@
 {% endfor %}
 </ul>
 {% endblock %}
+
+{% block main %}
 
 {% block index_page_introduction %}
 {% include "cms/includes/introduction.html" with introduction=self.intro only %}
