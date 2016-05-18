@@ -9,6 +9,7 @@
 {% endblock %}
 
 {% block main %}
+
 <ul class="inline-list">
 {% for item in self.subnav_items %}
     <li class="{% if item == filter_type %}active{% elif item == 'live' and not filter_type %}active{% endif %}">
