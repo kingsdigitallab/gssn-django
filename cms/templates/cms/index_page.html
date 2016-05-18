@@ -1,6 +1,14 @@
 {% extends "cms/base.html" %}
+{% load cms_tags wagtailcore_tags %}
 
 {% block main %}
+
+{% block subnav %}
+{% has_local_menu current_page=self as show_local_menu %}
+{% if show_local_menu %}
+{% local_menu current_page=self %}
+{% endif %}
+{% endblock %}
 
 {% block index_page_introduction %}
 {% include "cms/includes/introduction.html" with introduction=self.intro only %}

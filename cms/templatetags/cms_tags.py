@@ -1,3 +1,4 @@
+from cms.models.pages import HomePage
 from django import template
 from django.conf import settings
 from django.template.defaultfilters import stringfilter
@@ -78,6 +79,50 @@ def get_twitter_url():
 @register.assignment_tag(takes_context=False)
 def get_twitter_widget_id():
     return getattr(settings, 'TWITTER_WIDGET_ID')
+
+
+@register.assignment_tag(takes_context=True)
+def has_local_menu(context, current_page):
+    """Returns True if the current page has a local menu, False otherwise. A
+    page has a local menu, if it is not the site root, and if it is not a leaf
+    page."""
+    site_root = get_site_root(context)
+
+    try:
+        current_page.id
+    except AttributeError:
+        return False
+
+    if current_page.id != site_root.id:
+        if current_page.depth >= 3 and not current_page.is_leaf():
+            return True
+        elif current_page.depth >= 4:
+            return True
+
+    return False
+
+
+@register.inclusion_tag('cms/tags/local_menu.html', takes_context=True)
+def local_menu(context, current_page=None):
+    """Retrieves the secondary links for the 'also in this section' links -
+    either the children or siblings of the current page."""
+    menu_pages = []
+    label = current_page.title
+
+    if current_page:
+        menu_pages = current_page.get_children().filter(live=True)
+
+        # if no children, get siblings instead
+        if len(menu_pages) == 0:
+            menu_pages = current_page.get_siblings().filter(live=True)
+
+        if current_page.get_children_count() == 0:
+            if not isinstance(current_page.get_parent().specific, HomePage):
+                label = current_page.get_parent().title
+
+    # required by the pageurl tag that we want to use within this template
+    return {'request': context['request'], 'current_page': current_page,
+            'menu_pages': menu_pages, 'menu_label': label}
 
 
 @register.inclusion_tag('cms/tags/main_menu.html', takes_context=True)

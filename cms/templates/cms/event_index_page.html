@@ -10,6 +10,7 @@
 
 {% block main %}
 
+{% block subnav %}
 <ul class="inline-list">
 {% for item in self.subnav_items %}
     <li class="{% if item == filter_type %}active{% elif item == 'live' and not filter_type %}active{% endif %}">
@@ -17,6 +18,7 @@
     </li>
 {% endfor %}
 </ul>
+{% endblock %}
 
 {% block index_page_introduction %}
 {% include "cms/includes/introduction.html" with introduction=self.intro only %}
