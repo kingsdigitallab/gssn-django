@@ -1,12 +1,14 @@
 {% load cms_tags staticfiles %}
 
-<div class="row">
-  <div class="large-12 columns">
-    <ul class="menu">
-      {% block main_menu %}
-      {% get_site_root as site_root %}
-      {% main_menu root=site_root current_page=self %}
-      {% endblock %}
-    </ul>
-  </div>
+
+<div class="top-bar-right">
+
+    {% block main_menu %}
+    {% get_site_root as site_root %}
+    {% main_menu root=site_root current_page=self %}
+    {% endblock %}
+
 </div>
+
+
+
