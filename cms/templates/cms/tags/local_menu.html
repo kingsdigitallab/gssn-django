@@ -1,6 +1,6 @@
 {% load wagtailcore_tags %}
 
-<ul class="inline-list">
+<ul class="subnav">
     {% for page in menu_pages %}
     <li class="{% if page.url == current_page.url %}active{% endif %}">
         <a href="{% pageurl page %}">{{ page.title }}</a>
