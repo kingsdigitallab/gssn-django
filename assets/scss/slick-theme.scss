@@ -98,7 +98,8 @@ $slick-opacity-not-active: 0.25 !default;
 }
 
 .slick-prev {
-    left: -25px;
+    left: 10px;
+    z-index:1;
     [dir="rtl"] & {
         left: auto;
         right: -25px;
@@ -112,7 +113,7 @@ $slick-opacity-not-active: 0.25 !default;
 }
 
 .slick-next {
-    right: -25px;
+    left: 470px;
     [dir="rtl"] & {
         left: -25px;
         right: auto;
@@ -188,3 +189,28 @@ $slick-opacity-not-active: 0.25 !default;
         }
     }
 }
+
+/** Override **/
+
+
+.slick-slide{
+    background:$black;
+    color:$white;
+}
+
+
+.slick-slide .carouseltext{
+}
+
+/**.slick-slide img{
+    display:inline-block;
+    float:left;
+}
+
+.slick-slide figcaption{
+    display:inline-block;
+    float:left;
+}**/
+
+
+
