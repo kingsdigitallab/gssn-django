@@ -9,3 +9,156 @@
 /** Your custom scss here **/
 
 @include foundation-everything;
+
+/** Global **/
+h1{
+    border-bottom: 1px solid $black;
+}
+
+a{
+    color:$black;
+}
+
+a:hover{
+    color: $primary-color;
+}
+
+/** Navigation **/
+header{
+    background-color: $black;
+}
+
+.top-bar, .top-bar ul {
+    background-color: $black;
+}
+
+.menu>li>a {
+    color: $white;
+    margin: 0 1.2rem;
+    padding: 0.5rem 0.1rem;
+}
+
+.menu .active>a {
+    border-bottom: 3px solid $primary-color;
+    background:none;
+    color: $primary-color;
+    font-weight: bold;
+}
+
+.dropdown.menu.medium-horizontal>li.is-dropdown-submenu-parent>a::after {
+    border-color: #white transparent transparent;
+}
+
+.post>header{
+    background:none;
+}
+
+.title-bar-title {
+    color: $primary-color;
+}
+
+.menu-icon::after {
+    background: $primary-color;
+    box-shadow: 0 7px 0 $primary-color,0 14px 0 $primary-color;
+}
+
+/** Navigation - Index page - Sub Nav **/
+ .main ul.inline-list{
+    margin-left:0;
+    border-bottom:1px solid $black;
+}
+
+.main .inline-list li{
+    display: inline-block;
+    border-right:1px solid $black;
+    margin-bottom: 0.6rem;
+    padding: 0 0.3rem;
+    line-height: 1rem;
+}
+
+.main .inline-list .active>a{
+    font-weight: bold;
+}
+
+.main .inline-list li:last-child{
+    display: inline-block;
+    border-right:none;
+}
+
+
+/** Index page **/
+
+.image-date{
+    position: relative;
+    width: 100%; /* for IE 6 */
+}
+
+.image-date time {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background:$black;
+    color:$white;
+    text-transform: uppercase;
+    padding: 0.1rem 0.5rem;
+    margin: 0;
+}
+
+.image-date time .day{
+    font-size:2.3rem;
+    display: block;
+    line-height:2rem;
+}
+
+.image-date time .month{
+    font-size:1.3rem;
+    display: block;
+    line-height: 1rem;
+}
+
+.image-date time .year{
+    font-size:0.8rem;
+    display: block;
+    line-height: 1rem;
+}
+
+/** Images **/
+
+.stream-field .img-wrapper{
+    position: relative;
+}
+
+.stream-field .img-wrapper .caption{
+    position:absolute;
+    bottom: 0;
+    right: 0;
+    background:rgba(0, 0, 0, 0.8);
+    color:$white;
+    padding: 0 0.5rem;
+    margin: 0;
+    line-height: 0.5rem;
+    font-size:0.8rem;
+}
+/** Footer **/
+
+footer{
+    background:$black;
+    color: $white;
+}
+
+footer a{
+    color:$white;
+}
+
+footer ul {
+    list-style-type: none;
+    text-align: center;
+}
+
+footer li{
+    margin: 0.5rem;
+}
+
+footer .fa {
+    font-size: 2rem;
+}
