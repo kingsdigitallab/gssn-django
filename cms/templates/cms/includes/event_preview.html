@@ -12,22 +12,25 @@
 
 {% block event_content %}
 <section class="postcontent preview">
-	<div class="row">
-		<div class="large-{% if event.feed_image %}9{% else %}12{% endif %} columns">
-			<p>
-			    {% if event.search_description %}
-				{{ event.search_description }} <a href="{% pageurl event %}">Read more...</a>
-				{% endif %}
-			</p>
-		</div>
+    <div class="row">
+        {% if event.feed_image %}
+        <div class="large-12 columns">
+            <div class="image-date">
+                {% image event.feed_image max-600x300 as tmp_image %}
+                <img src="{{ tmp_image.url }}" width="100%" alt="{{ tmp_image.alt }}">
+                <time datetime="{{ event.date_from|date:'c' }}">{{ event.date_from|date_as_block }}</time>
+            </div>
+        </div>
+        {% endif %}
 
-	    {% if event.feed_image %}
-		<div class="large-3 columns">
-			{% image event.feed_image max-600x300 as tmp_image %}
-			<img src="{{ tmp_image.url }}" width="100%" alt="{{ tmp_image.alt }}">
-		</div>
-		{% endif %}
-	</div>
+        <div class="large-{% if event.feed_image %}9{% else %}12{% endif %} columns">
+            <p>
+                {% if event.search_description %}
+                {{ event.search_description }} <a href="{% pageurl event %}">Read more...</a>
+                {% endif %}
+            </p>
+        </div>
+    </div>
 </section>
 {% endblock %}
 
