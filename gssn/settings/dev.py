@@ -1,6 +1,7 @@
 from base import *  # noqa
 
 DEBUG = True
+REQUIRED_DEBUG = DEBUG
 
 INTERNAL_IPS = INTERNAL_IPS + ('', )
 
