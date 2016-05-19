@@ -3,10 +3,17 @@
 <ul class="menu">
     <li{% if root.active %} class="active"{% endif %}>
     <a href="{% pageurl root %}">{{ root.title }}</a>
-    </li>
-    {% for page in menu_pages %}
-    <li{% if page.active %} class="active"{% endif %}>
-    <a href="{% pageurl page %}">{{ page.title }}</a>
-    </li>
-    {% endfor %}
+</li>
+
+{% for page in menu_pages %}
+<li{% if page.active %} class="active"{% endif %}>
+<a href="{% pageurl page %}">{{ page.title }}</a>
+</li>
+{% endfor %}
+
+<li>
+    <form method="get" action="{% url 'search' %}">
+        <input type="search" name='q' placeholder="{% if search_query %}{{ search_query }}{% else %}Search...{% endif %}">
+    </form>
+</li>
 </ul>
