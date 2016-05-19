@@ -1,0 +1,18 @@
+{% extends "cms/base.html" %}
+{% load wagtailcore_tags %}
+
+{% block main %}
+
+{% block index_page_introduction %}
+{% include "cms/includes/introduction.html" with introduction=self.intro only %}
+{% endblock %}
+
+{% block index_page_children %}
+{% include "cms/includes/index_page_children.html" with title="In this section" %}
+{% endblock %}
+
+{% block related_links %}
+{% include "cms/includes/related_links.html" with related_links=self.related_links.all title="Related links" %}
+{% endblock %}
+
+{% endblock %}

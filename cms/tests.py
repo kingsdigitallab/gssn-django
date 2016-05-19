@@ -2,7 +2,7 @@ import datetime
 
 from cms.models.pages import (
     BlogIndexPage, BlogPost, EventIndexPage, EventPage, HomePage, IndexPage,
-    RichTextPage, _paginate
+    ResourcesIndexPage, RichTextPage, _paginate
 )
 from django.contrib.auth.models import User
 from django.test import RequestFactory, TestCase
@@ -36,7 +36,8 @@ class TestHomePage(WagtailPageTests):
 
     def test_subpage_types(self):
         self.assertAllowedSubpageTypes(HomePage, {
-            IndexPage, BlogIndexPage, EventIndexPage, RichTextPage})
+            IndexPage, BlogIndexPage, EventIndexPage, ResourcesIndexPage,
+            RichTextPage})
 
 
 class TestIndexPage(WagtailPageTests):
@@ -171,3 +172,10 @@ class TestEventPage(WagtailPageTests):
         expected = EventIndexPage.objects.get(url_path='/home/events/')
 
         self.assertEqual(expected, event.event_index.specific)
+
+
+class TestResourcesIndexPage(WagtailPageTests):
+    fixtures = ['test.json']
+
+    def test_subpage_types(self):
+        self.assertAllowedSubpageTypes(ResourcesIndexPage, {RichTextPage})

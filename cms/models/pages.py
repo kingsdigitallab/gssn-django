@@ -61,7 +61,7 @@ class HomePage(Page, WithStreamField):
     )
 
     subpage_types = ['IndexPage', 'BlogIndexPage', 'EventIndexPage',
-                     'RichTextPage']
+                     'ResourcesIndexPage', 'RichTextPage']
 
     class Meta:
         verbose_name = 'Homepage'
@@ -439,3 +439,17 @@ def event_page_default_date_to(sender, instance, **kwargs):
     if not instance.date_to:
         # sets date_to to the same as date_from
         instance.date_to = instance.date_from
+
+
+# Resources
+# ResourcesIndexPage
+class ResourcesIndexPageRelatedLink(Orderable, AbstractRelatedLink):
+    page = ParentalKey('ResourcesIndexPage', related_name='related_links')
+
+
+class ResourcesIndexPage(RoutablePageMixin, Page, WithIntroduction):
+    search_fields = Page.search_fields + (
+        index.SearchField('intro'),
+    )
+
+    subpage_types = ['RichTextPage']
