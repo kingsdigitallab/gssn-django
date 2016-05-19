@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailsearchpromotions_tags %}
+
+{% block title %}
+<h1>
+Search
+{% if search_query %}<small>{{ search_query }}</small>{% endif %}
+</h1>
+{% endblock %}
+
+{% block main %}
+
+{% if search_results %}
+<ul>
+    {% for result in search_results %}
+    <li>
+        <h4><a href="{% pageurl result %}">{{ result }}</a></h4>
+        {% if result.search_description %}
+        {{ result.search_description|safe }}
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+{% elif search_query %}
+No results found
+{% else %}
+Please type something into the search box
+{% endif %}
+
+{% endblock %}
+
+{% block side-bar %}
+
+<h3>Promoted results</h3>
+<hr>
+{% get_search_promotions search_query as search_promotions %}
+
+<ul>
+    {% for search_promotion in search_promotions %}
+    <li>
+        <a href="{% pageurl search_promotion.page %}">
+            <h4>{{ search_promotion.page.title }}</h4>
+            <p>{{ search_promotion.description }}</p>
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
