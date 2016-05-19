@@ -87,11 +87,13 @@ INSTALLED_APPS += (
     'wagtail.wagtailforms',
     'wagtail.wagtailsites',
     'wagtail.contrib.wagtailroutablepage',
+    'wagtail.contrib.wagtailsearchpromotions',
 )
 
 INSTALLED_APPS += (
     'cms',
     'gssn',
+    'search',
 )
 
 INTERNAL_IPS = ('127.0.0.1', )
