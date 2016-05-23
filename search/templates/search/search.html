@@ -21,6 +21,9 @@ Search
     </li>
     {% endfor %}
 </ul>
+
+{% include "cms/includes/pagination.html" with pages=search_results %}
+
 {% elif search_query %}
 No results found
 {% else %}
