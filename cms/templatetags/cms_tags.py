@@ -106,8 +106,9 @@ def has_local_menu(context, current_page):
 def local_menu(context, current_page=None):
     """Retrieves the secondary links for the 'also in this section' links -
     either the children or siblings of the current page."""
-    menu_pages = []
     label = current_page.title
+    menu_pages = []
+    menu_root = current_page
 
     if current_page:
         menu_pages = current_page.get_children().filter(live=True)
@@ -115,6 +116,7 @@ def local_menu(context, current_page=None):
         # if no children, get siblings instead
         if len(menu_pages) == 0:
             menu_pages = current_page.get_siblings().filter(live=True)
+            menu_root = current_page.get_parent()
 
         if current_page.get_children_count() == 0:
             if not isinstance(current_page.get_parent().specific, HomePage):
@@ -122,7 +124,8 @@ def local_menu(context, current_page=None):
 
     # required by the pageurl tag that we want to use within this template
     return {'request': context['request'], 'current_page': current_page,
-            'menu_pages': menu_pages, 'menu_label': label}
+            'menu_pages': menu_pages, 'menu_label': label,
+            'menu_root': menu_root}
 
 
 @register.inclusion_tag('cms/tags/main_menu.html', takes_context=True)
