@@ -1,11 +1,60 @@
 {% extends "cms/rich_text_page.html" %}
-{% load cms_tags wagtailcore_tags %}
+{% load cms_tags wagtailcore_tags wagtailroutablepage_tags %}
 
-{% block title %}{% endblock %}
+{% block title %}
+<h1 class="posttitle">{{ self.title }}</h1>
+{% endblock %}
+
+{% block subnav %}{% endblock %}
 
 {% block main %}
 
-{% include "cms/includes/blog_post_body.html" with post=self %}
+<article class="post" id="post{{ self.id }}">
+    <header>
+        {% block blog_post_author %}
+        <p class="byline">Posted by <a href="{% routablepageurl self.blog_index.specific 'author' self.owner %}">{{ self.owner|unslugify }}</a>
+            <time datetime="{{ self.date|date:'c' }}">on {{ self.date }}</time>
+
+            {% are_comments_allowed as allow_comments %}
+            {% if allow_comments %}
+            {% block blog_post_comments_link %}
+            <a href="#disqus_thread" data-disqus-identifier="{{ self.id }}">Comments</a>
+            {% endblock %}
+            {% endif %}
+        </p>
+        {% endblock %}
+    </header>
+
+    {% block blog_post_content %}
+    <section class="postcontent">
+        {% include "cms/includes/streamfield.html" with content=self.body %}
+    </section>
+    {% endblock %}
+
+    {% block blog_post_tags %}
+    <footer>
+        {% with self.tags.all as tags %}
+        {% if tags %}
+        <ul class="tags menu simple">
+            {% for tag in tags %}
+            <li class="tag">
+                <a href="{% routablepageurl self.blog_index.specific 'tag' tag %}">{{ tag }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
+        {% block share_on_twitter %}
+        <ul class="no-bullet">
+            <li>
+                <a href="https://twitter.com/share" class="twitter-share-button" data-via="{% get_twitter_name %}" data-dnt="true"></a>
+            </li>
+        </ul>
+        {% endblock %}
+    </footer>
+    {% endblock %}
+</article>
 
 {% block related_links %}
 {{ block.super }}
