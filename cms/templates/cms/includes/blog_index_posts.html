@@ -2,9 +2,15 @@
 
 <ul class="{{ class }} no-bullet index">
     {% for post in posts %}
+    {% if forloop.first %}
+    <li>
+        {% include "cms/includes/blog_post_spotlight.html" with post=post %}
+    </li>
+    {% else %}
     <li>
         {% include "cms/includes/blog_post_preview.html" with post=post %}
     </li>
+    {% endif %}
     {% empty %}
     <li>Sorry, nothing to show here.</li>
     {% endfor %}
