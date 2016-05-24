@@ -12,8 +12,13 @@
 {% endfor %}
 
 <li>
-    <form method="get" action="{% url 'search' %}">
-        <input type="search" name='q' placeholder="{% if search_query %}{{ search_query }}{% else %}Search...{% endif %}">
-    </form>
+    <div class="form">
+        <span class="toggle"></span>
+        <form role="search" method="get" id="searchform" action="{% url 'search' %}">
+            <input type="search" name='q' placeholder="{% if search_query %}{{ search_query }}{% else %}Search...{% endif %}">
+            <button type="submit" value="" id="searchsubmit"></button>
+        </form>
+    </div>
 </li>
+
 </ul>

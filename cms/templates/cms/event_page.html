@@ -16,16 +16,22 @@
 {% block main %}
 
 <article class="post" id="post{{ self.id }}">
-    <header>
+    <div class="row">
         {% block event_author %}
-        <p class="byline">
-            <time datetime="{{ self.date_from|date:'c' }}"><i class="fa fa-calendar"></i> {{ self.date_from }}{% if self.date_to %} - {{ self.date_to }}{% endif %}</time>
-        </p>
+
+        <div class="medium-12 large-12 columns">
         <p class="byline">
             <i class="fa fa-map-marker"></i> {{ self.location }}
         </p>
+        </div>
+        <div class="medium-12 large-12 columns">
+        <p class="byline">
+            <time datetime="{{ self.date_from|date:'c' }}"><i class="fa fa-calendar"></i> {{ self.date_from }}{% if self.date_to %} - {{ self.date_to }}{% endif %}</time>
+        </p>
+        </div>
         {% endblock %}
-    </header>
+    </div>
+
 
     {% block event_content %}
     <section class="postcontent">

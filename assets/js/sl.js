@@ -9,9 +9,9 @@ define([
 
         $('.slider-home').slick({
             autoplay: true,
-            autoplaySpeed: 3000
+            autoplaySpeed: 6000
         });
-        
+
         $('.slider-for').slick({
             slidesToShow: 1,
             slidesToScroll: 1,

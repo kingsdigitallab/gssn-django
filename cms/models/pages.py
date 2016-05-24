@@ -453,3 +453,9 @@ class ResourcesIndexPage(RoutablePageMixin, Page, WithIntroduction):
     )
 
     subpage_types = ['RichTextPage']
+
+ResourcesIndexPage.content_panels = [
+    FieldPanel('title', classname='full title'),
+    StreamFieldPanel('intro'),
+    InlinePanel('related_links', label='Related links'),
+]

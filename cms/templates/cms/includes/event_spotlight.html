@@ -4,34 +4,30 @@
 {% if event %}
 {% load wagtailcore_tags %}
 
-{% block event_title %}
-<h2 class="posttitle">
-    <a href="{% pageurl event %}">{{ event.title }}</a>
-</h2>
-{% endblock %}
+{% block event_header %}{% endblock %}
 
 {% block event_content %}
-<section class="postcontent preview">
-    <div class="row">
+<section class="postcontent preview spotlight">
         {% if event.feed_image %}
-        <div class="large-12 columns">
             <div class="image-date">
                 {% image event.feed_image max-600x300 as tmp_image %}
                 <img src="{{ tmp_image.url }}" width="100%" alt="{{ tmp_image.alt }}">
                 <time datetime="{{ event.date_from|date:'c' }}">{{ event.date_from|date_as_block }}</time>
             </div>
-        </div>
         {% endif %}
-
-        <div class="large-{% if event.feed_image %}9{% else %}12{% endif %} columns">
-            <p>
-                {% if event.search_description %}
-                {{ event.search_description }} <a href="{% pageurl event %}">Read more...</a>
-                {% endif %}
-            </p>
-        </div>
-    </div>
 </section>
+<header>
+    <h2 class="posttitle">
+        <a href="{% pageurl event %}">{{ event.title }}</a>
+    </h2>
+    <div class="{% if event.feed_image %}{% else %}{% endif %}">
+        <p>
+            {% if event.search_description %}
+            {{ event.search_description }} <a href="{% pageurl event %}"> &#8811; </a>
+            {% endif %}
+        </p>
+    </div>
+</header>
 {% endblock %}
 
 {% endif %}
