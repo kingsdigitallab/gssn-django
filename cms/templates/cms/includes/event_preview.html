@@ -1,37 +1,38 @@
 {% extends "cms/includes/event.html" %}
-{% load cms_tags wagtailimages_tags %}
+{% load cms_tags wagtailcore_tags wagtailimages_tags %}
 
 {% if event %}
-{% load wagtailcore_tags %}
-
-{% block event_title %}
-<h2 class="posttitle">
-    <a href="{% pageurl event %}">{{ event.title }}</a>
-</h2>
-{% endblock %}
+{% block event_header %}{% endblock %}
 
 {% block event_content %}
-<section class="postcontent preview">
-    <div class="row">
-        {% if event.feed_image %}
-        <div class="large-12 columns">
-            <div class="image-date">
-                {% image event.feed_image max-600x300 as tmp_image %}
-                <img src="{{ tmp_image.url }}" width="100%" alt="{{ tmp_image.alt }}">
-                <time datetime="{{ event.date_from|date:'c' }}">{{ event.date_from|date_as_block }}</time>
-            </div>
-        </div>
-        {% endif %}
-
-        <div class="large-{% if event.feed_image %}9{% else %}12{% endif %} columns">
+  <div class="row">
+    <div class="medium-12 large-6 columns">
+    <section class="postcontent preview">
+            {% if event.feed_image %}
+                <div class="image-date">
+                    {% image event.feed_image width-1280 as tmp_image %}
+                    <img src="{{ tmp_image.url }}" width="100%" alt="{{ tmp_image.alt }}">
+                    <time datetime="{{ event.date_from|date:'c' }}">{{ event.date_from|date_as_block }}</time>
+                </div>
+            {% endif %}
+    </section>
+    </div>
+    <div class="medium-12 large-6 columns">
+    <header>
+        <h2 class="posttitle">
+            <a href="{% pageurl event %}">{{ event.title }}</a>
+        </h2>
+        <div class="{% if event.feed_image %}{% else %}{% endif %}">
             <p>
                 {% if event.search_description %}
-                {{ event.search_description }} <a href="{% pageurl event %}">Read more...</a>
+                {{ event.search_description }} <a href="{% pageurl event %}"> &#8811; </a>
                 {% endif %}
             </p>
         </div>
+    </header>
     </div>
-</section>
+</div>
+
 {% endblock %}
 
 {% endif %}
