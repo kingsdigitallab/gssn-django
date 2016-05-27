@@ -11,8 +11,11 @@
 @include foundation-everything;
 
 /** Global **/
+
 h1{
     border-bottom: 1px solid $black;
+    margin-top:2rem;
+    padding-bottom:0.3rem;
 }
 
 a{
@@ -23,9 +26,6 @@ a:hover{
     color: $primary-color;
 }
 
-p{
-    margin-top: 1rem;
-}
 /** Navigation **/
 header{
     background-color: $black;
@@ -193,7 +193,7 @@ header{
     display: inline-block;
     border-right:1px solid $black;
     margin-bottom: 0.5rem;
-    padding: 0 0.5rem 0 0.3rem;
+    padding: 0 0.5rem 0.1rem 0.3rem;
     line-height: 1rem;
 }
 
@@ -270,12 +270,6 @@ header{
     width:50%;
 }
 
-
-
-
-
-
-
 /** Image Caption **/
 
 .stream-field .img-wrapper {
@@ -316,6 +310,10 @@ header{
     margin:0;
 }
 
+/** Blog Pages **/
+.wrapper footer{
+    background:none;
+}
 
 /** Resources List **/
 .main .stream-field .rich-text ol{
@@ -349,35 +347,70 @@ header{
 }
 
 
-/** Events Index Page **/
+/** Index Page **/
 
 .index header{
     background:none;
 }
 
-.index article{
-    margin:1rem 0;
+.spotlight p{
+    margin:0;
+}
+
+ul.no-bullet.index li{
+    margin:0 0 2rem 0;
+}
+
+h2.posttitle{
+    margin:0.5rem 0 0.3rem 0;
+}
+
+/** Blog **/
+
+h1.blog{
+    margin-bottom: 1rem;
+}
+
+ul.pagination .arrow.next{
+    float: right;
+}
+
+ul.pagination .arrow.previous{
+    float: left;
+}
+
+ul.pagination{
+    text-align: center;
+    border-top:1px solid $black;
 }
 
 
-/** Fontawesome **/
+/** Location Date **/
+.date-location{
+    margin-bottom:1rem;
+}
 p.byline{
-    border-bottom: 1px solid $dark-gray;
-}
-
-.main .fa{
-    line-height: 2;
-    font-size: 1.3rem;
-    width: 2.5rem;
-    height: 2.5rem;
+    margin:0.2rem 0;
     background:$black;
     color: $white;
-    text-align: center;
+    font-size: 0.9rem;
+    padding: 0 0.5rem;
 }
 
-i.fa.fa-map-marker{
-    font-size: 1.6rem;
-    line-height: 1.6;
+p.byline i.fa{
+    line-height: 1.8;
+    font-size: 1.1rem;
+    width: 2rem;
+    height: 2rem;
+    background:$primary-color;
+    color: $dark-gray;
+    text-align: center;
+    margin: 0 0.5rem 0 -0.5rem;
+}
+
+p.byline i.fa.fa-map-marker{
+    line-height: 1.4;
+    font-size: 1.3rem;
 }
 
 /** Footer **/
@@ -408,4 +441,16 @@ footer li{
 
 footer .fa {
     font-size: 2rem;
+}
+
+/** Sticky footer **/
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -9em;
+}
+
+footer, .push {
+  height: 9em;
 }
