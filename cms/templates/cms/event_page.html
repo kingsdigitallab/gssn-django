@@ -24,14 +24,13 @@
 
     <div class="row">
         {% block event_author %}
-        <div class="medium-12 large-12 columns">
+        <div class="medium-12 large-12 columns date-location">
             <p class="byline">
-                <i class="fa fa-map-marker"></i> {{ self.location }}
+                <i class="fa fa-calendar"></i><time datetime="{{ self.date_from|date:'c' }}">  {{ self.date_from }}{% if self.date_to %} - {{ self.date_to }}{% endif %}</time>
             </p>
-        </div>
-        <div class="medium-12 large-12 columns">
+
             <p class="byline">
-                <time datetime="{{ self.date_from|date:'c' }}"><i class="fa fa-calendar"></i> {{ self.date_from }}{% if self.date_to %} - {{ self.date_to }}{% endif %}</time>
+                <i class="fa fa-map-marker"></i>  {{ self.location }}
             </p>
         </div>
         {% endblock %}
