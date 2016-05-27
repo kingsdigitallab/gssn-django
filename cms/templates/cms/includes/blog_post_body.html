@@ -9,7 +9,6 @@
 
         {% block blog_post_author %}
         <p class="byline">Posted by <a href="{% routablepageurl post.blog_index.specific 'author' post.owner %}">{{ post.owner|unslugify }}</a>
-            <time datetime="{{ post.date|date:'c' }}">on {{ post.date }}</time>
 
             {% are_comments_allowed as allow_comments %}
             {% if allow_comments %}
@@ -28,6 +27,7 @@
     {% endblock %}
 
     {% block blog_post_tags %}
+    {% if post.tags.all %}
     <footer>
         {% with post.tags.all as tags %}
         {% if tags %}
@@ -49,6 +49,7 @@
         </ul>
         {% endblock %}
     </footer>
+    {% endif %}
     {% endblock %}
 </article>
 {% endif %}

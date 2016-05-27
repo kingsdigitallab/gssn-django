@@ -447,7 +447,7 @@ class ResourcesIndexPageRelatedLink(Orderable, AbstractRelatedLink):
     page = ParentalKey('ResourcesIndexPage', related_name='related_links')
 
 
-class ResourcesIndexPage(RoutablePageMixin, Page, WithIntroduction):
+class ResourcesIndexPage(Page, WithIntroduction):
     search_fields = Page.search_fields + (
         index.SearchField('intro'),
     )
