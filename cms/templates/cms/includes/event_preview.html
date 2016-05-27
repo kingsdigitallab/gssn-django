@@ -5,20 +5,19 @@
 {% block event_header %}{% endblock %}
 
 {% block event_content %}
-  <div class="row">
+<div class="row">
     <div class="medium-12 large-6 columns">
-    <section class="postcontent preview">
-            {% if event.feed_image %}
-                <div class="image-date">
-                    {% image event.feed_image width-1280 as tmp_image %}
-                    <img src="{{ tmp_image.url }}" width="100%" alt="{{ tmp_image.alt }}">
-                    <time datetime="{{ event.date_from|date:'c' }}">{{ event.date_from|date_as_block }}</time>
-                </div>
-            {% endif %}
-    </section>
+        <section class="postcontent preview">
+                {% if event.feed_image %}
+                    <div class="image-date">
+                        {% image event.feed_image width-1280 as tmp_image %}
+                        <img src="{{ tmp_image.url }}" width="100%" alt="{{ tmp_image.alt }}">
+                        <time datetime="{{ event.date_from|date:'c' }}">{{ event.date_from|date_as_block }}</time>
+                    </div>
+                {% endif %}
+        </section>
     </div>
     <div class="medium-12 large-6 columns">
-    <header>
         <h2 class="posttitle">
             <a href="{% pageurl event %}">{{ event.title }}</a>
         </h2>
@@ -29,7 +28,6 @@
                 {% endif %}
             </p>
         </div>
-    </header>
     </div>
 </div>
 
