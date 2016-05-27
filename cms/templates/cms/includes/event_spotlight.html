@@ -7,6 +7,7 @@
 {% block event_header %}{% endblock %}
 
 {% block event_content %}
+
 <section class="postcontent preview spotlight">
         {% if event.feed_image %}
             <div class="image-date">
@@ -14,20 +15,21 @@
                 <img src="{{ tmp_image.url }}" width="100%" alt="{{ tmp_image.alt }}">
                 <time datetime="{{ event.date_from|date:'c' }}">{{ event.date_from|date_as_block }}</time>
             </div>
-        {% endif %}
-</section>
-<header>
-    <h2 class="posttitle">
+                    <h2 class="posttitle">
         <a href="{% pageurl event %}">{{ event.title }}</a>
-    </h2>
-    <div class="{% if event.feed_image %}{% else %}{% endif %}">
-        <p>
-            {% if event.search_description %}
-            {{ event.search_description }} <a href="{% pageurl event %}"> &#8811; </a>
-            {% endif %}
-        </p>
-    </div>
-</header>
+        </h2>
+        {% endif %}
+        <div class="{% if event.feed_image %}{% else %}{% endif %}">
+            <p>
+                {% if event.search_description %}
+                {{ event.search_description }} <a href="{% pageurl event %}"> &#8811; </a>
+                {% endif %}
+            </p>
+        </div>
+</section>
+
+
+
 {% endblock %}
 
 {% endif %}
