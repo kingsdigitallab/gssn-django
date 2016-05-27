@@ -66,6 +66,14 @@ class HomePage(Page, WithStreamField):
     class Meta:
         verbose_name = 'Homepage'
 
+    def get_latest_blog_posts(self):
+        bip = self.get_children().type(BlogIndexPage).first().specific
+        return bip.posts[:6]
+
+    def get_live_events(self):
+        eip = self.get_children().type(EventIndexPage).first().specific
+        return eip.live_events[:2]
+
 HomePage.content_panels = [
     FieldPanel('title', classname='full title'),
     StreamFieldPanel('body'),

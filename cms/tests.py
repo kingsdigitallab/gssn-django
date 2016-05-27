@@ -39,6 +39,17 @@ class TestHomePage(WagtailPageTests):
             IndexPage, BlogIndexPage, EventIndexPage, ResourcesIndexPage,
             RichTextPage})
 
+    def test_get_latest_blog_posts(self):
+        hp = HomePage.objects.get(url_path='/home/')
+
+        self.assertEqual(2, hp.get_latest_blog_posts().count())
+        self.assertEqual('post-2', hp.get_latest_blog_posts().first().slug)
+
+    def test_get_live_events(self):
+        hp = HomePage.objects.get(url_path='/home/')
+
+        self.assertEqual(1, hp.get_live_events().count())
+
 
 class TestIndexPage(WagtailPageTests):
     fixtures = ['test.json']
