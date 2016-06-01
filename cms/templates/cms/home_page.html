@@ -20,7 +20,7 @@
             {% for post in self.get_latest_blog_posts %}
             <div class="large-4 columns">
                 <li>
-                    {% include "cms/includes/blog_post_preview.html" with post=post %}
+                    {% include "cms/includes/blog_post_home.html" with post=post %}
                 </li>
             </div>
             {% empty %}
