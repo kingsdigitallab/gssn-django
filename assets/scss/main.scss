@@ -310,11 +310,6 @@ header{
     margin:0;
 }
 
-/** Blog Pages **/
-.wrapper footer{
-    background:none;
-}
-
 /** Resources List **/
 .main .stream-field .rich-text ol{
     margin-left: 3.3rem;
@@ -367,8 +362,12 @@ h2.posttitle{
 
 /** Blog **/
 
-h1.blog{
+h1.cat-title.blog{
     margin-bottom: 1rem;
+}
+
+h1.blog{
+    margin-bottom: 0;
 }
 
 ul.pagination .arrow.next{
@@ -383,6 +382,25 @@ ul.pagination{
     text-align: center;
     border-top:1px solid $black;
 }
+
+.wrapper footer{
+    background:none;
+}
+
+ul.posts.no-bullet.index p.byline.blog{
+    color: $black;
+    background:none;
+    font-size: 0.8rem;
+    padding-left:0;
+}
+
+article.post p.byline.blog{
+    color: $black;
+    background:none;
+    font-size: 0.8rem;
+    padding-left:0;
+}
+
 
 
 /** Location Date **/
@@ -412,6 +430,48 @@ p.byline i.fa.fa-map-marker{
     line-height: 1.4;
     font-size: 1.3rem;
 }
+
+/** Search **/
+.search-results li{
+    margin:0.5rem 0;
+}
+
+.search-results ol{
+    margin-left: 3.3rem;
+}
+
+.search-results ol li{
+    list-style-type: none;
+    counter-increment: step-counter;
+    margin-bottom: 1rem;
+}
+
+.search-results ol li:before {
+    content: counter(step-counter,decimal-leading-zero);
+    font-size: 1.4rem;
+    background-color: $black;
+    color: $white;
+    font-weight: bold;
+    margin: 0 0 0 -3.2rem;
+    display: inline-block;
+    width: 2.1rem;
+    height: 2.1rem;
+    text-align: center;
+    line-height: 1.4;
+    font-family: Roboto Condensed;
+    float: left;
+}
+
+.search-results h4{
+    padding-top: 0.2rem;
+    font-size:1.2rem;
+}
+
+.search-results span{
+    color: $primary-color;
+
+}
+
 
 /** Footer **/
 
