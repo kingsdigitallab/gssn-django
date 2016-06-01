@@ -8,7 +8,7 @@
         {% endblock %}
 
         {% block blog_post_author %}
-        <p class="byline">Posted by <a href="{% routablepageurl post.blog_index.specific 'author' post.owner %}">{{ post.owner|unslugify }}</a>
+        <p class="byline blog">Posted by <a href="{% routablepageurl post.blog_index.specific 'author' post.owner %}">{{ post.owner|unslugify }}</a>
 
             {% are_comments_allowed as allow_comments %}
             {% if allow_comments %}
