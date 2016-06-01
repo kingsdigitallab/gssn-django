@@ -2,26 +2,28 @@
 {% load wagtailcore_tags wagtailsearchpromotions_tags %}
 
 {% block title %}
-<h1>
-Search
-{% if search_query %}<small>{{ search_query }}</small>{% endif %}
+
+<h1 class="search-results">
+Search results for
+{% if search_query %}<span>{{ search_query }}</span>{% endif %}
 </h1>
 {% endblock %}
 
 {% block main %}
 
 {% if search_results %}
-<ul>
-    {% for result in search_results %}
-    <li>
-        <h4><a href="{% pageurl result %}">{{ result }}</a></h4>
-        {% if result.search_description %}
-        {{ result.search_description|safe }}
-        {% endif %}
-    </li>
-    {% endfor %}
-</ul>
-
+<div class="search-results">
+    <ol>
+        {% for result in search_results %}
+        <li>
+            <h4><a href="{% pageurl result %}">{{ result }}</a></h4>
+            {% if result.search_description %}
+            {{ result.search_description|safe }}
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ol>
+</div>
 {% include "cms/includes/pagination.html" with pages=search_results %}
 
 {% elif search_query %}
