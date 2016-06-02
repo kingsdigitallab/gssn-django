@@ -2,6 +2,7 @@
 {% load cms_tags wagtailcore_tags wagtailroutablepage_tags %}
 
 <article class="post" id="post{{ post.id }}">
+    {% block blog_post_header %}
     <header>
         {% block blog_post_title %}
         <h1 class="posttitle">{{ post.title }}</h1>
@@ -19,6 +20,7 @@
         </p>
         {% endblock %}
     </header>
+    {% endblock %}
 
     {% block blog_post_content %}
     <section class="postcontent">

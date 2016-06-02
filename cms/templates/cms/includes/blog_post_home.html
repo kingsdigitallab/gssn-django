@@ -3,46 +3,23 @@
 {% if post %}
 {% load cms_tags wagtailimages_tags wagtailcore_tags wagtailroutablepage_tags %}
 
-{% block blog_post_title %}{% endblock %}
-
-{% block blog_post_author %}{% endblock %}
+{% block blog_post_header %}{% endblock %}
 
 {% block blog_post_content %}
-<section class="postcontent preview">
-    <div class="row">
+<div class="row">
+    <div class="large-12 columns">
         {% if post.feed_image %}
-        <div class="medium-12 large-6 columns">
-            <div class="image-date">
-                {% image post.feed_image max-600x300 as tmp_image %}
-                <img src="{{ tmp_image.url }}" width="100%" alt="{{ tmp_image.alt }}">
-                <time datetime="{{ post.date|date:'c' }}">{{ post.date|date_as_block}}</time>
-            </div>
+        <div class="image-date ">
+            {% image post.feed_image max-600x300 as tmp_image %}
+            <img src="{{ tmp_image.url }}" width="100%" alt="{{ tmp_image.alt }}">
+            <time datetime="{{ post.date|date:'c' }}">{{ post.date|date_as_block}}</time>
         </div>
         {% endif %}
-
-        <div class="medium-12 large-{% if post.feed_image %}6{% else %}12{% endif %} columns">
-            <h2 class="posttitle">
-                <a href="{% pageurl post %}">{{ post.title }}</a>
-            </h2>
-
-            <p class="byline blog">Posted by <a href="{% routablepageurl post.blog_index.specific 'author' post.owner %}">{{ post.owner|unslugify }}</a>
-
-                {% are_comments_allowed as allow_comments %}
-                {% if allow_comments %}
-                {% block blog_post_comments_link %}
-                <a href="#disqus_thread" data-disqus-identifier="{{ post.id }}">Comments</a>
-                {% endblock %}
-                {% endif %}
-            </p>
-
-            <p>
-                {% if post.search_description %}
-                {{ post.search_description }} <a href="{% pageurl post %}"> &#8811; </a>
-                {% endif %}
-            </p>
-        </div>
+        <p class="posttitle">
+            <a href="{% pageurl post %}">{{ post.title }}</a>
+        </p>
     </div>
-</section>
+</div>
 {% endblock %}
 
 {% block share_on_twitter %}{% endblock %}
