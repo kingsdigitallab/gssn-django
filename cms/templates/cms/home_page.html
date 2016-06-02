@@ -4,65 +4,66 @@
 {% block title %}{% endblock %}
 
 {% block base %}
-<div class="row">
-    <div class="large-12 columns">
-        <div class="home-splash">
-            {% include "cms/includes/carousel.html" with carousel_items=self.carousel_items.all %}
-            {% include "cms/includes/streamfield.html" with content=self.body %}
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="large-12 columns">
-        <h3>Latest News</h3>
-        <hr>
-        <ul class="no-bullet index">
-            {% for post in self.get_latest_blog_posts %}
-            <div class="large-4 columns">
-                <li>
-                    {% include "cms/includes/blog_post_home.html" with post=post %}
-                </li>
-            </div>
-            {% empty %}
-            <li>Sorry, nothing to show here.</li>
-
-            {% endfor %}
-        </div>
-    </div>
+<div class="homepage">
     <div class="row">
-        <div class="medium-8 large-8 columns">
-            <h3>Upcoming Events</h3>
-            <hr>
-            <ul class="no-bullet index">
-            {% for event in self.get_live_events %}
-                <div class="large-6 columns">
-                    <li>
-                        {% include "cms/includes/event_preview.html" with event=event %}
-                    </li>
+        <div class="large-12 columns">
+            <div class="home-splash">
+                {% include "cms/includes/carousel.html" with carousel_items=self.carousel_items.all %}
+                {% include "cms/includes/streamfield.html" with content=self.body %}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="large-12 columns">
+            <h2>Latest News</h2>
+            <div class="row" data-equalizer data-equalize-on="large" id="blog-section">
+                {% for post in self.get_latest_blog_posts %}
+                <div class="medium-6 large-4 columns" data-equalizer-watch>
+                    {% include "cms/includes/blog_post_home.html" with post=post %}
                 </div>
                 {% empty %}
-                <li>Sorry, nothing to show here.</li>
+                <p>Sorry, nothing to show here.</p>
                 {% endfor %}
-            </ul>
-            <h3>Latest Resources</h3>
-            <hr>
-            <div class="search-results">
-            <ol>
-                <li>
-                    <h4><a href="http://www.bfi.org.uk/sites/bfi.org.uk/files/downloads/bfi-film-forever-2012-17.pdf">Resource A</a></h4>Lorem ipsum&nbsp;dolor sit amet, consectetur adipiscing elit. Audax negotium, dicerem impudens, nisi hoc institutum postea translatum ad philosophos nostros esset.<br>
-                </li>
-                <li>
-                    <h4><a href="http://www.bfi.org.uk/sites/bfi.org.uk/files/downloads/bfi-film-forever-2012-17.pdf">Resource B</a></h4>Lorem ipsum&nbsp;dolor sit amet, consectetur adipiscing elit. Audax negotium, dicerem impudens, nisi hoc institutum postea translatum ad philosophos nostros esset.<br>
-                </li>
-                <li>
-                    <h4><a href="http://www.bfi.org.uk/sites/bfi.org.uk/files/downloads/bfi-opening-our-eyes-2011-07_0.pdf">Resources C</a></h4>Lorem ipsum&nbsp;dolor sit amet, consectetur adipiscing elit. Audax negotium, dicerem impudens, nisi hoc institutum postea translatum ad philosophos nostros esset.<br>
-                </li>
-            </ol>
             </div>
         </div>
+    </div>
+
+    <div class="row">
+        <div class="medium-8 large-8 columns">
+
+            <h2>Upcoming Events</h2>
+            <div class="row" data-equalizer data-equalize-on="large">
+            {% for event in self.get_live_events %}
+            <div class="large-6 columns" data-equalizer-watch>
+                {% include "cms/includes/event_home.html" with event=event %}
+            </div>
+            {% empty %}
+            <p>Sorry, nothing to show here.</p>
+            {% endfor %}
+            </div>
+
+            <h2>Latest Resources</h2>
+            <div class="search-results">
+                <ol>
+                    <li>
+                        <h4><a href="http://www.bfi.org.uk/sites/bfi.org.uk/files/downloads/bfi-film-forever-2012-17.pdf">Resource A</a></h4>Lorem ipsum&nbsp;dolor sit amet, consectetur adipiscing elit. Audax negotium, dicerem impudens, nisi hoc institutum postea translatum ad philosophos nostros esset.<br>
+                    </li>
+                    <li>
+                        <h4><a href="http://www.bfi.org.uk/sites/bfi.org.uk/files/downloads/bfi-film-forever-2012-17.pdf">Resource B</a></h4>Lorem ipsum&nbsp;dolor sit amet, consectetur adipiscing elit. Audax negotium, dicerem impudens, nisi hoc institutum postea translatum ad philosophos nostros esset.<br>
+                    </li>
+                    <li>
+                        <h4><a href="http://www.bfi.org.uk/sites/bfi.org.uk/files/downloads/bfi-opening-our-eyes-2011-07_0.pdf">Resources C</a></h4>Lorem ipsum&nbsp;dolor sit amet, consectetur adipiscing elit. Audax negotium, dicerem impudens, nisi hoc institutum postea translatum ad philosophos nostros esset.<br>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+
         <div class="medium-4 large-4 columns">
-            <h3>Tweets</h3>
-            <hr>
+            <h2>Tweets</h2>
+            <img src="/static/media/images/Screen_Shot_2016-06-01_at_12.47.27.original.png" width="100%">
         </div>
     </div>
-    {% endblock %}
+ </div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "cms/includes/event.html" %}
+{% load cms_tags wagtailcore_tags wagtailimages_tags %}
+
+{% if event %}
+{% block event_header %}{% endblock %}
+
+{% block event_content %}
+<div class="row">
+    <div class="medium-12 large-12 columns">
+        {% if event.feed_image %}
+            <div class="image-date">
+                {% image event.feed_image width-1280 as tmp_image %}
+                <img src="{{ tmp_image.url }}" width="100%" alt="{{ tmp_image.alt }}">
+                <time datetime="{{ event.date_from|date:'c' }}">{{ event.date_from|date_as_block }}</time>
+            </div>
+        {% endif %}
+        <p class="posttitle">
+            <a href="{% pageurl event %}">{{ event.title }}</a>
+        </p>
+        <!--<div class="{% if event.feed_image %}{% else %}{% endif %}">
+            <p>
+                {% if event.search_description %}
+                {{ event.search_description }} <a href="{% pageurl event %}"> &#8811; </a>
+                {% endif %}
+            </p>
+        </div>-->
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+{% endif %}
