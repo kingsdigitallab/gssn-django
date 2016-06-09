@@ -181,7 +181,6 @@ class BlogIndexPage(RoutablePageMixin, Page, WithIntroduction):
     @route(r'^$')
     def all_posts(self, request):
         posts = self.posts
-        logger.debug('Posts: {}'.format(posts))
 
         return render(request, self.get_template(request),
                       {'self': self, 'posts': _paginate(request, posts)})
@@ -328,7 +327,6 @@ class EventIndexPage(RoutablePageMixin, Page, WithIntroduction):
     @route(r'^$', name='live_events')
     def get_live_events(self, request):
         events = self.live_events
-        logger.debug('Live events: {}'.format(events))
 
         return render(request, self.get_template(request),
                       {'self': self, 'filter_type': 'live',
@@ -337,7 +335,6 @@ class EventIndexPage(RoutablePageMixin, Page, WithIntroduction):
     @route(r'^past/$', name='past_events')
     def get_past_events(self, request):
         events = self.past_events
-        logger.debug('Past events: {}'.format(events))
 
         return render(request, self.get_template(request),
                       {'self': self, 'filter_type': 'past',
@@ -346,7 +343,6 @@ class EventIndexPage(RoutablePageMixin, Page, WithIntroduction):
     @route(r'^symposiums/$', name='symposium_events')
     def get_symposiums(self, request):
         events = self.symposiums
-        logger.debug('Symposiums: {}'.format(events))
 
         return render(request, self.get_template(request),
                       {'self': self, 'filter_type': 'symposium',
