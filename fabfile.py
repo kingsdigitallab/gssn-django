@@ -16,10 +16,10 @@ sys.path.append(project_root)
 
 django.project('gssn')
 
-REPOSITORY = ''
+REPOSITORY = 'https://github.com/kingsdigitallab/gssn-django.git'
 
 env.user = settings.FABRIC_USER
-env.hosts = ['']
+env.hosts = ['gssn.kdl.kcl.ac.uk']
 env.root_path = '/vol/gssn/webroot/'
 env.envs_path = os.path.join(env.root_path, 'envs')
 
@@ -60,9 +60,28 @@ def liv():
 
 def set_srvr_vars():
     env.path = os.path.join(env.root_path, env.srvr, 'django',
-                            'shakespeare400-django')
+                            'gssn-django')
     env.within_virtualenv = 'source {}'.format(
         os.path.join(env.envs_path, env.srvr, 'bin', 'activate'))
+
+
+@task
+def install_system_packages():
+    sudo('apt-get -y --force-yes install apt-transport-https')
+    sudo(('wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | '
+          'apt-key add -'))
+    sudo(('echo '
+          '"deb https://packages.elastic.co/elasticsearch/2.x/debian '
+          'stable main" | '
+          'tee -a /etc/apt/sources.list.d/elasticsearch-2.x.list'))
+    sudo('apt-get update')
+    sudo(('apt-get -y --force-yes install '
+          'python-dev python-pip python-setuptools python-virtualenv '
+          'openjdk-7-jre elasticsearch '
+          'libjpeg-dev libxml2-dev libxslt-dev '
+          'libpq-dev postgresql-client '
+          'git git-core'))
+    sudo('sudo update-rc.d elasticsearch defaults 95 10')
 
 
 @task
@@ -132,7 +151,7 @@ def deploy(version=None):
     migrate()
     collect_static()
     # update_index()
-    # clear_cache()
+    clear_cache()
     touch_wsgi()
 
 
@@ -207,6 +226,6 @@ def clear_cache():
 def touch_wsgi():
     require('srvr', 'path', 'within_virtualenv', provided_by=env.servers)
 
-    with cd(os.path.join(env.path, 'shakespeare400')), \
+    with cd(os.path.join(env.path, 'gssn')), \
             prefix(env.within_virtualenv):
         run('touch wsgi.py')
