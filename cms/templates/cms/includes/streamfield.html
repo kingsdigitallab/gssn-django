@@ -57,6 +57,17 @@
                 {{ child.value.bound_blocks.html.render }}
             {% endif %}
             </div>
+        {% elif child.block_type == 'map_html' %}
+            {% if child.value.alignment == 'normal' %}
+            <div class="iframe-container normal">
+                {{ child.value.bound_blocks.html.render }}
+            </div>
+            {% else %}
+            <div class="iframe-container full">
+                {{ child.value.bound_blocks.html.render }}
+            </div>
+            {% endif %}
+
         {% else %}
             {{ child }}
         {% endif %}
