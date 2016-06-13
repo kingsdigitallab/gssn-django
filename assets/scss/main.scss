@@ -10,10 +10,32 @@
 
 @include foundation-everything;
 
+
+//  Table of Contents:
+//
+//   1. Global
+//   2. Navigation
+//   3. Navigation Search
+//   4. Navigation - Mobile Menu
+//   5. Navigation - Index page - Sub Nav
+//   6. Homepage
+//   7. Images
+//   8. Image Caption
+//   9. Page
+//   9. Resources List
+//  10. Index Page
+//  11. Blog
+//  12. Location Date
+//  13. Search
+//  14. Footer
+//  15. Sticky Footer
+
+
+
 /** Global **/
 
 h1{
-    border-bottom: 1px solid $black;
+    border-bottom:1px solid $black;
     margin-top:2rem;
     padding-bottom:0.3rem;
 }
@@ -23,13 +45,27 @@ a{
 }
 
 a:hover{
-    color: $primary-color;
+    color:$primary-color;
 }
+p{
+    margin:0;
+}
+
+.button{
+    font-size:1rem;
+    color:$dark-gray;
+    }
+
+.button:hover{
+    background-color:$black;
+    color:$primary-color;
+    }
+
 
 /** Navigation **/
 header{
-    background-color: $black;
-    padding: 0.5rem 0;
+    background-color:$black;
+    padding:0.5rem 0;
 }
 
 .top-bar {
@@ -37,24 +73,24 @@ header{
 }
 
 .top-bar, .top-bar ul {
-    background-color: $black;
+    background-color:$black;
 }
 
 .menu>li>a {
-    color: $white;
-    margin: 0 1.2rem;
-    padding: 0.5rem 0.1rem;
+    color:$white;
+    margin:0 1.2rem;
+    padding:0.5rem 0.1rem;
 }
 
 .menu .active>a {
-    border-bottom: 3px solid $primary-color;
+    border-bottom:3px solid $primary-color;
     background:none;
-    color: $primary-color;
-    font-weight: bold;
+    color:$primary-color;
+    font-weight:bold;
 }
 
 .dropdown.menu.medium-horizontal>li.is-dropdown-submenu-parent>a::after {
-    border-color: #white transparent transparent;
+    border-color:#white transparent transparent;
 }
 
 .post>header{
@@ -62,27 +98,27 @@ header{
 }
 
 .menu-icon::after {
-    background: $primary-color;
-    box-shadow: 0 7px 0 $primary-color,0 14px 0 $primary-color;
+    background:$primary-color;
+    box-shadow:0 7px 0 $primary-color,0 14px 0 $primary-color;
 }
 
 .top-bar-left img{
-    width: 7rem;
+    width:7rem;
 }
 
 /** Navigation Search **/
 
 .form {
-    margin: 0 auto;
-    position: relative;
+    margin:0 auto;
+    position:relative;
     margin-left:1rem;
 }
 
  .toggle {
     background:$black;
-    border: none;
-    cursor: pointer;
-    display: block;
+    border:none;
+    cursor:pointer;
+    display:block;
     height: 2.2rem;
     position: absolute;
     right: 0;
@@ -90,41 +126,41 @@ header{
 }
 
 .toggle:before {
-    content: "\f002";
-    font-family: FontAwesome;
-    font-style: normal;
-    font-weight: normal;
-    text-decoration: inherit;
-    color: $white;
-    font-size: 1.1rem;
-    position: absolute;
-    left: 0.6rem;
+    content:"\f002";
+    font-family:FontAwesome;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:inherit;
+    color:$white;
+    font-size:1.1rem;
+    position:absolute;
+    left:0.6rem;
     top:0.2rem;
 }
 
 #searchform {
     float: right;
-    height: 2.2rem;
-    margin: 0;
-    opacity: 0;
-    padding: 0;
-    transition: all 0.8s ease-in-out 0s;
-    visibility: hidden;
-    width: 2.2rem;
-    -webkit-transition: all 0.8s ease-in-out;
-    -moz-transition: all 0.8s ease-in-out;
-    -o-transition: all 0.8s ease-in-out;
+    height:2.2rem;
+    margin:0;
+    opacity:0;
+    padding:0;
+    transition:all 0.8s ease-in-out 0s;
+    visibility:hidden;
+    width:2.2rem;
+    -webkit-transition:all 0.8s ease-in-out;
+    -moz-transition:all 0.8s ease-in-out;
+    -o-transition:all 0.8s ease-in-out;
 }
 
 .form:hover #searchform {
-    display: block;
-    opacity: 1;
-    -webkit-transition: all 0.8s ease-in-out;
-    -moz-transition: all 0.8s ease-in-out;
-    -o-transition: all 0.8s ease-in-out;
-    visibility: visible;
-    width: 200px;
-    height: 2.2rem;
+    display:block;
+    opacity:1;
+    -webkit-transition:all 0.8s ease-in-out;
+    -moz-transition:all 0.8s ease-in-out;
+    -o-transition:all 0.8s ease-in-out;
+    visibility:visible;
+    width:200px;
+    height:2.2rem;
 }
 
 #searchform input{
@@ -132,10 +168,10 @@ header{
 }
 
 #searchform #s {
-    background: none repeat scroll 0 0 $white;
-    border: none;
-    float: right;
-    outline: none;
+    background:none repeat scroll 0 0 $white;
+    border:none;
+    float:right;
+    outline:none;
     height: 100%;
     padding: 0 15px;
     width: 100%;
@@ -163,24 +199,24 @@ header{
     font-size: 1.1rem;
 }
 
-/** Navigation - Mobile Menu **/
-.title-bar {
-    padding: 1rem 0.5rem 0 0.5rem;
+@media screen and (max-width: 1024px){
+.form {
+margin: 0 auto;
+width: 100%;
 }
-
-.title-bar a{
-    color: $primary-color;
+#searchform {
+    visibility:visible;
+    float: none;
 }
-
-.title-bar a:hover{
-    color: $white;
+.form #searchform {
+    width: 100%;
 }
-
-.title-bar-title{
-    font-weight: bold;
-    position: absolute;
-    top: 0;
-    right: 1.8rem;
+.top-bar input {
+    min-width: 100%;
+}
+.form:hover #searchform {
+    width:100%;
+}
 }
 
 /** Navigation - Index page - Sub Nav **/
@@ -204,6 +240,7 @@ header{
 .subnav li:last-child{
     display: inline-block;
     border-right:none;
+
 }
 
 /** Homepage **/
@@ -214,17 +251,29 @@ header{
     margin:2.5rem 0 1.5rem 0;
 }
 
-.homepage p{
-    margin-top: 0.3rem;
+.homepage h3{
+    margin: 0.3rem 0 1rem 0;
+    font-size:1.125rem;
+    font-weight:normal;
+}
+
+.homepage .image-date{
+    background:$black;
 }
 
 .homepage .image-date img{
     object-fit: cover;
     width:100%;
     height:220px;
+    background:$black;
 }
 
-/** Index page **/
+.homepage .image-date img:hover{
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+}
+
+/** Images**/
 
 .image-date{
     position: relative;
@@ -260,7 +309,7 @@ header{
     display: block;
     line-height: 1rem;
 }
-/** Images **/
+
 .img-wrapper.mid{
     position: relative;
     width: 50%;
@@ -327,37 +376,43 @@ header{
     margin:0;
 }
 
-/** Resources List **/
-.main .stream-field .rich-text ol{
-    margin-left: 3.3rem;
+/** Posts **/
+.rich-text p a{
+color:$primary-color;
 }
 
-.main .stream-field .rich-text ol li{
-    list-style-type: none;
-    counter-increment: step-counter;
-    margin-bottom: 1rem;
+.rich-text p a:hover{
+text-decoration:underline;
 }
 
-.main .stream-field .rich-text ol li:before {
-    content: counter(step-counter,decimal-leading-zero);
-    font-size: 1.4rem;
-    background-color: $black;
+
+/** Location Date **/
+.date-location{
+    margin-bottom:1rem;
+}
+p.byline{
+    margin:0.2rem 0;
+    background:$black;
     color: $white;
-    font-weight: bold;
-    padding: 0 0 2rem 0;
-    margin: 0 0.9rem 0 -3.2rem;
-    display: inline-block;
-    width: 2.1rem;
-    height: 2.1rem;
+    font-size: 0.9rem;
+    padding: 0 0.5rem;
+}
+
+p.byline i.fa{
+    line-height: 1.8;
+    font-size: 1.1rem;
+    width: 2rem;
+    height: 2rem;
+    background:$primary-color;
+    color: $dark-gray;
     text-align: center;
+    margin: 0 0.5rem 0 -0.5rem;
+}
+
+p.byline i.fa.fa-map-marker{
     line-height: 1.4;
-    font-family: Roboto Condensed;
+    font-size: 1.3rem;
 }
-
-.main .stream-field .rich-text ol li b{
-    font-size:1.2rem;
-}
-
 
 /** Index Page **/
 
@@ -420,33 +475,38 @@ article.post p.byline.blog{
 
 
 
-/** Location Date **/
-.date-location{
-    margin-bottom:1rem;
+
+/** Resources List **/
+.main .stream-field .rich-text ol{
+    margin-left: 3.3rem;
 }
-p.byline{
-    margin:0.2rem 0;
-    background:$black;
+
+.main .stream-field .rich-text ol li{
+    list-style-type: none;
+    counter-increment: step-counter;
+    margin-bottom: 1rem;
+}
+
+.main .stream-field .rich-text ol li:before {
+    content: counter(step-counter,decimal-leading-zero);
+    font-size: 1.4rem;
+    background-color: $black;
     color: $white;
-    font-size: 0.9rem;
-    padding: 0 0.5rem;
-}
-
-p.byline i.fa{
-    line-height: 1.8;
-    font-size: 1.1rem;
-    width: 2rem;
-    height: 2rem;
-    background:$primary-color;
-    color: $dark-gray;
+    font-weight: bold;
+    padding: 0 0 2rem 0;
+    margin: 0 0.9rem 0 -3.2rem;
+    display: inline-block;
+    width: 2.1rem;
+    height: 2.1rem;
     text-align: center;
-    margin: 0 0.5rem 0 -0.5rem;
+    line-height: 1.4;
+    font-family: Roboto Condensed;
 }
 
-p.byline i.fa.fa-map-marker{
-    line-height: 1.4;
-    font-size: 1.3rem;
+.main .stream-field .rich-text ol li b{
+    font-size:1.2rem;
 }
+
 
 /** Search **/
 .search-results li{
@@ -487,6 +547,23 @@ p.byline i.fa.fa-map-marker{
 .search-results span{
     color: $primary-color;
 
+}
+
+/**Map**/
+
+.iframe-container{
+    width:100%;
+    display:block;
+}
+.iframe-container.normal iframe{
+    width:50%;
+    float: left;
+    margin:1rem 2rem 1rem 0;
+
+}
+.iframe-container.full iframe{
+    width:100%;
+    margin:1rem 0 1rem 0;
 }
 
 
