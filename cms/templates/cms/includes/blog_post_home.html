@@ -9,15 +9,18 @@
 <div class="row">
     <div class="large-12 columns">
         {% if post.feed_image %}
-        <div class="image-date ">
-            {% image post.feed_image max-600x300 as tmp_image %}
-            <img src="{{ tmp_image.url }}" width="100%" alt="{{ tmp_image.alt }}">
-            <time datetime="{{ post.date|date:'c' }}">{{ post.date|date_as_block}}</time>
-        </div>
+        <a href="{% pageurl post %}">
+            <div class="image-date ">
+                {% image post.feed_image max-600x300 as tmp_image %}
+                <img src="{{ tmp_image.url }}" width="100%" alt="{{ tmp_image.alt }}">
+                <time datetime="{{ post.date|date:'c' }}">{{ post.date|date_as_block}}</time>
+            </div>
         {% endif %}
-        <p class="posttitle">
+        </a>
+        <h3 class="posttitle">
             <a href="{% pageurl post %}">{{ post.title }}</a>
-        </p>
+        </h3>
+
     </div>
 </div>
 {% endblock %}
