@@ -70,7 +70,7 @@ header {
 }
 
 .top-bar {
-    padding: .7rem 0 0;
+    padding: .6875rem 0 0;
 }
 
 .top-bar, .top-bar ul {
@@ -78,7 +78,7 @@ header {
 }
 
 .menu > li > a {
-    color:$white;
+    color: $white;
     margin: 0 1.1875rem;
     padding: .5rem .1rem;
 }
@@ -244,7 +244,7 @@ header {
     width: 100%;
 }
 
-.title-bar .top-bar-right .menu>li {
+.title-bar .top-bar-right .menu > li {
     display: block;
     width: 100%;
 }
@@ -253,7 +253,7 @@ header {
 .top-bar .top-bar-left, .top-bar .top-bar-right {
     width: 100%;
 }
-.top-bar-right .menu>li {
+.top-bar-right .menu > li {
     display: block;
     text-align: center;
     margin: 1rem 0;
