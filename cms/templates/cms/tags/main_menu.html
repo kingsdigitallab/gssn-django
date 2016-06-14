@@ -2,23 +2,22 @@
 
 <ul class="menu">
     <li{% if root.active %} class="active"{% endif %}>
-    <a href="{% pageurl root %}">{{ root.title }}</a>
-</li>
+    	<a href="{% pageurl root %}">{{ root.title }}</a>
+	</li>
 
-{% for page in menu_pages %}
-<li{% if page.active %} class="active"{% endif %}>
-<a href="{% pageurl page %}">{{ page.title }}</a>
-</li>
-{% endfor %}
+	{% for page in menu_pages %}
+	<li{% if page.active %} class="active"{% endif %}>
+	<a href="{% pageurl page %}">{{ page.title }}</a>
+	</li>
+	{% endfor %}
 
-<li>
-    <div class="form">
-        <span class="toggle"></span>
-        <form role="search" method="get" id="searchform" action="{% url 'search' %}">
-            <input type="search" name='q' placeholder="{% if search_query %}{{ search_query }}{% else %}Search...{% endif %}">
-            <button type="submit" value="" id="searchsubmit"></button>
-        </form>
-    </div>
-</li>
-
+	<li>
+	    <div class="form">
+	        <a class="toggle"><i class="fa fa-search"></i></a>
+	        <form role="search" method="get" id="searchform" action="{% url 'search' %}">
+	            <input type="search" name='q' placeholder="{% if search_query %}{{ search_query }}{% else %}Search...{% endif %}">
+	            <button type="submit" value="" id="searchsubmit"><i class="fa fa-search"></i></button>
+	        </form>
+	    </div>
+	</li>
 </ul>

@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags wagtailsearchpromotions_tags %}
 
-{% block title %}
+{% block meta_title %}Search{% endblock %}
 
+{% block title %}
 <h1 class="search-results">
 Search results for
 {% if search_query %}<span>{{ search_query }}</span>{% endif %}
