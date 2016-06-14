@@ -52,15 +52,20 @@ p {
     margin: 0;
 }
 
-.button {
-    font-size: 1rem;
-    color: $dark-gray;
-}
+.button{
+    font-size:1rem;
+    color:$black;
+    border:3px solid $black;
+    font-weight: bold;
+    background-color:transparent;
+    text-transform: uppercase;
+    }
 
-.button:hover {
-    background-color: $black;
-    color: $primary-color;
-}
+.button:hover{
+    background-color:$primary-color;
+    color:$dark-gray;
+    border:3px solid $primary-color;
+    }
 
 
 /** Navigation **/
@@ -80,7 +85,7 @@ header {
 .menu > li > a {
     color: $white;
     margin: 0 1.1875rem;
-    padding: .5rem .1rem;
+    padding: .5rem .125rem;
 }
 
 .menu .active > a {
@@ -278,7 +283,7 @@ header {
     display: inline-block;
     border-right: 1px solid $black;
     margin-bottom: .5rem;
-    padding: 0 .5rem .1rem .3125rem;
+    padding: 0 .5rem .125rem .3125rem;
     line-height: 1rem;
 }
 
@@ -336,7 +341,7 @@ header {
     background: $black;
     color: $white;
     text-transform: uppercase;
-    padding: .1875rem .5rem .1rem .8125rem;
+    padding: .1875rem .5rem .125rem .8125rem;
     margin: 0;
     font-weight: bold;
 }
@@ -556,6 +561,11 @@ article.post p.byline.blog {
     font-size: 1.25rem;
 }
 
+.main .stream-field .richtext-image .left {
+    width: 100px;
+    height:100px;
+    object-fit:cover;
+}
 
 /** Search **/
 .search-results li {
@@ -614,6 +624,16 @@ article.post p.byline.blog {
     width: 100%;
     margin: 1rem 0;
 }
+
+  .iframe-container iframe {
+    border: 3px solid $primary-color;
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+ */
+       -webkit-filter: grayscale(90%)sepia(15%)contrast(90%);
+        -moz-filter  : grayscale(90%)sepia(15%)contrast(90%);
+        -ms-filter   : grayscale(90%)sepia(15%)contrast(90%);
+         -o-filter   : grayscale(90%)sepia(15%)contrast(90%);
+            filter   : grayscale(90%)sepia(15%)contrast(90%);
+  }
 
 
 /** Footer **/
