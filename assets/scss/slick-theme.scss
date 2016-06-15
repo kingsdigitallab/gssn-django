@@ -98,7 +98,7 @@ $slick-opacity-not-active: 0.25 !default;
 }
 
 .slick-prev {
-    left: 1rem;
+    left: 0.5rem;
     z-index:1;
     [dir="rtl"] & {
         left: auto;
@@ -113,7 +113,7 @@ $slick-opacity-not-active: 0.25 !default;
 }
 
 .slick-next {
-    right: 1rem;
+    right: 0.5rem;
     [dir="rtl"] & {
         left: -25px;
         right: auto;
@@ -202,9 +202,14 @@ $slick-opacity-not-active: 0.25 !default;
 .slick-slide .columns{
     padding:0;
 }
-.slick-slide .carouseltext{
-    padding: 3rem;
+
+.slick-prev:before, .slick-next:before {
+    font-family: FontAwesome;
+    font-size: 2.5rem;
 }
+
+.slick-prev:before { content: "\f104";}
+.slick-next:before { content: "\f105"; }
 
 .slick-slide .carouseltext figcaption{
     font-size: 1.5rem;
@@ -213,16 +218,75 @@ $slick-opacity-not-active: 0.25 !default;
 }
 
 .slick-slide .carouseltext .button{
-    color:$dark-gray;
+    color:$primary-color;
     text-align: left;
-    margin-top:0.5rem;
+    margin-top:1.5rem;
     font-weight: bold;
-
+    border: 3px solid $primary-color;
 }
+
+.slick-slide .carouseltext .button:hover{
+    background-color:$primary-color;
+    color:$dark-gray;
+    border:3px solid $primary-color;
+    }
 
 .slick-slide img {
     width:100%;
-    max-height: 500px;
+    height: 500px;
     object-fit: cover;
 }
 
+.slick-slide .carouseltext {
+    padding: 60px 50px 0 50px;
+    height: 500px;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 1024px) {
+.slick-slide .carouseltext {
+    padding: 5px 40px 0 40px;
+    height: 230px;
+    overflow: hidden;
+}
+}
+
+@media screen and (max-width: 768px) {
+.slick-slide img {
+    height: 400px;
+}
+.slick-slide .carouseltext {
+    height: 280px;
+    overflow: hidden;
+}
+}
+
+@media screen and (max-width: 480px) {
+.slick-slide img {
+    height: 300px;
+}
+.slick-slide .carouseltext {
+    height: 300px;
+    overflow: hidden;
+}
+}
+
+@media screen and (max-width: 568px) {
+.slick-slide img {
+    height: 250px;
+}
+.slick-slide .carouseltext {
+    height: 400px;
+    overflow: hidden;
+}
+}
+
+@media screen and (max-width: 320px) {
+.slick-slide img {
+    height: 250px;
+}
+.slick-slide .carouseltext {
+    height: 440px;
+    overflow: hidden;
+}
+}
