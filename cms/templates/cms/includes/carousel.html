@@ -12,11 +12,11 @@
         </div>
         <div class="medium-12 large-4 columns carouseltext">
             {% if item.caption %}
-            <figcaption>{{ item.caption }}</figcaption>
+            <figcaption>{{ item.caption|truncatechars:48 }}</figcaption>
             {% endif %}
 
             {% if item.description %}
-            {{ item.description|richtext }}
+            {{ item.description|richtext|truncatechars_html:200 }}
             {% endif %}
 
             {% if item.link %}
