@@ -502,6 +502,10 @@ p.byline i.fa.fa-map-marker {
     background: none;
 }
 
+section.postcontent.preview.spotlight{
+    margin-top: .375rem;
+}
+
 .spotlight p {
     margin: 0;
 }
@@ -521,7 +525,18 @@ h1.cat-title.blog {
 }
 
 h1.blog{
-    margin-bottom: 0;
+    margin-bottom: 1rem;
+}
+
+.post>header {
+    padding: 0 0 .5rem 0;
+}
+
+
+
+
+article.post p.byline.blog {
+    margin: 0;
 }
 
 ul.pagination .arrow.next {
