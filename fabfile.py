@@ -151,7 +151,7 @@ def deploy(version=None):
     migrate()
     collect_static()
     # update_index()
-    clear_cache()
+    # clear_cache()
     touch_wsgi()
 
 
