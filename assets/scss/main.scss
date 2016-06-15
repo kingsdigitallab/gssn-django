@@ -40,17 +40,13 @@ h1 {
     padding-bottom: .3125rem;
 }
 
-a {
-    color: $black;
+h1 a,
+h2 a,
+h3 a{
+    color:$black;
 }
 
-a:hover {
-    color: $primary-color;
-}
-
-p {
-    margin: 0;
-}
+p {margin: 0;}
 
 .button{
     font-size:1rem;
@@ -293,6 +289,14 @@ header {
     line-height: 1rem;
 }
 
+.subnav li a{
+    color: $black;
+}
+
+.subnav li a:hover{
+    color: scale-color($anchor-color, $lightness: -14%);
+}
+
 .subnav .active > a {
     font-weight: bold;
 }
@@ -335,9 +339,20 @@ header {
 
 /** Images**/
 
+a img:hover{
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+}
+
 .image-date {
     position: relative;
     width: 100%; /* for IE 6 */
+    background:$black;
+}
+
+a img:hover{
+    opacity: 0.6;
+    filter: alpha(opacity=60);
 }
 
 .image-date time {
@@ -370,7 +385,7 @@ header {
     line-height: 1rem;
 }
 
-.img-wrapper.mid {
+.img-wrapper.mid, .img-wrapper.right, .img-wrapper.left{
     position: relative;
     width: 50%;
     margin: 0 auto;
@@ -382,18 +397,30 @@ header {
     margin: 0 auto;
 }
 
-.richtext-image.full-width {
+img.richtext-image.full-width {
     position: relative;
     width: 100%;
     margin: 0 auto;
 }
 
-.richtext-image.left {
+img.richtext-image.left {
     width: 50%;
 }
 
-.richtext-image.right {
+img.richtext-image.right {
     width: 50%;
+}
+
+@media screen and (max-width: 575px) {
+.img-wrapper.mid, div.img-wrapper.right, div.img-wrapper.left{
+    width: 100%;
+    margin: 0 auto;
+    padding:0
+}
+img.richtext-image.right, img.richtext-image.left  {
+    width: 100%;
+    padding:0;
+}
 }
 
 /** Image Caption **/
@@ -437,6 +464,7 @@ header {
 }
 
 /** Posts **/
+
 .rich-text p a {
     color: $primary-color;
 }
@@ -563,8 +591,13 @@ article.post p.byline.blog {
     font-family: Roboto Condensed;
 }
 
-.main .stream-field .rich-text ol li b {
+.main .stream-field .rich-text ol li b a{
     font-size: 1.25rem;
+    color:$black;
+}
+
+.main .stream-field .rich-text ol li b a:hover{
+    color: scale-color($anchor-color, $lightness: -14%);
 }
 
 .main .stream-field .richtext-image .left {
@@ -604,9 +637,14 @@ article.post p.byline.blog {
     float: left;
 }
 
-.search-results h4 {
+.search-results h4 a{
     padding-top: .1875rem;
     font-size: 1.25rem;
+    color: $black;
+}
+
+.search-results h4 a:hover{
+    color: scale-color($anchor-color, $lightness: -14%);
 }
 
 .search-results span {

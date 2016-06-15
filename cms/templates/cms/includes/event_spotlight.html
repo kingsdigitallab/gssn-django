@@ -12,7 +12,9 @@
         {% if event.feed_image %}
             <div class="image-date">
                 {% image event.feed_image max-600x300 as tmp_image %}
+                <a href="{% pageurl event %}">
                 <img src="{{ tmp_image.url }}" width="100%" alt="{{ tmp_image.alt }}">
+                </a>
                 <time datetime="{{ event.date_from|date:'c' }}">{{ event.date_from|date_as_block }}</time>
             </div>
                     <h2 class="posttitle">
