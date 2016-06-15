@@ -40,27 +40,28 @@ h1 {
     padding-bottom: .3125rem;
 }
 
-a {
-    color: $black;
+h1 a,
+h2 a,
+h3 a{
+    color:$black;
 }
 
-a:hover {
-    color: $primary-color;
-}
+p {margin: 0;}
 
-p {
-    margin: 0;
-}
+.button{
+    font-size:1rem;
+    color:$black;
+    border:3px solid $black;
+    font-weight: bold;
+    background-color:transparent;
+    text-transform: uppercase;
+    }
 
-.button {
-    font-size: 1rem;
-    color: $dark-gray;
-}
-
-.button:hover {
-    background-color: $black;
-    color: $primary-color;
-}
+.button:hover{
+    background-color:$primary-color;
+    color:$dark-gray;
+    border:3px solid $primary-color;
+    }
 
 
 /** Navigation **/
@@ -70,7 +71,7 @@ header {
 }
 
 .top-bar {
-    padding: .7rem 0 0;
+    padding: .6875rem 0 0;
 }
 
 .top-bar, .top-bar ul {
@@ -80,7 +81,7 @@ header {
 .menu > li > a {
     color:$white;
     margin: 0 1.1875rem;
-    padding: .5rem .1rem;
+    padding: .5rem .125rem;
 }
 
 .menu .active > a {
@@ -278,8 +279,16 @@ header {
     display: inline-block;
     border-right: 1px solid $black;
     margin-bottom: .5rem;
-    padding: 0 .5rem .1rem .3125rem;
+    padding: 0 .5rem .125rem .3125rem;
     line-height: 1rem;
+}
+
+.subnav li a{
+    color: $black;
+}
+
+.subnav li a:hover{
+    color: scale-color($anchor-color, $lightness: -14%);
 }
 
 .subnav .active > a {
@@ -324,9 +333,20 @@ header {
 
 /** Images**/
 
+a img:hover{
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+}
+
 .image-date {
     position: relative;
     width: 100%; /* for IE 6 */
+    background:$black;
+}
+
+a img:hover{
+    opacity: 0.6;
+    filter: alpha(opacity=60);
 }
 
 .image-date time {
@@ -336,7 +356,7 @@ header {
     background: $black;
     color: $white;
     text-transform: uppercase;
-    padding: .1875rem .5rem .1rem .8125rem;
+    padding: .1875rem .5rem .125rem .8125rem;
     margin: 0;
     font-weight: bold;
 }
@@ -359,7 +379,7 @@ header {
     line-height: 1rem;
 }
 
-.img-wrapper.mid {
+.img-wrapper.mid, .img-wrapper.right, .img-wrapper.left{
     position: relative;
     width: 50%;
     margin: 0 auto;
@@ -371,18 +391,30 @@ header {
     margin: 0 auto;
 }
 
-.richtext-image.full-width {
+img.richtext-image.full-width {
     position: relative;
     width: 100%;
     margin: 0 auto;
 }
 
-.richtext-image.left {
+img.richtext-image.left {
     width: 50%;
 }
 
-.richtext-image.right {
+img.richtext-image.right {
     width: 50%;
+}
+
+@media screen and (max-width: 575px) {
+.img-wrapper.mid, div.img-wrapper.right, div.img-wrapper.left{
+    width: 100%;
+    margin: 0 auto;
+    padding:0
+}
+img.richtext-image.right, img.richtext-image.left  {
+    width: 100%;
+    padding:0;
+}
 }
 
 /** Image Caption **/
@@ -426,6 +458,7 @@ header {
 }
 
 /** Posts **/
+
 .rich-text p a {
     color: $primary-color;
 }
@@ -552,10 +585,20 @@ article.post p.byline.blog {
     font-family: Roboto Condensed;
 }
 
-.main .stream-field .rich-text ol li b {
+.main .stream-field .rich-text ol li b a{
     font-size: 1.25rem;
+    color:$black;
 }
 
+.main .stream-field .rich-text ol li b a:hover{
+    color: scale-color($anchor-color, $lightness: -14%);
+}
+
+.main .stream-field .richtext-image .left {
+    width: 100px;
+    height:100px;
+    object-fit:cover;
+}
 
 /** Search **/
 .search-results li {
@@ -588,9 +631,14 @@ article.post p.byline.blog {
     float: left;
 }
 
-.search-results h4 {
+.search-results h4 a{
     padding-top: .1875rem;
     font-size: 1.25rem;
+    color: $black;
+}
+
+.search-results h4 a:hover{
+    color: scale-color($anchor-color, $lightness: -14%);
 }
 
 .search-results span {
@@ -614,6 +662,16 @@ article.post p.byline.blog {
     width: 100%;
     margin: 1rem 0;
 }
+
+  .iframe-container iframe {
+    border: 3px solid $primary-color;
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+ */
+       -webkit-filter: grayscale(90%)sepia(15%)contrast(90%);
+        -moz-filter  : grayscale(90%)sepia(15%)contrast(90%);
+        -ms-filter   : grayscale(90%)sepia(15%)contrast(90%);
+         -o-filter   : grayscale(90%)sepia(15%)contrast(90%);
+            filter   : grayscale(90%)sepia(15%)contrast(90%);
+  }
 
 
 /** Footer **/
