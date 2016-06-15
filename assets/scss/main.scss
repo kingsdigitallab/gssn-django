@@ -502,6 +502,10 @@ p.byline i.fa.fa-map-marker {
     background: none;
 }
 
+section.postcontent.preview.spotlight{
+    margin-top: .375rem;
+}
+
 .spotlight p {
     margin: 0;
 }
@@ -521,7 +525,18 @@ h1.cat-title.blog {
 }
 
 h1.blog{
-    margin-bottom: 0;
+    margin-bottom: 1rem;
+}
+
+.post>header {
+    padding: 0 0 .5rem 0;
+}
+
+
+
+
+article.post p.byline.blog {
+    margin: 0;
 }
 
 ul.pagination .arrow.next {
@@ -582,7 +597,7 @@ article.post p.byline.blog {
     height: 2rem;
     text-align: center;
     line-height: 1.375;
-    font-family: Roboto Condensed;
+    font-family: Roboto Condensed, Courier, monospace;
 }
 
 .main .stream-field .rich-text ol li b a{
