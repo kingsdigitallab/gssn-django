@@ -110,6 +110,8 @@ header {
 
 /** Navigation Search **/
 
+/** search input **/
+
 .form {
     margin: 0 auto;
     position: relative;
@@ -121,15 +123,15 @@ header {
 }
 
 .toggle {
-    // background: $black;
+    background: $black;
     color: $white;
-    // border: none;
-    // cursor: pointer;
-    // display: block;
-    // height: 2.1875rem;
-    // position: absolute;
-    // right: 0;
-    // width: 2.1875rem;
+    border: none;
+    cursor: pointer;
+    display: block;
+    height: 2.1875rem;
+    position: absolute;
+    right: 0;
+    width: 2.1875rem;
 }
 
 // .toggle:before {
@@ -150,26 +152,26 @@ header {
     height: 2.1875rem;
     margin: 0;
     display: none;
-    // opacity: 0;
-    // padding: 0;
-    // transition: all 0.8s ease-in-out 0s;
-    // visibility: hidden;
-    // width: 2.1875rem;
-    // -webkit-transition: all 0.8s ease-in-out;
-    // -moz-transition: all 0.8s ease-in-out;
-    // -o-transition: all 0.8s ease-in-out;
+    opacity: 0;
+    padding: 0;
+    transition: all 0.8s ease-in-out 0s;
+    visibility: hidden;
+    width: 2.1875rem;
+    -webkit-transition: all 0.8s ease-in-out;
+    -moz-transition: all 0.8s ease-in-out;
+    -o-transition: all 0.8s ease-in-out;
 }
 
-// .form:hover #searchform {
-//     display: block;
-//     opacity: 1;
-//     -webkit-transition: all 0.8s ease-in-out;
-//     -moz-transition: all 0.8s ease-in-out;
-//     -o-transition: all 0.8s ease-in-out;
-//     visibility: visible;
-//     width: 200px;
-//     height: 2.1875rem;
-// }
+.form:hover #searchform {
+    display: block;
+    opacity: 1;
+    -webkit-transition: all 0.8s ease-in-out;
+    -moz-transition: all 0.8s ease-in-out;
+    -o-transition: all 0.8s ease-in-out;
+    visibility: visible;
+    width: 200px;
+    height: 2.1875rem;
+}
 
 #searchform input {
     height: 2.1875rem;
@@ -185,7 +187,7 @@ header {
     width: 100%;
 }
 
-#searchform #searchsubmit {
+#searchsubmit {
     background: $primary-color;
     border: medium none;
     cursor: pointer;
@@ -197,15 +199,15 @@ header {
     width: 2.1875rem;
 }
 
-// #searchform #searchsubmit:before {
-//     content: "\f002";
-//     font-family: FontAwesome;
-//     font-style: normal;
-//     font-weight: normal;
-//     text-decoration: inherit;
-//     color: $dark-gray;
-//     font-size: 1.125rem;
-// }
+#searchform #searchsubmit:before {
+    content: "\f002";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    color: $dark-gray;
+    font-size: 1.125rem;
+}
 
 @media screen and (max-width: 1024px) {
     .form {
@@ -257,7 +259,8 @@ header {
 }
 
 @media screen and (max-width: 1024px) {
-.top-bar .top-bar-left, .top-bar .top-bar-right {
+.top-bar .top-bar-left,
+.top-bar .top-bar-right {
     width: 100%;
 }
 .top-bar-right .menu > li {
@@ -289,11 +292,11 @@ header {
     line-height: 1rem;
 }
 
-.subnav li a{
+.subnav li a {
     color: $black;
 }
 
-.subnav li a:hover{
+.subnav li a:hover {
     color: scale-color($anchor-color, $lightness: -14%);
 }
 
@@ -308,6 +311,7 @@ header {
 }
 
 /** Homepage **/
+
 .homepage h2 {
     border-bottom: 1px solid $medium-gray;
     border-top: 1px solid $medium-gray;
@@ -560,9 +564,6 @@ article.post p.byline.blog {
     font-size: .8125rem;
     padding-left: 0;
 }
-
-
-
 
 /** Resources List **/
 .main .stream-field .rich-text ol {
