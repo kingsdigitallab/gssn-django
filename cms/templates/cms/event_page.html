@@ -1,11 +1,48 @@
 {% extends "cms/rich_text_page.html" %}
-{% load cms_tags wagtailcore_tags %}
+{% load cms_tags wagtailcore_tags wagtailroutablepage_tags %}
 
-{% block title %}{% endblock %}
+{% block title %}
+<h1>Events</h1>
+{% endblock %}
+
+{% block subnav %}
+<ul class="subnav">
+    {% with event_index=self.event_index.specific %}
+    {% for item in event_index.subnav_items %}
+    <li class="{% if item == filter_type %}active{% elif item == 'live' and not filter_type %}active{% endif %}">
+        <a href="{% routablepageurl event_index item|add:'_events' %}">{{ item|title }}</a>
+    </li>
+    {% endfor %}
+    {% endwith %}
+</ul>
+{% endblock %}
 
 {% block main %}
 
-{% include "cms/includes/event.html" with event=self %}
+<article class="post" id="post{{ self.id }}">
+    <h2>{{ self.title }}</h2>
+
+    <div class="row">
+        {% block event_author %}
+        <div class="medium-12 large-12 columns date-location">
+            <p class="byline">
+                <i class="fa fa-calendar"></i><time datetime="{{ self.date_from|date:'c' }}">  {{ self.date_from }}{% if self.date_to %} - {{ self.date_to }}{% endif %}</time>
+            </p>
+
+            <p class="byline">
+                <i class="fa fa-map-marker"></i>  {{ self.location }}
+            </p>
+        </div>
+        {% endblock %}
+    </div>
+
+
+    {% block event_content %}
+    <section class="postcontent">
+        {% include "cms/includes/streamfield.html" with content=self.body %}
+    </section>
+    {% endblock %}
+</article>
 
 {% block attachments %}
 {{ block.super }}

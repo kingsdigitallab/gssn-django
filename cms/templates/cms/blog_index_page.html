@@ -2,11 +2,13 @@
 {% load wagtailcore_tags %}
 
 {% block title %}
-<h1 class="cat-title">
+<h1 class="cat-title blog">
 <span class="bookmark blogpost"></span>
 <a href="{% pageurl self %}">{{ self.title }}</a>
 </h1>
 {% endblock %}
+
+{% block subnav %}{% endblock %}
 
 {% block main %}
 

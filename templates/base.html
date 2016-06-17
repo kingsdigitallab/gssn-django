@@ -1,4 +1,4 @@
-{% load staticfiles compress require %}
+{% load cms_tags staticfiles compress require %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,22 +28,37 @@
   </header>
 
   {% block base %}
+  <div class="wrapper">
+  <div class="row">
+    <div class="medium-12 large-12 columns">
+      {% block title %}{% endblock %}
+
+      {% block subnav %}
+      {% has_local_menu current_page=self as show_local_menu %}
+      {% if show_local_menu %}
+      {% local_menu current_page=self %}
+      {% endif %}
+      {% endblock %}
+    </div>
+  </div>
   <div class="row">
     <div class="medium-8 large-8 columns">
       <section class="main">
-        {% block title %}{% endblock %}
         {% block main %}
         {% endblock %}
       </section>
     </div>
-    <div class="medium-4 large-4 columns">
+    <div class="medium-4 large-4 columns sidebar">
       {% block side-bar %}
       <h3>Side bar</h3>
       <hr>
       {% endblock %}
     </div>
   </div>
+  <div class="push"></div>
+  </div>
   {% endblock %}
+
 
   <footer>
     {% block footer %}

@@ -61,10 +61,18 @@ class HomePage(Page, WithStreamField):
     )
 
     subpage_types = ['IndexPage', 'BlogIndexPage', 'EventIndexPage',
-                     'RichTextPage']
+                     'ResourcesIndexPage', 'RichTextPage']
 
     class Meta:
         verbose_name = 'Homepage'
+
+    def get_latest_blog_posts(self):
+        bip = self.get_children().type(BlogIndexPage).first().specific
+        return bip.posts[:2]
+
+    def get_live_events(self):
+        eip = self.get_children().type(EventIndexPage).first().specific
+        return eip.live_events[:2]
 
 HomePage.content_panels = [
     FieldPanel('title', classname='full title'),
@@ -173,7 +181,6 @@ class BlogIndexPage(RoutablePageMixin, Page, WithIntroduction):
     @route(r'^$')
     def all_posts(self, request):
         posts = self.posts
-        logger.debug('Posts: {}'.format(posts))
 
         return render(request, self.get_template(request),
                       {'self': self, 'posts': _paginate(request, posts)})
@@ -274,7 +281,7 @@ class EventIndexPage(RoutablePageMixin, Page, WithIntroduction):
 
     subpage_types = ['EventPage']
 
-    subnav_items = ['live', 'symposium', 'past']
+    subnav_items = ['live', 'past', 'symposium']
 
     @property
     def all_events(self):
@@ -320,7 +327,6 @@ class EventIndexPage(RoutablePageMixin, Page, WithIntroduction):
     @route(r'^$', name='live_events')
     def get_live_events(self, request):
         events = self.live_events
-        logger.debug('Live events: {}'.format(events))
 
         return render(request, self.get_template(request),
                       {'self': self, 'filter_type': 'live',
@@ -329,7 +335,6 @@ class EventIndexPage(RoutablePageMixin, Page, WithIntroduction):
     @route(r'^past/$', name='past_events')
     def get_past_events(self, request):
         events = self.past_events
-        logger.debug('Past events: {}'.format(events))
 
         return render(request, self.get_template(request),
                       {'self': self, 'filter_type': 'past',
@@ -338,7 +343,6 @@ class EventIndexPage(RoutablePageMixin, Page, WithIntroduction):
     @route(r'^symposiums/$', name='symposium_events')
     def get_symposiums(self, request):
         events = self.symposiums
-        logger.debug('Symposiums: {}'.format(events))
 
         return render(request, self.get_template(request),
                       {'self': self, 'filter_type': 'symposium',
@@ -439,3 +443,23 @@ def event_page_default_date_to(sender, instance, **kwargs):
     if not instance.date_to:
         # sets date_to to the same as date_from
         instance.date_to = instance.date_from
+
+
+# Resources
+# ResourcesIndexPage
+class ResourcesIndexPageRelatedLink(Orderable, AbstractRelatedLink):
+    page = ParentalKey('ResourcesIndexPage', related_name='related_links')
+
+
+class ResourcesIndexPage(Page, WithIntroduction):
+    search_fields = Page.search_fields + (
+        index.SearchField('intro'),
+    )
+
+    subpage_types = ['RichTextPage']
+
+ResourcesIndexPage.content_panels = [
+    FieldPanel('title', classname='full title'),
+    StreamFieldPanel('intro'),
+    InlinePanel('related_links', label='Related links'),
+]

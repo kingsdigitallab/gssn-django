@@ -22,7 +22,7 @@
         {% elif child.block_type == 'image' %}
             <div class="img-wrapper {{ child.value.alignment }}">
                 {% if child.value.alignment == "left" or child.value.alignment == "right" %}
-                    {% image child.value.image width-300 as theimage %}
+                    {% image child.value.image width-500 as theimage %}
                 {% else %}
                     {% image child.value.image width-1280 as theimage %}
                 {% endif %}
@@ -57,6 +57,17 @@
                 {{ child.value.bound_blocks.html.render }}
             {% endif %}
             </div>
+        {% elif child.block_type == 'map_html' %}
+            {% if child.value.alignment == 'normal' %}
+            <div class="iframe-container normal">
+                {{ child.value.bound_blocks.html.render }}
+            </div>
+            {% else %}
+            <div class="iframe-container full">
+                {{ child.value.bound_blocks.html.render }}
+            </div>
+            {% endif %}
+
         {% else %}
             {{ child }}
         {% endif %}

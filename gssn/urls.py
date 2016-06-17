@@ -1,6 +1,4 @@
-# from ddhldap.signal_handlers import register_signal_handlers as \
-#     ddhldap_register_signal_handlers
-
+from search.views import search
 from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
@@ -24,18 +22,21 @@ urlpatterns += [
     url(r'^wagtail/', include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
 
+    url(r'^search/', search, name='search'),
     url(r'', include(wagtail_urls)),
 ]
 
 # -----------------------------------------------------------------------------
 # Django Debug Toolbar URLS
 # -----------------------------------------------------------------------------
-# try:
-#     if settings.DEBUG:
-#         import debug_toolbar
-#         urlpatterns += url(r'^__debug__/', include(debug_toolbar.urls))
-# except ImportError:
-#     pass
+try:
+    if settings.DEBUG:
+        import debug_toolbar
+        urlpatterns += [
+            url(r'^__debug__/', include(debug_toolbar.urls))
+        ]
+except ImportError:
+    pass
 
 # -----------------------------------------------------------------------------
 # Static file DEBUGGING
