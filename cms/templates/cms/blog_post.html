@@ -35,6 +35,7 @@
     <footer>
         {% with self.tags.all as tags %}
         {% if tags %}
+        <h6>Tags</h6>
         <ul class="tags menu simple">
             {% for tag in tags %}
             <li class="tag">
@@ -46,9 +47,32 @@
         {% endwith %}
 
         {% block share_on_twitter %}
+        <h6>Share on</h6>
         <ul class="no-bullet">
             <li>
-                <a href="https://twitter.com/share" class="twitter-share-button" data-via="{% get_twitter_name %}" data-dnt="true"></a>
+                <a href="https://twitter.com/share" class="twitter-share-button" data-via="{% get_twitter_name %}" data-dnt="true">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+            <li>
+                <a href="https://twitter.com/share" data-via="{% get_twitter_name %}" data-dnt="true">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+            <li>
+                <a href="https://twitter.com/share" data-via="{% get_twitter_name %}" data-dnt="true">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                </a>
+            </li>
+            <li>
+                <a href="https://twitter.com/share" data-via="{% get_twitter_name %}" data-dnt="true">
+                <i class="fa fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+            <li>
+                <a href="https://twitter.com/share" data-via="{% get_twitter_name %}" data-dnt="true">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+                </a>
             </li>
         </ul>
         {% endblock %}
