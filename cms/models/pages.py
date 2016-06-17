@@ -68,7 +68,7 @@ class HomePage(Page, WithStreamField):
 
     def get_latest_blog_posts(self):
         bip = self.get_children().type(BlogIndexPage).first().specific
-        return bip.posts[:6]
+        return bip.posts[:2]
 
     def get_live_events(self):
         eip = self.get_children().type(EventIndexPage).first().specific
