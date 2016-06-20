@@ -112,14 +112,107 @@ header {
     width: 7rem;
 }
 
-<<<<<<< HEAD
 /** Navigation Search **/
 
 /** search input **/
 
-=======
-// Search
->>>>>>> templates
+////
+
+.gssn-search {
+    position: relative;
+    margin-top: 10px;
+    width: 0%;
+    min-width: 30px;
+    height: 30px;
+    float: right;
+    overflow: hidden;
+
+    -webkit-transition: width 0.3s;
+    -moz-transition: width 0.3s;
+    transition: width 0.3s;
+
+    -webkit-backface-visibility: hidden;
+}
+
+.gssn-search-input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+    outline: none;
+    background: $white;
+    width: 100%;
+    height: 1;
+    margin: 0;
+    z-index: 10;
+    padding: 20px 35px 20px 20px;
+    font-family: inherit;
+    font-size: 20px;
+    color: #2c3e50;
+}
+
+input[type="search"].gssn-search-input {
+    -webkit-appearance: none;
+    -webkit-border-radius: 0px;
+}
+
+.gssn-icon-search,
+.gssn-search-submit  {
+    width: 30px;
+    height: 30px;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.gssn-search-submit {
+    background: $white; /* IE needs this */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE 8 */
+    filter: alpha(opacity=0); /* IE 5-7 */
+    opacity: 0;
+    color: transparent;
+    border: none;
+    outline: none;
+    z-index: -1;
+}
+
+.gssn-icon-search {
+    color: #fff;
+    background: transparent;
+    z-index: 90;
+    font-size: 1.125rem;
+    font-family: 'FontAwesome';
+}
+
+.gssn-icon-search:before {
+    content: "\f002";
+}
+
+.gssn-search.gssn-search-open,
+.no-js .gssn-search {
+    width: 200px;
+}
+
+.gssn-search.gssn-search-open .gssn-icon-search,
+.no-js .gssn-search .gssn-icon-search {
+    background: $primary-color;
+    color: #fff;
+    z-index: 11;
+}
+
+.gssn-search.gssn-search-open .gssn-search-submit,
+.no-js .gssn-search .gssn-search-submit {
+    z-index: 90;
+}
+
+////
+
 .form {
     margin: 0 auto;
     position: relative;

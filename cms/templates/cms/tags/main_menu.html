@@ -12,6 +12,7 @@
 	{% endfor %}
 
 	<li>
+		{% comment %}
 	    <div class="form">
 	        <a class="toggle"><i class="fa fa-search"></i></a>
 	        <form role="search" method="get" id="searchform" action="{% url 'search' %}">
@@ -19,5 +20,13 @@
 	            <button type="submit" value="" id="searchsubmit"><i class="fa fa-search"></i></button>
 	        </form>
 	    </div>
+	    {% endcomment %}
+		<div id="gssn-search" class="gssn-search">
+			<form>
+				<input class="gssn-search-input" placeholder="Enter your search term..." type="search" value="" name="search" id="search">
+				<input class="gssn-search-submit" type="submit" value="">
+				<span class="gssn-icon-search"></span>
+			</form>
+		</div>
 	</li>
 </ul>
