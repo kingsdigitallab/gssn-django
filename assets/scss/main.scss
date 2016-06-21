@@ -291,7 +291,7 @@ header {
 }
 
 .subnav li a:hover{
-    color: scale-color($anchor-color, $lightness: -14%);
+    color: $anchor-color-hover;
 }
 
 .subnav .active > a {
@@ -305,14 +305,17 @@ header {
 }
 
 /** Homepage **/
-.homepage h2 {
+.homepage h2{
     border-bottom: 1px solid $medium-gray;
     border-top: 1px solid $medium-gray;
     padding: .5rem 0;
     margin: 2.5rem 0 1.5rem;
-    color: $black
+    color: $black;
 }
 
+.homepage h2:hover{
+    color: $anchor-color-hover;
+}
 .homepage h3 {
     margin: .3125rem 0 1rem;
     font-size: 1.125rem;
@@ -690,7 +693,7 @@ article.post p.byline.blog {
 }
 
 .main .stream-field .rich-text ol li b a:hover{
-    color: scale-color($anchor-color, $lightness: -14%);
+    color: $anchor-color-hover;
 }
 
 .main .stream-field .richtext-image .left {
@@ -737,7 +740,7 @@ article.post p.byline.blog {
 }
 
 .search-results h4 a:hover{
-    color: scale-color($anchor-color, $lightness: -14%);
+    color: $anchor-color-hover;
 }
 
 .search-results span {
