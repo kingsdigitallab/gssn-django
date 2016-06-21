@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags wagtailsearchpromotions_tags %}
 
-{% block title %}
+{% block meta_title %}Search{% endblock %}
 
+{% block title %}
 <h1 class="search-results">
 Search results for
 {% if search_query %}<span>{{ search_query }}</span>{% endif %}
@@ -36,7 +37,7 @@ Please type something into the search box
 
 {% block side-bar %}
 
-<h3>Promoted results</h3>
+<h3>Were you looking for...?</h3>
 <hr>
 {% get_search_promotions search_query as search_promotions %}
 
