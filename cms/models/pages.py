@@ -281,7 +281,7 @@ class EventIndexPage(RoutablePageMixin, Page, WithIntroduction):
 
     subpage_types = ['EventPage']
 
-    subnav_items = ['live', 'symposium',  'schools', 'past']
+    subnav_items = ['live', 'symposium', 'schools', 'past']
 
     @property
     def all_events(self):
