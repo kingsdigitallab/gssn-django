@@ -50,28 +50,38 @@
         <h6>Share on</h6>
         <ul class="no-bullet">
             <li>
-                <a href="https://twitter.com/share" class="twitter-share-button" data-via="{% get_twitter_name %}" data-dnt="true">
+                <a href="https://twitter.com/share" class="twitter-share-button" data-via="{% get_twitter_name %}" data-dnt="true" target="_blank">
                 <i class="fa fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
             <li>
-                <a href="https://twitter.com/share" data-via="{% get_twitter_name %}" data-dnt="true">
+                <a href="http://www.facebook.com/sharer.php?u={{ self.full_url }}" target="_blank">
                 <i class="fa fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
             <li>
-                <a href="https://twitter.com/share" data-via="{% get_twitter_name %}" data-dnt="true">
+                <a href="mailto:?Subject=German Screen Studies Network;Body=Read%20this!%20{{ self.full_url }}" target="_blank">
                 <i class="fa fa-envelope" aria-hidden="true"></i>
                 </a>
             </li>
             <li>
-                <a href="https://twitter.com/share" data-via="{% get_twitter_name %}" data-dnt="true">
+                <a href="https://plus.google.com/share?url={{ self.full_url }}" target="_blank">
                 <i class="fa fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
             <li>
-                <a href="https://twitter.com/share" data-via="{% get_twitter_name %}" data-dnt="true">
+                <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{ self.full_url }}" target="_blank">
                 <i class="fa fa-linkedin" aria-hidden="true"></i>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());">
+                <i class="fa fa-pinterest" aria-hidden="true"></i>
+                </a>
+            </li>
+            <li>
+                <a href="http://www.tumblr.com/share/link?url={{ self.full_url }}" target="_blank">
+                <i class="fa fa-tumblr" aria-hidden="true"></i>
                 </a>
             </li>
         </ul>
