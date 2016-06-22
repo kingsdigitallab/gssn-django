@@ -168,6 +168,9 @@ class BlogIndexPage(RoutablePageMixin, Page, WithIntroduction):
 
     subpage_types = ['BlogPost']
 
+    class Meta:
+        verbose_name = 'News Index Page'
+
     @property
     def posts(self):
         # gets list of live blog posts that are descendants of this page
@@ -217,6 +220,7 @@ class BlogIndexPage(RoutablePageMixin, Page, WithIntroduction):
             }
         )
 
+
 BlogIndexPage.content_panels = [
     FieldPanel('title', classname='full title'),
     StreamFieldPanel('intro'),
@@ -248,6 +252,9 @@ class BlogPost(Page, WithFeedImage, WithStreamField):
     )
 
     subpage_types = []
+
+    class Meta:
+        verbose_name = 'News Post'
 
     @property
     def blog_index(self):
