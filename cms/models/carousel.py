@@ -13,7 +13,7 @@ class AbstractCarouselItem(AbstractLinkFields):
         'wagtailimages.Image', null=True, blank=True,
         on_delete=models.SET_NULL, related_name='+'
     )
-    caption = models.CharField(max_length=255, blank=True)
+    caption = models.CharField(max_length=38, blank=True)
     description = RichTextField(blank=True)
 
     panels = [
