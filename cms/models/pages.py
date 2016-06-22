@@ -281,7 +281,7 @@ class EventIndexPage(RoutablePageMixin, Page, WithIntroduction):
 
     subpage_types = ['EventPage']
 
-    subnav_items = ['live', 'past', 'symposium']
+    subnav_items = ['live', 'symposium', 'schools', 'past']
 
     @property
     def all_events(self):
@@ -324,13 +324,23 @@ class EventIndexPage(RoutablePageMixin, Page, WithIntroduction):
 
         return events
 
+    @property
+    def schools(self):
+        events = EventPage.objects.live().descendant_of(self).filter(
+            is_school=True)
+
+        if events:
+            events = events.order_by('-date_from')
+
+        return events
+
     @route(r'^$', name='live_events')
     def get_live_events(self, request):
         events = self.live_events
 
         return render(request, self.get_template(request),
                       {'self': self, 'filter_type': 'live',
-                      'events': _paginate(request, events)})
+                       'events': _paginate(request, events)})
 
     @route(r'^past/$', name='past_events')
     def get_past_events(self, request):
@@ -346,6 +356,14 @@ class EventIndexPage(RoutablePageMixin, Page, WithIntroduction):
 
         return render(request, self.get_template(request),
                       {'self': self, 'filter_type': 'symposium',
+                       'events': _paginate(request, events)})
+
+    @route(r'^schools/$', name='schools_events')
+    def get_schools(self, request):
+        events = self.schools
+
+        return render(request, self.get_template(request),
+                      {'self': self, 'filter_type': 'schools',
                        'events': _paginate(request, events)})
 
     @route(r'^tag/(?P<tag>[\w\- ]+)/$')
@@ -389,6 +407,7 @@ class EventPageRelatedLink(Orderable, AbstractRelatedLink):
 class EventPage(Page, WithFeedImage, WithStreamField):
     tags = ClusterTaggableManager(through=EventPageTag, blank=True)
     is_symposium = models.BooleanField()
+    is_school = models.BooleanField()
     date_from = models.DateField('Start date')
     date_to = models.DateField(
         'End date', null=True, blank=True,
@@ -413,7 +432,12 @@ class EventPage(Page, WithFeedImage, WithStreamField):
 
 EventPage.content_panels = [
     FieldPanel('title', classname='full title'),
-    FieldPanel('is_symposium'),
+    MultiFieldPanel([
+        FieldRowPanel([
+                    FieldPanel('is_symposium', classname='col6'),
+                    FieldPanel('is_school', classname='col6'),
+                    ], classname='full'),
+    ], 'Categories'),
     MultiFieldPanel([
         FieldRowPanel([
             FieldPanel('date_from', classname='col6'),
