@@ -398,7 +398,7 @@ input[type="search"].gssn-search-input {
 }
 
 .subnav li a:hover {
-    color: scale-color($anchor-color, $lightness: -14%);
+    color: $anchor-color-hover;
 }
 
 .subnav .active > a {
@@ -418,9 +418,12 @@ input[type="search"].gssn-search-input {
     border-top: 1px solid $medium-gray;
     padding: .5rem 0;
     margin: 2.5rem 0 1.5rem;
-    color: $black
+    color: $black;
 }
 
+.homepage h2:hover{
+    color: $anchor-color-hover;
+}
 .homepage h3 {
     margin: .3125rem 0 1rem;
     font-size: 1.125rem;
@@ -441,6 +444,25 @@ input[type="search"].gssn-search-input {
 .homepage .image-date img:hover {
     opacity: 0.6;
     filter: alpha(opacity=60);
+}
+
+.homepage h4 {
+    margin-top:0.5rem;
+    font-size: 1.125rem;
+}
+
+.homepage h4 a{
+    color:$black;
+}
+
+.homepage h4 a:hover{
+    color:$anchor-color-hover;
+}
+
+.homepage .hp-resources-image img{
+    width:100%;
+    height:140px;
+    object-fit: cover;
 }
 
 /** Images **/
@@ -657,6 +679,18 @@ article.post footer h6{
     text-decoration: underline;
 }
 
+article .post div.responsive-object{
+    padding:0;
+}
+
+.post div.responsive-object{
+    padding:0!important;
+}
+
+.post div.responsive-object iframe{
+    width:100%;
+}
+
 
 // tags
 article.post footer ul.tags.menu.simple li{
@@ -700,7 +734,7 @@ article.post footer ul.no-bullet li i.fa{
     text-align: center;
     font-size: 1.125rem;
     padding-top: .3125rem;
-    line-height: 1.5rem;
+    line-height: 1.375rem;
 }
 
 article.post footer ul.no-bullet li i.fa:hover{
@@ -726,6 +760,14 @@ article.post footer ul.no-bullet li i.fa.fa-google-plus{
 
 article.post footer ul.no-bullet li i.fa.fa-linkedin{
     background:#0077B5;
+}
+
+article.post footer ul.no-bullet li i.fa.fa-pinterest{
+    background:#cb2027;
+}
+
+article.post footer ul.no-bullet li i.fa.fa-tumblr{
+    background:#35465c;
 }
 
 // Pagination
@@ -798,7 +840,7 @@ article.post p.byline.blog {
 }
 
 .main .stream-field .rich-text ol li b a:hover{
-    color: scale-color($anchor-color, $lightness: -14%);
+    color: $anchor-color-hover;
 }
 
 .main .stream-field .richtext-image .left {
@@ -845,7 +887,7 @@ article.post p.byline.blog {
 }
 
 .search-results h4 a:hover{
-    color: scale-color($anchor-color, $lightness: -14%);
+    color: $anchor-color-hover;
 }
 
 .search-results span {
