@@ -338,7 +338,7 @@ header {
     filter: alpha(opacity=60);
 }
 
-.homepage h4 {
+/*.homepage h4 {
     margin-top:0.5rem;
     font-size: 1.125rem;
 }
@@ -355,7 +355,31 @@ header {
     width:100%;
     height:140px;
     object-fit: cover;
+}*/
+
+.homepage .additional{
+    background-color:$light-gray;
+    padding:1rem;
+    margin-top: 2rem;
 }
+
+.homepage .additional h2{
+    color: $black;
+    border-top:none;
+    border-bottom:1px solid $medium-gray;
+    margin:0 0 1rem 0;
+}
+
+.homepage .additional ul li a{
+    color: $black;
+    list-style-type: square;
+}
+
+.homepage .additional ul li a:hover{
+    color: $anchor-color-hover;
+}
+
+
 
 /** Images **/
 
