@@ -1,6 +1,56 @@
 {% load wagtailcore_tags %}
 
-{% block side-bar %}
-	<h3>Sidebar</h3>
-	<hr>
-{% endblock %}
+{% if 'events' not in self.url %}
+<h3>Membership</h3>
+<hr>
+<a href="#" class="button">Join</a>
+{% endif %}
+{% if 'about' in self.url %}
+<h3>Research</h3>
+<hr>
+
+<ul>
+	<li><a href="#">Projects</a></li>
+	<li><a href="#">Resources</a></li>
+	<li><a href="#">Register of experts</a></li>
+</ul>
+
+<ul class="subnav">
+	<li>
+		<a href=""> this</a>
+	</li>
+    {% for page in menu_pages %}
+    <li>
+        <a href="{% pageurl page %}">{{ page.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<h3>Events</h3>
+<hr>
+<ul>
+	<li><a href="#">Event 1</a></li>
+	<li><a href="#">Event 2</a></li>
+	<li><a href="#">Event 3</a></li>
+</ul>
+
+{% elif 'research' in self.url %}
+
+<h3>Events</h3>
+<hr>
+<ul>
+	<li><a href="#">Event 1</a></li>
+	<li><a href="#">Event 2</a></li>
+	<li><a href="#">Event 3</a></li>
+</ul>
+
+{% elif 'events' in self.url %}
+<h3>Next event</h3>
+<hr>
+<a href="#">Join</a>
+<ul>
+	<li><a href="#">Event 1</a></li>
+	<li><a href="#">Event 2</a></li>
+	<li><a href="#">Event 3</a></li>
+</ul>
+{% endif %}
