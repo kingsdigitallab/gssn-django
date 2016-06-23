@@ -22,9 +22,9 @@
 	    </div>
 	    {% endcomment %}
 		<div id="gssn-search" class="gssn-search">
-			<form>
-				<input class="gssn-search-input" placeholder="Enter your search term..." type="search" value="" name="search" id="search">
-				<input class="gssn-search-submit" type="submit" value="">
+			<form role="search" method="get" id="searchform" action="{% url 'search' %}">
+				<input class="gssn-search-input" type="search" name="q" placeholder="{% if search_query %}{{ search_query }}{% else %}Search...{% endif %}">
+				<input class="gssn-search-submit" type="submit" value="" id="searchsubmit">
 				<span class="gssn-icon-search"></span>
 			</form>
 		</div>

@@ -7,10 +7,11 @@
 {% endif %}
 
 {% if 'about' in self.url %}
-<h3>Research</h3>
-<hr>
 
 {% get_resources_index_page as rip %}
+<h3>{{ rip.title }}</h3>
+<hr>
+
 <ul>
 	<li><a href="{% pageurl rip %}">{{ rip.title }}</a></li>
 	{% for page in rip.get_children %}
@@ -18,10 +19,10 @@
 	{% endfor %}
 </ul>
 
-<h3>Events</h3>
+{% get_event_index_page as eip %}
+<h3>{{ eip.title }}</h3>
 <hr>
 
-{% get_event_index_page as eip %}
 <ul>
 	{% for event in eip.live_events|slice:":3" %}
     <li>
@@ -38,7 +39,8 @@
 	{% endfor %}
 </ul>
 
-<h3>News</h3>
+{% get_blog_index_page as bip %}
+<h3>{{ bip.title }}</h3>
 <hr>
 
 {% get_blog_index_page as bip %}
@@ -54,12 +56,10 @@
 
 {% elif 'research' in self.url %}
 
-
-
-<h3>Events</h3>
+{% get_event_index_page as eip %}
+<h3>{{ eip.title }}</h3>
 <hr>
 
-{% get_event_index_page as eip %}
 <ul>
 	{% for event in eip.live_events|slice:":3" %}
     <li>
@@ -79,14 +79,12 @@
 </ul>
 
 {% elif 'events' in self.url %}
-<h3>Next event</h3>
-<hr>
-<a href="#" class="button">Join</a>
-
-<h3>What's on</h3>
-<hr>
+<a href="#" class="button">Join our next event</a>
 
 {% get_event_index_page as eip %}
+<h3>{{ eip.title }}</h3>
+<hr>
+
 <ul>
 	{% for event in eip.live_events|slice:":3" %}
     <li>
