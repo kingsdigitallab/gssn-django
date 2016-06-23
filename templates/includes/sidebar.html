@@ -1,67 +1,107 @@
-{% load wagtailcore_tags cms_tags %}
+{% load cms_tags wagtailcore_tags %}
 
 {% if 'events' not in self.url %}
 <h3>Membership</h3>
 <hr>
 <a href="#" class="button">Join</a>
 {% endif %}
+
 {% if 'about' in self.url %}
 <h3>Research</h3>
 <hr>
 
+{% get_resources_index_page as rip %}
 <ul>
-	<li><a href="{% pageurl self %}">{% pageurl self %}</a></li>
-	<li><a href="#">Resources</a></li>
-	<li><a href="#">Register of experts</a></li>
-</ul>
-
-<ul>
-    {% for page in pages %}
-    <li>
-        <a href="#">{{ page.title }}</a>
-    </li>
-    {% empty %}
-    <li>Sorry, nothing to show here.</li>
-    {% endfor %}
+	<li><a href="{% pageurl rip %}">{{ rip.title }}</a></li>
+	{% for page in rip.get_children %}
+	<li><a href="{% pageurl page %}">{{ page.title }}</a></li>
+	{% endfor %}
 </ul>
 
 <h3>Events</h3>
 <hr>
-<ul class="no-bullet index">
-    {% for event in events %}
+
+{% get_event_index_page as eip %}
+<ul>
+	{% for event in eip.live_events|slice:":3" %}
     <li>
-        {% include "cms/includes/event_preview.html" with event=event %}
+        <a href="{% pageurl event %}">{{ event.title }}</a>
     </li>
-    {% empty %}
-    <li>Sorry, nothing to show here.</li>
-    {% endfor %}
+	{% empty %}
+	{% for event in eip.past_events|slice:":3" %}
+    <li>
+        <a href="{% pageurl event %}">{{ event.title }}</a>
+    </li>
+	{% empty %}
+	<li>Sorry, no events planned.</li>
+	{% endfor %}
+	{% endfor %}
+</ul>
+
+<h3>News</h3>
+<hr>
+
+{% get_blog_index_page as bip %}
+<ul>
+	{% for post in bip.posts|slice:":3" %}
+	<li>
+		<a href="{% pageurl post %}">{{ post.title }}</a>
+	</li>
+	{% empty %}
+	<li>Sorry, nothing to show here.</li>
+	{% endfor %}
 </ul>
 
 {% elif 'research' in self.url %}
 
+
+
 <h3>Events</h3>
 <hr>
-<ul class="no-bullet index">
-    {% for event in events %}
+
+{% get_event_index_page as eip %}
+<ul>
+	{% for event in eip.live_events|slice:":3" %}
     <li>
-        {% include "cms/includes/event_preview.html" with event=event %}
+        <time datetime="{{ event.date_from|date:'c' }}" class="calendar-icon">{{ event.date_from|date_as_block }}</time>
+        <a href="{% pageurl event %}">{{ event.title }}</a>
     </li>
-    {% empty %}
-    <li>Sorry, nothing to show here.</li>
-    {% endfor %}
+	{% empty %}
+	{% for event in eip.past_events|slice:":3" %}
+    <li>
+        <time datetime="{{ event.date_from|date:'c' }}" class="calendar-icon">{{ event.date_from|date_as_block }}</time>
+        <a href="{% pageurl event %}">{{ event.title }}</a>
+    </li>
+	{% empty %}
+	<li>Sorry, no events planned.</li>
+	{% endfor %}
+	{% endfor %}
 </ul>
 
 {% elif 'events' in self.url %}
 <h3>Next event</h3>
 <hr>
-<a href="#">Join</a>
-<ul class="no-bullet index">
-    {% for event in events %}
+<a href="#" class="button">Join</a>
+
+<h3>What's on</h3>
+<hr>
+
+{% get_event_index_page as eip %}
+<ul>
+	{% for event in eip.live_events|slice:":3" %}
     <li>
-        {% include "cms/includes/event_preview.html" with event=event %}
+        <time datetime="{{ event.date_from|date:'c' }}" class="calendar-icon">{{ event.date_from|date_as_block }}</time>
+        <a href="{% pageurl event %}">{{ event.title }}</a>
     </li>
-    {% empty %}
-    <li>Sorry, nothing to show here.</li>
-    {% endfor %}
+	{% empty %}
+	{% for event in eip.past_events|slice:":3" %}
+    <li>
+        <time datetime="{{ event.date_from|date:'c' }}" class="calendar-icon">{{ event.date_from|date_as_block }}</time>
+        <a href="{% pageurl event %}">{{ event.title }}</a>
+    </li>
+	{% empty %}
+	<li>Sorry, no events planned.</li>
+	{% endfor %}
+	{% endfor %}
 </ul>
 {% endif %}
