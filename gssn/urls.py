@@ -1,13 +1,17 @@
 from search.views import search
 from django.conf import settings
-from django.conf.urls import include, url
+from django.conf.urls import handler404, handler500, include, url
 from django.contrib import admin
+from django.utils.functional import curry
+from django.views.defaults import server_error
 from wagtail.wagtailadmin import urls as wagtailadmin_urls
 from wagtail.wagtailcore import urls as wagtail_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
 
 admin.autodiscover()
 
+handler404 = curry(server_error, template_name='404.html')
+handler500 = curry(server_error, template_name='500.html')
 
 urlpatterns = [
     url(r'^grappelli/', include('grappelli.urls')),
