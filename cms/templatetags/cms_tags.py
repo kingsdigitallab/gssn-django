@@ -25,6 +25,19 @@ def date_as_block_filter(value):
 
 
 @register.assignment_tag(takes_context=True)
+def get_blog_index_page(context):
+    """Returns the first blog index page available in the current site."""
+    site_root = get_site_root(context)
+    pages = site_root.get_descendants().live().filter(
+        content_type__model='blogindexpage')
+
+    if pages:
+        return pages.first().specific
+
+    return None
+
+
+@register.assignment_tag(takes_context=True)
 def get_event_index_page(context):
     """Returns the first event index page available in the current site."""
     site_root = get_site_root(context)
@@ -54,6 +67,19 @@ def get_request_parameters(context, exclude=None):
             params += '&{key}={value}'.format(key=key, value=value)
 
     return params
+
+
+@register.assignment_tag(takes_context=True)
+def get_resource_index_page(context):
+    """Returns the first resource index page available in the current site."""
+    site_root = get_site_root(context)
+    pages = site_root.get_descendants().live().filter(
+        content_type__model='resourceindexpage')
+
+    if pages:
+        return pages.first().specific
+
+    return None
 
 
 @register.assignment_tag(takes_context=True)
