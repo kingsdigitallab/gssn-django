@@ -291,7 +291,7 @@ header {
 }
 
 .subnav li a:hover{
-    color: scale-color($anchor-color, $lightness: -14%);
+    color: $anchor-color-hover;
 }
 
 .subnav .active > a {
@@ -305,14 +305,17 @@ header {
 }
 
 /** Homepage **/
-.homepage h2 {
+.homepage h2{
     border-bottom: 1px solid $medium-gray;
     border-top: 1px solid $medium-gray;
     padding: .5rem 0;
     margin: 2.5rem 0 1.5rem;
-    color: $black
+    color: $black;
 }
 
+.homepage h2:hover{
+    color: $anchor-color-hover;
+}
 .homepage h3 {
     margin: .3125rem 0 1rem;
     font-size: 1.125rem;
@@ -333,6 +336,26 @@ header {
 .homepage .image-date img:hover {
     opacity: 0.6;
     filter: alpha(opacity=60);
+}
+
+.homepage .additional {
+    border-top: 1px solid #cacaca;
+    margin: 2.5rem 0;
+}
+
+.homepage .additional h4{
+    font-size: 1.125rem;
+    padding: 0rem 0.75rem;
+    border-left: 1.125rem solid $black;
+    margin: 2rem 0 0 0;
+    color: $black;
+    line-height: 1.125rem;
+}
+
+.homepage .additional a h4:hover{
+    background:$white;
+    color: $anchor-color-hover;
+    border-left: 1.125rem solid $anchor-color-hover;
 }
 
 /** Images **/
@@ -549,6 +572,18 @@ article.post footer h6{
     text-decoration: underline;
 }
 
+article .post div.responsive-object{
+    padding:0;
+}
+
+.post div.responsive-object{
+    padding:0!important;
+}
+
+.post div.responsive-object iframe{
+    width:100%;
+}
+
 
 // tags
 article.post footer ul.tags.menu.simple li{
@@ -592,7 +627,7 @@ article.post footer ul.no-bullet li i.fa{
     text-align: center;
     font-size: 1.125rem;
     padding-top: .3125rem;
-    line-height: 1.5rem;
+    line-height: 1.375rem;
 }
 
 article.post footer ul.no-bullet li i.fa:hover{
@@ -618,6 +653,14 @@ article.post footer ul.no-bullet li i.fa.fa-google-plus{
 
 article.post footer ul.no-bullet li i.fa.fa-linkedin{
     background:#0077B5;
+}
+
+article.post footer ul.no-bullet li i.fa.fa-pinterest{
+    background:#cb2027;
+}
+
+article.post footer ul.no-bullet li i.fa.fa-tumblr{
+    background:#35465c;
 }
 
 // Pagination
@@ -690,7 +733,7 @@ article.post p.byline.blog {
 }
 
 .main .stream-field .rich-text ol li b a:hover{
-    color: scale-color($anchor-color, $lightness: -14%);
+    color: $anchor-color-hover;
 }
 
 .main .stream-field .richtext-image .left {
@@ -737,7 +780,7 @@ article.post p.byline.blog {
 }
 
 .search-results h4 a:hover{
-    color: scale-color($anchor-color, $lightness: -14%);
+    color: $anchor-color-hover;
 }
 
 .search-results span {
@@ -771,6 +814,27 @@ article.post p.byline.blog {
          -o-filter   : grayscale(90%)sepia(15%)contrast(90%);
             filter   : grayscale(90%)sepia(15%)contrast(90%);
   }
+
+//** 404 **//
+.wrapper.error-page{
+    background:$black;
+    text-align: center;
+}
+
+.wrapper.error-page h1{
+    color: $primary-color;
+    font-size: 5rem;
+    border-bottom:1px solid $primary-color;
+    width: 40%;
+    margin:5rem auto;
+
+}
+
+.wrapper.error-page p{
+    color: $white;
+    text-align: center;
+    margin:0 auto;
+}
 
 /** Footer **/
 
