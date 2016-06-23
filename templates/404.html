@@ -19,7 +19,11 @@
   <header>
     <div class="row">
       <div class="large-12 columns">
-        {% include 'includes/header.html' %}
+        <div class="top-bar-left">
+            <a href="/">
+                <img src="{% static 'images/GSSN-logo.svg' %}">
+            </a>
+        </div>
       </div>
     </div>
   </header>
@@ -37,20 +41,14 @@
         <section class="main">
           {% block main %}
           <h1>404</h1>
-          <p>Sorry, the page you were looking for was not found. Go back to the</p>
-          <button><a href="/">home page.</a></button>
+          <p>Sorry, the page you were looking for was not found.</p>
+          <a href="/"><button>HOME</button></a>
           {% endblock %}
         </section>
       </div>
     </div>
   </div>
   {% endblock %}
-
-  <footer>
-    {% block footer %}
-    {% include 'includes/footer.html' %}
-    {% endblock %}
-  </footer>
 
   <script type="text/javascript">
     {% include 'includes/config.js' %}
