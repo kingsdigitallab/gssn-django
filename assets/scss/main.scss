@@ -943,6 +943,22 @@ article.post p.byline.blog {
     color: $white;
     text-align: center;
     margin:0 auto;
+    font-size: 1.25rem;
+}
+
+.wrapper.error-page a button{
+    color: $primary-color;
+    border:3px solid $primary-color;
+    padding:1rem 2rem;
+    margin:2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.wrapper.error-page a button:hover{
+    color: $dark-gray;
+    border:3px solid $primary-color;
+    background: $primary-color;
 }
 
 /** Footer **/
