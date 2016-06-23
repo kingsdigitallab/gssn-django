@@ -1,0 +1,62 @@
+{% load staticfiles compress require %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{% block meta_title %}{% endblock %} | GSSN</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  {% compress css %}
+  {# SCSS compilation relies on django compressor #}
+  <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/main.scss' %}">
+  <!-- FontAwesome -->
+  <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/font-awesome.scss' %}">
+  {% endcompress %}
+</head>
+<body>
+  <header>
+    <div class="row">
+      <div class="large-12 columns">
+        {% include 'includes/header.html' %}
+      </div>
+    </div>
+  </header>
+
+  {% block base %}
+
+  <div class="wrapper error-page">
+    <div class="row">
+      <div class="medium-12 large-12 columns">
+        {% block title %}Page not found{% endblock %}
+      </div>
+    </div>
+    <div class="row">
+      <div class="medium-12 large-12 columns">
+        <section class="main">
+          {% block main %}
+          <h1>404</h1>
+          <p>Sorry, the page you were looking for was not found. Go back to the</p>
+          <button><a href="/">home page.</a></button>
+          {% endblock %}
+        </section>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+
+  <footer>
+    {% block footer %}
+    {% include 'includes/footer.html' %}
+    {% endblock %}
+  </footer>
+
+  <script type="text/javascript">
+    {% include 'includes/config.js' %}
+  </script>
+  {% require_module 'config' %}
+
+  {% block footer_scripts %}{% endblock %}
+</body>
+</html>

@@ -338,48 +338,25 @@ header {
     filter: alpha(opacity=60);
 }
 
-/*.homepage h4 {
-    margin-top:0.5rem;
+.homepage .additional {
+    border-top: 1px solid #cacaca;
+    margin: 2.5rem 0;
+}
+
+.homepage .additional h4{
     font-size: 1.125rem;
-}
-
-.homepage h4 a{
-    color:$black;
-}
-
-.homepage h4 a:hover{
-    color:$anchor-color-hover;
-}
-
-.homepage .hp-resources-image img{
-    width:100%;
-    height:140px;
-    object-fit: cover;
-}*/
-
-.homepage .additional{
-    background-color:$light-gray;
-    padding:1rem;
-    margin-top: 2rem;
-}
-
-.homepage .additional h2{
+    padding: 0rem 0.75rem;
+    border-left: 1.125rem solid $black;
+    margin: 2rem 0 0 0;
     color: $black;
-    border-top:none;
-    border-bottom:1px solid $medium-gray;
-    margin:0 0 1rem 0;
+    line-height: 1.125rem;
 }
 
-.homepage .additional ul li a{
-    color: $black;
-    list-style-type: square;
-}
-
-.homepage .additional ul li a:hover{
+.homepage .additional a h4:hover{
+    background:$white;
     color: $anchor-color-hover;
+    border-left: 1.125rem solid $anchor-color-hover;
 }
-
-
 
 /** Images **/
 
@@ -837,6 +814,27 @@ article.post p.byline.blog {
          -o-filter   : grayscale(90%)sepia(15%)contrast(90%);
             filter   : grayscale(90%)sepia(15%)contrast(90%);
   }
+
+//** 404 **//
+.wrapper.error-page{
+    background:$black;
+    text-align: center;
+}
+
+.wrapper.error-page h1{
+    color: $primary-color;
+    font-size: 5rem;
+    border-bottom:1px solid $primary-color;
+    width: 40%;
+    margin:5rem auto;
+
+}
+
+.wrapper.error-page p{
+    color: $white;
+    text-align: center;
+    margin:0 auto;
+}
 
 /** Footer **/
 
