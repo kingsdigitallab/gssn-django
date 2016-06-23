@@ -70,11 +70,11 @@ def get_request_parameters(context, exclude=None):
 
 
 @register.assignment_tag(takes_context=True)
-def get_resource_index_page(context):
+def get_resources_index_page(context):
     """Returns the first resource index page available in the current site."""
     site_root = get_site_root(context)
     pages = site_root.get_descendants().live().filter(
-        content_type__model='resourceindexpage')
+        content_type__model='resourcesindexpage')
 
     if pages:
         return pages.first().specific

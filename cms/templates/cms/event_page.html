@@ -26,7 +26,8 @@
         {% block event_author %}
         <div class="medium-12 large-12 columns date-location">
             <p class="byline">
-                <i class="fa fa-calendar"></i><time datetime="{{ self.date_from|date:'c' }}">  {{ self.date_from }}{% if self.date_to %} - {{ self.date_to }}{% endif %}</time>
+                <i class="fa fa-calendar"></i><time datetime="{{ self.date_from|date:'c' }}">{{ self.date_from }}{% if self.date_to %} - {{ self.date_to }}{% endif %}
+                {% if self.time_from %}<span class="full-width"><i class="fa fa-clock-o"></i> {{ self.time_from|date:'h:i A' }}{% endif %}{% if self.time_to %} - {{ self.time_to|date:'h:i A' }}</span>{% endif %}</time>
             </p>
 
             <p class="byline">
