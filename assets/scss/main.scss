@@ -31,8 +31,10 @@
 //      Ordered List
 //  8. Search Results
 //  9. Map
-//  10. Footer
+//  10. Sidebar
+//  11. Footer
 //      a) Sticky footer
+//  12. Media queries
 
 
 
@@ -65,6 +67,23 @@ p {margin: 0;}
     background-color:$primary-color;
     color:$dark-gray;
     border:3px solid $primary-color;
+}
+
+.calendar-icon:before {
+    content: "\f073";
+    font-family: "FontAwesome";
+    padding-right: .25rem;
+}
+
+.time-icon:before {
+    content: "\f017";
+    font-family: "FontAwesome";
+    padding-right: .25rem;
+}
+
+.meta {
+    font-size: .9125rem !important;
+    font-style: italic;
 }
 
 
@@ -118,99 +137,99 @@ header {
 
 ////
 
-.gssn-search {
-    position: relative;
-    margin-top: 10px;
-    width: 0%;
-    min-width: 30px;
-    height: 30px;
-    float: right;
-    overflow: hidden;
+// .gssn-search {
+//     position: relative;
+//     margin-top: 10px;
+//     width: 0%;
+//     min-width: 30px;
+//     height: 30px;
+//     float: right;
+//     overflow: hidden;
 
-    -webkit-transition: width 0.3s;
-    -moz-transition: width 0.3s;
-    transition: width 0.3s;
+//     -webkit-transition: width 0.3s;
+//     -moz-transition: width 0.3s;
+//     transition: width 0.3s;
 
-    -webkit-backface-visibility: hidden;
-}
+//     -webkit-backface-visibility: hidden;
+// }
 
-.gssn-search-input {
-    position: absolute;
-    top: 0;
-    right: 0;
-    border: none;
-    outline: none;
-    background: $white;
-    width: 100%;
-    height: 1;
-    margin: 0;
-    z-index: 10;
-    padding: 20px 35px 20px 20px;
-    font-family: inherit;
-    font-size: 20px;
-    color: #2c3e50;
-}
+// .gssn-search-input {
+//     position: absolute;
+//     top: 0;
+//     right: 0;
+//     border: none;
+//     outline: none;
+//     background: $white;
+//     width: 100%;
+//     height: 1;
+//     margin: 0;
+//     z-index: 10;
+//     padding: 20px 35px 20px 20px;
+//     font-family: inherit;
+//     font-size: 20px;
+//     color: #2c3e50;
+// }
 
-input[type="search"].gssn-search-input {
-    -webkit-appearance: none;
-    -webkit-border-radius: 0px;
-    color: $black;
-}
+// input[type="search"].gssn-search-input {
+//     -webkit-appearance: none;
+//     -webkit-border-radius: 0px;
+//     color: $black;
+// }
 
-.gssn-icon-search,
-.gssn-search-submit  {
-    width: 30px;
-    height: 30px;
-    display: block;
-    position: absolute;
-    right: 0;
-    top: 0;
-    padding: 0;
-    margin: 0;
-    line-height: 30px;
-    text-align: center;
-    cursor: pointer;
-}
+// .gssn-icon-search,
+// .gssn-search-submit  {
+//     width: 30px;
+//     height: 30px;
+//     display: block;
+//     position: absolute;
+//     right: 0;
+//     top: 0;
+//     padding: 0;
+//     margin: 0;
+//     line-height: 30px;
+//     text-align: center;
+//     cursor: pointer;
+// }
 
-.gssn-search-submit {
-    background: $white; /* IE needs this */
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE 8 */
-    filter: alpha(opacity=0); /* IE 5-7 */
-    opacity: 0;
-    color: transparent;
-    border: none;
-    outline: none;
-    z-index: -1;
-}
+// .gssn-search-submit {
+//     background: $white; /* IE needs this */
+//     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE 8 */
+//     filter: alpha(opacity=0); /* IE 5-7 */
+//     opacity: 0;
+//     color: transparent;
+//     border: none;
+//     outline: none;
+//     z-index: -1;
+// }
 
-.gssn-icon-search {
-    color: #fff;
-    background: transparent;
-    z-index: 90;
-    font-size: 1.125rem;
-    font-family: 'FontAwesome';
-}
+// .gssn-icon-search {
+//     color: #fff;
+//     background: transparent;
+//     z-index: 90;
+//     font-size: 1.125rem;
+//     font-family: 'FontAwesome';
+// }
 
-.gssn-icon-search:before {
-    content: "\f002";
-}
+// .gssn-icon-search:before {
+//     content: "\f002";
+// }
 
-.gssn-search.gssn-search-open,
-.no-js .gssn-search {
-    width: 200px;
-}
+// .gssn-search.gssn-search-open,
+// .no-js .gssn-search {
+//     width: 200px;
+// }
 
-.gssn-search.gssn-search-open .gssn-icon-search,
-.no-js .gssn-search .gssn-icon-search {
-    background: $primary-color;
-    color: $white;
-    z-index: 11;
-}
+// .gssn-search.gssn-search-open .gssn-icon-search,
+// .no-js .gssn-search .gssn-icon-search {
+//     background: $primary-color;
+//     color: $white;
+//     z-index: 11;
+// }
 
-.gssn-search.gssn-search-open .gssn-search-submit,
-.no-js .gssn-search .gssn-search-submit {
-    z-index: 90;
-}
+// .gssn-search.gssn-search-open .gssn-search-submit,
+// .no-js .gssn-search .gssn-search-submit {
+//     z-index: 90;
+// }
 
 ////
 
@@ -220,13 +239,8 @@ input[type="search"].gssn-search-input {
     margin-left: 1rem;
 }
 
-.expanded {
-    z-index: 0;
-}
-
-.toggle {
+ .toggle {
     background: $black;
-    color: $white;
     border: none;
     cursor: pointer;
     display: block;
@@ -236,60 +250,59 @@ input[type="search"].gssn-search-input {
     width: 2.1875rem;
 }
 
-// .toggle:before {
-//     content: "\f002";
-//     font-family: FontAwesome;
-//     font-style: normal;
-//     font-weight: normal;
-//     text-decoration: inherit;
-//     color: $white;
-//     font-size: 1.125rem;
-//     position: absolute;
-//     left: .6rem;
-//     top: .1875rem;
-// }
+.toggle:before {
+    content: "\f002";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    color: $white;
+    font-size: 1.125rem;
+    position: absolute;
+    left: .6rem;
+    top: .1875rem;
+}
 
-// #searchform {
-//     float: right;
-//     height: 2.1875rem;
-//     margin: 0;
-//     display: none;
-//     opacity: 0;
-//     padding: 0;
-//     transition: all 0.8s ease-in-out 0s;
-//     visibility: hidden;
-//     width: 2.1875rem;
-//     -webkit-transition: all 0.8s ease-in-out;
-//     -moz-transition: all 0.8s ease-in-out;
-//     -o-transition: all 0.8s ease-in-out;
-// }
+#searchform {
+    float: right;
+    height: 2.1875rem;
+    margin: 0;
+    opacity: 0;
+    padding: 0;
+    transition: all 0.8s ease-in-out 0s;
+    visibility: hidden;
+    width: 2.1875rem;
+    -webkit-transition: all 0.8s ease-in-out;
+    -moz-transition: all 0.8s ease-in-out;
+    -o-transition: all 0.8s ease-in-out;
+}
 
-// .form:hover #searchform {
-//     display: block;
-//     opacity: 1;
-//     -webkit-transition: all 0.8s ease-in-out;
-//     -moz-transition: all 0.8s ease-in-out;
-//     -o-transition: all 0.8s ease-in-out;
-//     visibility: visible;
-//     width: 200px;
-//     height: 2.1875rem;
-// }
+.form:hover #searchform {
+    display: block;
+    opacity: 1;
+    -webkit-transition: all 0.8s ease-in-out;
+    -moz-transition: all 0.8s ease-in-out;
+    -o-transition: all 0.8s ease-in-out;
+    visibility: visible;
+    width: 200px;
+    height: 2.1875rem;
+}
 
-// #searchform input {
-//     height: 2.1875rem;
-// }
+#searchform input {
+    height: 2.1875rem;
+}
 
-// #searchform #s {
-//     background: none repeat scroll 0 0 $white;
-//     border: none;
-//     float: right;
-//     outline:none;
-//     height: 100%;
-//     padding: 0 15px;
-//     width: 100%;
-// }
+#searchform #s {
+    background: none repeat scroll 0 0 $white;
+    border: none;
+    float: right;
+    outline:none;
+    height: 100%;
+    padding: 0 15px;
+    width: 100%;
+}
 
-#searchsubmit {
+#searchform #searchsubmit {
     background: $primary-color;
     border: medium none;
     cursor: pointer;
@@ -311,25 +324,26 @@ input[type="search"].gssn-search-input {
     font-size: 1.125rem;
 }
 
-// @media screen and (max-width: 1024px) {
-//     .form {
-//         margin: 0 auto;
-//         width: 100%;
-//     }
-//     #searchform {
-//         visibility: visible;
-//         float: none;
-//     }
-//     .form #searchform {
-//         width: 100%;
-//     }
-//     .top-bar input {
-//         min-width: 100%;
-//     }
-//     .form:hover #searchform {
-//         width: 100%;
-//     }
-// }
+@media screen and (max-width: 1024px) {
+    .form {
+        margin: 0 auto;
+        width: 100%;
+    }
+    #searchform {
+        visibility: visible;
+        float: none;
+    }
+    .form #searchform {
+        width: 100%;
+    }
+    .top-bar input {
+        min-width: 100%;
+    }
+    .form:hover #searchform {
+        width: 100%;
+    }
+}
+
 
 // Mobile Menu
 .title-bar {
@@ -361,24 +375,24 @@ input[type="search"].gssn-search-input {
 }
 
 @media screen and (max-width: 1024px) {
-.top-bar .top-bar-left,
-.top-bar .top-bar-right {
-    width: 100%;
-}
-.top-bar-right .menu > li {
-    display: block;
-    text-align: center;
-    margin: 1rem 0;
-}
-.top-bar-right li a:hover {
-    color: $primary-color;
-}
-.top-bar-right li.active {
-    background: $primary-color;
-}
-.top-bar-right li.active a {
-    color: $dark-gray;
-}
+    .top-bar .top-bar-left,
+    .top-bar .top-bar-right {
+        width: 100%;
+    }
+    .top-bar-right .menu > li {
+        display: block;
+        text-align: center;
+        margin: 1rem 0;
+    }
+    .top-bar-right li a:hover {
+        color: $primary-color;
+    }
+    .top-bar-right li.active {
+        background: $primary-color;
+    }
+    .top-bar-right li.active a {
+        color: $dark-gray;
+    }
 }
 /** Sub Navigation Menu **/
  ul.subnav {
@@ -603,7 +617,11 @@ p.byline{
     background: $black;
     color: $white;
     font-size: .9375rem;
-    padding: 0 .5rem;
+    padding: 0 .5rem 0 0;
+
+    i.fa.fa-clock-o {
+        margin-left: 1rem;
+    }
 }
 
 p.byline i.fa {
@@ -614,7 +632,7 @@ p.byline i.fa {
     background: $primary-color;
     color: $dark-gray;
     text-align: center;
-    margin: 0 .5rem 0 -0.5rem;
+    margin: 0 .5rem 0 0;
 }
 
 p.byline i.fa.fa-map-marker {
@@ -961,6 +979,34 @@ article.post p.byline.blog {
     background: $primary-color;
 }
 
+/** Sidebar **/
+
+.sidebar-widget {
+
+    padding-bottom: .5rem;
+
+    a {
+        color: scale-color($secondary-color, $lightness: -40%);
+    }
+
+    &.headlines {
+        li {
+            padding: .75rem 0 .5rem;
+            border-bottom: 1px solid scale-color($primary-color, $lightness: 50%);
+            time {
+                // font-size: .875rem;
+                color: $secondary-color;
+            }
+            p {
+                font-size: 1.25rem;
+            }
+            &:first-child {
+                padding-top: 0;
+            }
+        }
+    }
+}
+
 /** Footer **/
 
 footer {
@@ -1012,4 +1058,16 @@ footer a i.fa:hover{
 
 footer, .push {
   height: 9em;
+}
+
+/** Media queries **/
+
+@media screen and (max-width: 796px) {
+    .full-width {
+        width: 100%;
+        display: block;
+    }
+    .fa-clock-o {
+        margin-left: 0 !important;
+    }
 }

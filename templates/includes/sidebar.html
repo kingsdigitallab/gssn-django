@@ -23,34 +23,23 @@
 <h3>{{ eip.title }}</h3>
 <hr>
 
-<ul>
+<ul class="no-bullet sidebar-widget headlines">
 	{% for event in eip.live_events|slice:":3" %}
     <li>
-        <a href="{% pageurl event %}">{{ event.title }}</a>
+        <time datetime="{{ event.date_from|date:'c' }}" class="calendar-icon">{{ event.date_from|date_as_block }}</time>
+        {% if event.time_from %} - <time datetime="{{ event.time_from|date:'c' }}" class="time-icon">{{ event.time_from|date:'h:i A' }}</time>{% endif %}
+        <p><a href="{% pageurl event %}">{{ event.title }}</a></p>
     </li>
 	{% empty %}
 	{% for event in eip.past_events|slice:":3" %}
     <li>
+        <time datetime="{{ event.date_from|date:'c' }}" class="calendar-icon">{{ event.date_from|date_as_block }}</time>
+        {% if event.time_from %} - <time datetime="{{ event.time_from|date:'c' }}" class="time-icon">{{ event.time_from|date:'h:i A' }}</time>{% endif %}
         <a href="{% pageurl event %}">{{ event.title }}</a>
     </li>
 	{% empty %}
 	<li>Sorry, no events planned.</li>
 	{% endfor %}
-	{% endfor %}
-</ul>
-
-{% get_blog_index_page as bip %}
-<h3>{{ bip.title }}</h3>
-<hr>
-
-{% get_blog_index_page as bip %}
-<ul>
-	{% for post in bip.posts|slice:":3" %}
-	<li>
-		<a href="{% pageurl post %}">{{ post.title }}</a>
-	</li>
-	{% empty %}
-	<li>Sorry, nothing to show here.</li>
 	{% endfor %}
 </ul>
 
@@ -60,16 +49,18 @@
 <h3>{{ eip.title }}</h3>
 <hr>
 
-<ul>
+<ul class="no-bullet sidebar-widget headlines">
 	{% for event in eip.live_events|slice:":3" %}
     <li>
         <time datetime="{{ event.date_from|date:'c' }}" class="calendar-icon">{{ event.date_from|date_as_block }}</time>
-        <a href="{% pageurl event %}">{{ event.title }}</a>
+        {% if event.time_from %} - <time datetime="{{ event.time_from|date:'c' }}" class="time-icon">{{ event.time_from|date:'h:i A' }}</time>{% endif %}
+        <p><a href="{% pageurl event %}">{{ event.title }}</a></p>
     </li>
 	{% empty %}
 	{% for event in eip.past_events|slice:":3" %}
     <li>
         <time datetime="{{ event.date_from|date:'c' }}" class="calendar-icon">{{ event.date_from|date_as_block }}</time>
+        {% if event.time_from %} - <time datetime="{{ event.time_from|date:'c' }}" class="time-icon">{{ event.time_from|date:'h:i A' }}</time>{% endif %}
         <a href="{% pageurl event %}">{{ event.title }}</a>
     </li>
 	{% empty %}
@@ -82,24 +73,68 @@
 <a href="#" class="button">Join our next event</a>
 
 {% get_event_index_page as eip %}
-<h3>{{ eip.title }}</h3>
+<h3>Symposium</h3>
 <hr>
 
-<ul>
-	{% for event in eip.live_events|slice:":3" %}
+<ul class="no-bullet sidebar-widget headlines">
+	{% for event in eip.symposiums|slice:":1" %}
     <li>
         <time datetime="{{ event.date_from|date:'c' }}" class="calendar-icon">{{ event.date_from|date_as_block }}</time>
-        <a href="{% pageurl event %}">{{ event.title }}</a>
+        {% if event.time_from %} - <time datetime="{{ event.time_from|date:'c' }}" class="time-icon">{{ event.time_from|date:'h:i A' }}</time>{% endif %}
+        <p><a href="{% pageurl event %}">{{ event.title }}</a></p>
+    </li>
+    {% endfor %}
+</ul>
+
+<h3>School {{ eip.title }}</h3>
+<hr>
+
+<ul class="no-bullet sidebar-widget headlines">
+	{% for event in eip.schools|slice:":3" %}
+    <li>
+        <time datetime="{{ event.date_from|date:'c' }}" class="calendar-icon">{{ event.date_from|date_as_block }}</time>
+        {% if event.time_from %} - <time datetime="{{ event.time_from|date:'c' }}" class="time-icon">{{ event.time_from|date:'h:i A' }}</time>{% endif %}
+        <p><a href="{% pageurl event %}">{{ event.title }}</a></p>
     </li>
 	{% empty %}
+	<li>Sorry, no school events planned.</li>
+	{% endfor %}
+</ul>
+
+<h3>Past {{ eip.title }}</h3>
+<hr>
+<ul class="no-bullet sidebar-widget headlines">
 	{% for event in eip.past_events|slice:":3" %}
     <li>
         <time datetime="{{ event.date_from|date:'c' }}" class="calendar-icon">{{ event.date_from|date_as_block }}</time>
-        <a href="{% pageurl event %}">{{ event.title }}</a>
+        {% if event.time_from %} - <time datetime="{{ event.time_from|date:'c' }}" class="time-icon">{{ event.time_from|date:'h:i A' }}</time>{% endif %}
+        <p><a href="{% pageurl event %}">{{ event.title }}</a></p>
     </li>
+    {% endfor %}
+</ul>
+
+{% elif 'news' in self.url %}
+
+{% get_blog_index_page as bip %}
+<h3>Latest {{ bip.title }}</h3>
+<hr>
+
+{% get_blog_index_page as bip %}
+<ul class="no-bullet sidebar-widget headlines">
+	{% for post in bip.posts|slice:":3" %}
+	<li>
+		<p><a href="{% pageurl post %}">{{ post.title }}</a></p>
+		<p class="meta">
+			Posted by {{ post.owner|unslugify }}
+            <time datetime="{{ post.date|date:'c' }}">on {{ post.date }}</time>
+        </p>
+	</li>
 	{% empty %}
-	<li>Sorry, no events planned.</li>
-	{% endfor %}
+	<li>Sorry, nothing to show here.</li>
 	{% endfor %}
 </ul>
+
+<h3>Twitter</h3>
+<hr>
+
 {% endif %}
