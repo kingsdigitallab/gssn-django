@@ -1,5 +1,5 @@
 {% extends "cms/index_page.html" %}
-{% load wagtailcore_tags %}
+{% load cms_tags wagtailcore_tags %}
 
 {% block title %}
 <h1 class="cat-title blog">
@@ -39,3 +39,11 @@
 {% endblock %}
 
 {% endblock %}
+
+{% are_comments_allowed as allow_comments %}
+{% if allow_comments %}
+{% block footer_scripts %}
+{% include "cms/includes/disqus_setup.html" %}
+<script id="dsq-count-scr" src="//gssn.disqus.com/count.js" async></script>
+{% endblock %}
+{% endif %}
