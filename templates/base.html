@@ -7,7 +7,8 @@
   <title>{% block meta_title %}{% endblock %} | GSSN</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+  <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
   {% compress css %}
   {# SCSS compilation relies on django compressor #}
   <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/main.scss' %}">
