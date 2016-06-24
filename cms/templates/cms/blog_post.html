@@ -18,7 +18,7 @@
             {% are_comments_allowed as allow_comments %}
             {% if allow_comments %}
             {% block blog_post_comments_link %}
-             | <a href="#disqus_thread" data-disqus-identifier="{{ self.id }}">Comments</a>
+             | <span class="disqus-comment-count" data-disqus-identifier="{{ self.id }}">Comments</span>
             {% endblock %}
             {% endif %}
         </p>
