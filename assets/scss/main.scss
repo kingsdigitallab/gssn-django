@@ -33,6 +33,7 @@
 //  9. Map
 //  10. Sidebar
 //      a) Widgets
+//      b) Twitter
 //  11. Footer
 //      a) Sticky footer
 //  12. Media queries
@@ -442,7 +443,7 @@ header {
     color: $black;
 }
 
-.homepage h2:hover{
+.homepage h2:hover {
     color: $anchor-color-hover;
 }
 .homepage h3 {
@@ -857,7 +858,7 @@ article.post p.byline.blog {
     height: 2rem;
     text-align: center;
     line-height: 1.375;
-    font-family: Roboto Condensed, Courier, monospace;
+    font-family: "Roboto Condensed", Courier, monospace;
 }
 
 .main .stream-field .rich-text ol li b a{
@@ -902,7 +903,7 @@ article.post p.byline.blog {
     height: 2.125rem;
     text-align: center;
     line-height: 1.4375;
-    font-family: Roboto Condensed, sans-serif;
+    font-family: "Roboto Condensed", sans-serif;
     float: left;
 }
 
@@ -1029,6 +1030,13 @@ article.post p.byline.blog {
             }
         }
     }
+}
+
+/* Twitter */
+
+.twitter-box {
+    overflow: hidden;
+    max-height: 770px;
 }
 
 /** Footer **/
