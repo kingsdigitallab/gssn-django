@@ -32,6 +32,7 @@
 //  8. Search Results
 //  9. Map
 //  10. Sidebar
+//      a) Widgets
 //  11. Footer
 //      a) Sticky footer
 //  12. Media queries
@@ -84,6 +85,11 @@ p {margin: 0;}
 .meta {
     font-size: .9125rem !important;
     font-style: italic;
+}
+
+.brown-button {
+    color: $primary-color;
+    border: 3px solid $primary-color;
 }
 
 
@@ -981,20 +987,38 @@ article.post p.byline.blog {
 
 /** Sidebar **/
 
+.sidebar {
+    margin-top: .1875rem;
+
+    li {
+        a {
+            color: scale-color($primary-color, $lightness: -50%);
+        }
+    }
+}
+
+/* Widgets */
+
+.widget {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: scale-color($primary-color, $lightness: -70%);
+    color: $white;
+
+    .button {
+        margin-top: 1rem;
+    }
+}
+
 .sidebar-widget {
 
     padding-bottom: .5rem;
-
-    a {
-        color: scale-color($secondary-color, $lightness: -40%);
-    }
 
     &.headlines {
         li {
             padding: .75rem 0 .5rem;
             border-bottom: 1px solid scale-color($primary-color, $lightness: 50%);
             time {
-                // font-size: .875rem;
                 color: $secondary-color;
             }
             p {
