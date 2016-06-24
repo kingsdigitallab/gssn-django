@@ -32,7 +32,7 @@
                 {% are_comments_allowed as allow_comments %}
                 {% if allow_comments %}
                 {% block blog_post_comments_link %}
-                 | <span class="disqus-comment-count" data-disqus-identifier="{{ self.id }}">Comments</span>
+                 | <span class="disqus-comment-count" data-disqus-identifier="{{ post.id }}">Comments</span>
                 {% endblock %}
                 {% endif %}
             </p>
