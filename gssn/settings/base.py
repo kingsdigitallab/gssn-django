@@ -262,6 +262,13 @@ EVENT_CATEGORIES = ['Conference', 'Exhibition', 'Performance', 'Publication',
                     'Screening', 'Talk']
 
 # -----------------------------------------------------------------------------
+# DISQUS
+# http://gssn.disqus.com/
+# -----------------------------------------------------------------------------
+
+ALLOW_COMMENTS = True
+
+# -----------------------------------------------------------------------------
 # Django Compressor
 # http://django-compressor.readthedocs.org/en/latest/
 # -----------------------------------------------------------------------------
