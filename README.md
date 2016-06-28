@@ -2,6 +2,20 @@
 
 German Screen Studies Network website
 
+## Release 0.1
+
+First stable release deployed.
+
+* Homepage
+  - Carousel
+  - Dynamic content
+  - Twitter feeds
+  - Static content list
+* Page types with relevant sidebars
+* Sidebars with dynamic content
+* Search
+* Custom Wagtail set up
+
 ## Getting started - Set up locally 
 
 1. Clone this repository: `git clone git@github.com:kingsdigitallab/gssn-django.git`
