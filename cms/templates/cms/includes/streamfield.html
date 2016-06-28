@@ -2,51 +2,88 @@
 
 <div class="stream-field">
     {% for child in content %}
-        {% if child.block_type == 'h2' %}
-            <h2>{{ child }}</h2>
-        {% elif child.block_type == 'h3' %}
-            <h3>{{ child }}</h3>
-        {% elif child.block_type == 'h4' %}
-            <h4>{{ child }}</h4>
-        {% elif child.block_type == 'h5' %}
-            <h5>{{ child }}</h5>
-        {% elif child.block_type == 'intro' %}
-            <div class="intro">{{ child }}</div>
-        {% elif child.block_type == 'paragraph' %}
-            {{ child.value|richtext }}
-        {% elif child.block_type == 'pullquote' %}
-            <blockquote>
-                {{ child.value.quote }}
-                {% if child.value.attribution %}<span>- {{ child.value.attribution }}</span>{% endif %}
-            </blockquote>
-        {% elif child.block_type == 'image' %}
-            <div class="img-wrapper {{ child.value.alignment }}">
-                {% if child.value.alignment == "left" or child.value.alignment == "right" %}
-                    {% image child.value.image width-300 as theimage %}
-                {% else %}
-                    {% image child.value.image width-1280 as theimage %}
-                {% endif %}
-
-                <img src="{{ theimage.url }}" width="{{ theimage.width }}" height="{{ theimage.height }}" alt="{{ theimage.alt }}" />
-
-                {% if child.value.caption %}
-                    <div class="caption">
-                        {{ child.value.caption|richtext }}
-                    </div>
-                {% endif %}
+    {% if child.block_type == 'h2' %}
+    <h2>{{ child }}</h2>
+    {% elif child.block_type == 'h3' %}
+    <h3>{{ child }}</h3>
+    {% elif child.block_type == 'h4' %}
+    <h4>{{ child }}</h4>
+    {% elif child.block_type == 'h5' %}
+    <h5>{{ child }}</h5>
+    {% elif child.block_type == 'intro' %}
+    <div class="intro">{{ child }}</div>
+    {% elif child.block_type == 'paragraph' %}
+    {{ child.value|richtext }}
+    {% elif child.block_type == 'pullquote' %}
+    <blockquote>
+        {{ child.value.quote }}
+        {% if child.value.attribution %}<span>- {{ child.value.attribution }}</span>{% endif %}
+    </blockquote>
+    {% elif child.block_type == 'image' %}
+    {% if child.value.alignment == "icon" %}
+    <div class="row">
+        <div class="small-3 columns">
+            {% image child.value.image width-200 as theimage %}
+            <img src="{{ theimage.url }}" width="{{ theimage.width }}" height="{{ theimage.height }}" alt="{{ theimage.alt }}">
+        </div>
+        <div class="small-9 columns">
+            <div class="icon-caption">
+                {{ child.value.caption|richtext }}
             </div>
-        {% elif child.block_type == 'page' %}
-            <a href="{% pageurl child.value.page %}" class="button">{{ child.value.label }}</a>
-        {% elif child.block_type == 'html' %}
-            <div class="iframe-container">
-            {% if child.value.alignment == 'normal' %}
-                {{ child.value.bound_blocks.html.render }}
-            {% else %}
-                {{ child.value.bound_blocks.html.render }}
-            {% endif %}
-            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="img-wrapper {{ child.value.alignment }}">
+        {% if child.value.alignment == "left" or child.value.alignment == "right" %}
+        {% image child.value.image width-500 as theimage %}
         {% else %}
-            {{ child }}
+        {% image child.value.image width-1280 as theimage %}
         {% endif %}
+
+        <img src="{{ theimage.url }}" width="{{ theimage.width }}" height="{{ theimage.height }}" alt="{{ theimage.alt }}">
+
+        {% if child.value.caption %}
+        <div class="caption">
+            {{ child.value.caption|richtext }}
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
+    {% elif child.block_type == 'link' %}
+    <a
+    {% if child.value.page %}
+    href="{% pageurl child.value.page %}"
+    {% elif child.value.url %}
+    href="{{ child.value.url }}"
+    {% elif child.value.document %}
+    href="{{ child.value.document.url }}"
+    {% elif child.value.email %}
+    href="mailto:{{ child.value.email }}"
+    {% else %}
+    href="#"
+    {% endif %}
+    class="button">{{ child.value.label }}</a>
+    {% elif child.block_type == 'html' %}
+    <div class="iframe-container">
+        {% if child.value.alignment == 'normal' %}
+        {{ child.value.bound_blocks.html.render }}
+        {% else %}
+        {{ child.value.bound_blocks.html.render }}
+        {% endif %}
+    </div>
+    {% elif child.block_type == 'map_html' %}
+    {% if child.value.alignment == 'normal' %}
+    <div class="iframe-container normal">
+        {{ child.value.bound_blocks.html.render }}
+    </div>
+    {% else %}
+    <div class="iframe-container full">
+        {{ child.value.bound_blocks.html.render }}
+    </div>
+    {% endif %}
+
+    {% else %}
+    {{ child }}
+    {% endif %}
     {% endfor %}
 </div>

@@ -5,12 +5,11 @@
         this.page.url = '{{ self.full_url }}';
         this.page.identifier = '{{ self.id }}';
     };
-    (function() { // DON'T EDIT BELOW THIS LINE
-        var d = document,
-            s = d.createElement('script');
-
-        s.src = '//shakespeare400.disqus.com/embed.js';
-
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//gssn.disqus.com/embed.js';
+        
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
     })();

@@ -1,11 +1,94 @@
 {% extends "cms/rich_text_page.html" %}
-{% load cms_tags wagtailcore_tags %}
+{% load cms_tags wagtailcore_tags wagtailroutablepage_tags %}
 
-{% block title %}{% endblock %}
+{% block title %}
+<h1 class="posttitle blog">{{ self.title }}</h1>
+{% endblock %}
+
+{% block subnav %}{% endblock %}
 
 {% block main %}
 
-{% include "cms/includes/blog_post_body.html" with post=self %}
+<article class="post" id="post{{ self.id }}">
+    <header>
+        {% block blog_post_author %}
+        <p class="byline blog">Posted by <a href="{% routablepageurl self.blog_index.specific 'author' self.owner %}">{{ self.owner|unslugify }}</a>
+            <time datetime="{{ self.date|date:'c' }}">on {{ self.date }}</time>
+
+            {% are_comments_allowed as allow_comments %}
+            {% if allow_comments %}
+            {% block blog_post_comments_link %}
+             | <span class="disqus-comment-count" data-disqus-identifier="{{ self.id }}">Comments</span>
+            {% endblock %}
+            {% endif %}
+        </p>
+        {% endblock %}
+    </header>
+
+    {% block blog_post_content %}
+    <section class="postcontent">
+        {% include "cms/includes/streamfield.html" with content=self.body %}
+    </section>
+    {% endblock %}
+
+    {% block blog_post_tags %}
+    <footer>
+        {% with self.tags.all as tags %}
+        {% if tags %}
+        <h6>Tags</h6>
+        <ul class="tags menu simple">
+            {% for tag in tags %}
+            <li class="tag">
+                <a href="{% routablepageurl self.blog_index.specific 'tag' tag %}">{{ tag }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
+        {% block share_on_twitter %}
+        <h6>Share on</h6>
+        <ul class="no-bullet">
+            <li>
+                <a href="https://twitter.com/share" class="twitter-share-button" data-via="{% get_twitter_name %}" data-dnt="true" target="_blank">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+            <li>
+                <a href="http://www.facebook.com/sharer.php?u={{ self.full_url }}" target="_blank">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+            <li>
+                <a href="mailto:?Subject=German Screen Studies Network;Body=Read%20this!%20{{ self.full_url }}" target="_blank">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                </a>
+            </li>
+            <li>
+                <a href="https://plus.google.com/share?url={{ self.full_url }}" target="_blank">
+                <i class="fa fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+            <li>
+                <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{ self.full_url }}" target="_blank">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());">
+                <i class="fa fa-pinterest" aria-hidden="true"></i>
+                </a>
+            </li>
+            <li>
+                <a href="http://www.tumblr.com/share/link?url={{ self.full_url }}" target="_blank">
+                <i class="fa fa-tumblr" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+        {% endblock %}
+    </footer>
+    {% endblock %}
+</article>
 
 {% block related_links %}
 {{ block.super }}
@@ -24,6 +107,6 @@
 {% if allow_comments %}
 {% block footer_scripts %}
 {% include "cms/includes/disqus_setup.html" %}
-<script id="dsq-count-scr" src="//shakespeare400.disqus.com/count.js" async></script>
+<script id="dsq-count-scr" src="//gssn.disqus.com/count.js" async></script>
 {% endblock %}
 {% endif %}

@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-from wagtail.wagtailcore.fields import RichTextField, StreamField
+from wagtail.wagtailcore.fields import StreamField
 
 from .streamfield import CMSStreamBlock
 
@@ -18,7 +18,7 @@ class WithFeedImage(models.Model):
 
 
 class WithIntroduction(models.Model):
-    intro = RichTextField(blank=True)
+    intro = StreamField(CMSStreamBlock())
 
     class Meta:
         abstract = True

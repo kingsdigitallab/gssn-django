@@ -9,7 +9,10 @@ https://docs.djangoproject.com/en/dev/howto/deployment/checklist/
 """
 # from ddhldap.settings import *
 
+import getpass
+import logging
 import os
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
@@ -84,17 +87,17 @@ INSTALLED_APPS += (
     'wagtail.wagtailforms',
     'wagtail.wagtailsites',
     'wagtail.contrib.wagtailroutablepage',
+    'wagtail.contrib.wagtailsearchpromotions',
 )
 
 INSTALLED_APPS += (
     'cms',
     'gssn',
+    'search',
 )
 
 INTERNAL_IPS = ('127.0.0.1', )
 
-# https://docs.djangoproject.com/en/dev/topics/logging/
-import logging
 
 LOGGING_ROOT = os.path.join(BASE_DIR, 'logs')
 LOGGING_LEVEL = logging.WARN
@@ -259,6 +262,13 @@ EVENT_CATEGORIES = ['Conference', 'Exhibition', 'Performance', 'Publication',
                     'Screening', 'Talk']
 
 # -----------------------------------------------------------------------------
+# DISQUS
+# http://gssn.disqus.com/
+# -----------------------------------------------------------------------------
+
+ALLOW_COMMENTS = True
+
+# -----------------------------------------------------------------------------
 # Django Compressor
 # http://django-compressor.readthedocs.org/en/latest/
 # -----------------------------------------------------------------------------
@@ -287,7 +297,7 @@ GRAPPELLI_ADMIN_TITLE = PROJECT_TITLE
 # -----------------------------------------------------------------------------
 
 # The baseUrl to pass to the r.js optimizer, relative to STATIC_ROOT.
-REQUIRE_BASE_URL = 'assets/js/'
+REQUIRE_BASE_URL = 'js'
 
 # The name of a build profile to use for your project, relative to
 # REQUIRE_BASE_URL. A sensible value would be 'app.build.js'.
@@ -327,7 +337,6 @@ REQUIRE_ENVIRONMENT = 'node'
 # FABRIC
 # -----------------------------------------------------------------------------
 
-import getpass
 FABRIC_USER = getpass.getuser()
 
 # -----------------------------------------------------------------------------
@@ -335,7 +344,13 @@ FABRIC_USER = getpass.getuser()
 # -----------------------------------------------------------------------------
 
 # Google Analytics ID
-GA_ID = ''
+GA_ID = 'UA-79747665-1'
+
+# -----------------------------------------------------------------------------
+# Twitter
+# -----------------------------------------------------------------------------
+
+TWITTER_NAME = 'G_S_S_N'
 
 # -----------------------------------------------------------------------------
 # Wagtail

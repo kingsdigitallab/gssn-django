@@ -2,11 +2,17 @@
 
 <ul class="no-bullet index">
     {% for event in events %}
+    {% if forloop.first %}
+    <li>
+        {% include "cms/includes/event_spotlight.html" with event=event %}
+    </li>
+    {% else %}
     <li>
         {% include "cms/includes/event_preview.html" with event=event %}
     </li>
+    {% endif %}
     {% empty %}
-        <li>Sorry, nothing to show here.</li>
+    <li>Sorry, nothing to show here.</li>
     {% endfor %}
 </ul>
 

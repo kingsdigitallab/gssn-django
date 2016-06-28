@@ -18,17 +18,14 @@ from wagtail.wagtailadmin.edit_handlers import (
     FieldPanel, FieldRowPanel, InlinePanel, MultiFieldPanel, PageChooserPanel,
     StreamFieldPanel
 )
-from wagtail.wagtailcore.fields import RichTextField, StreamField
+from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore.models import Orderable, Page
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
-from wagtail.wagtailimages.models import Image
 from wagtail.wagtailsearch import index
-from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
-from wagtail.wagtailsnippets.models import register_snippet
 
 from .behaviours import WithFeedImage, WithIntroduction, WithStreamField
 from .carousel import AbstractCarouselItem
-from .links import AbstractLinkFields, AbstractRelatedLink
+from .links import AbstractRelatedLink
 from .streamfield import CMSStreamBlock
 
 logger = logging.getLogger(__name__)
@@ -63,11 +60,19 @@ class HomePage(Page, WithStreamField):
         index.SearchField('announcement'),
     )
 
-    subpage_types = ['EventIndexPage', 'ReviewIndexPage', 'BlogIndexPage',
-                     'IndexPage', 'RichTextPage', 'Gallery']
+    subpage_types = ['IndexPage', 'BlogIndexPage', 'EventIndexPage',
+                     'ResourcesIndexPage', 'RichTextPage']
 
     class Meta:
         verbose_name = 'Homepage'
+
+    def get_latest_blog_posts(self):
+        bip = self.get_children().type(BlogIndexPage).first().specific
+        return bip.posts[:2]
+
+    def get_live_events(self):
+        eip = self.get_children().type(EventIndexPage).first().specific
+        return eip.live_events[:2]
 
 HomePage.content_panels = [
     FieldPanel('title', classname='full title'),
@@ -95,7 +100,7 @@ class IndexPage(Page, WithFeedImage, WithIntroduction):
 
 IndexPage.content_panels = [
     FieldPanel('title', classname='full title'),
-    FieldPanel('intro', classname='full'),
+    StreamFieldPanel('intro'),
     InlinePanel('related_links', label='Related links'),
 ]
 
@@ -114,7 +119,7 @@ class RichTextPageRelatedLink(Orderable, AbstractRelatedLink):
 
 
 class RichTextPage(Page, WithFeedImage):
-    body = RichTextField(blank=True)
+    body = StreamField(CMSStreamBlock())
 
     search_fields = Page.search_fields + (
         index.SearchField('intro'),
@@ -126,7 +131,7 @@ class RichTextPage(Page, WithFeedImage):
 RichTextPage.content_panels = [
     FieldPanel('title', classname='full title'),
     InlinePanel('carousel_items', label='Carousel items'),
-    FieldPanel('body', classname='full'),
+    StreamFieldPanel('body'),
     InlinePanel('related_links', label='Related links'),
 ]
 
@@ -163,6 +168,9 @@ class BlogIndexPage(RoutablePageMixin, Page, WithIntroduction):
 
     subpage_types = ['BlogPost']
 
+    class Meta:
+        verbose_name = 'News Index Page'
+
     @property
     def posts(self):
         # gets list of live blog posts that are descendants of this page
@@ -176,7 +184,6 @@ class BlogIndexPage(RoutablePageMixin, Page, WithIntroduction):
     @route(r'^$')
     def all_posts(self, request):
         posts = self.posts
-        logger.debug('Posts: {}'.format(posts))
 
         return render(request, self.get_template(request),
                       {'self': self, 'posts': _paginate(request, posts)})
@@ -213,9 +220,10 @@ class BlogIndexPage(RoutablePageMixin, Page, WithIntroduction):
             }
         )
 
+
 BlogIndexPage.content_panels = [
     FieldPanel('title', classname='full title'),
-    FieldPanel('intro', classname='full'),
+    StreamFieldPanel('intro'),
     InlinePanel('related_links', label='Related links'),
 ]
 
@@ -244,6 +252,9 @@ class BlogPost(Page, WithFeedImage, WithStreamField):
     )
 
     subpage_types = []
+
+    class Meta:
+        verbose_name = 'News Post'
 
     @property
     def blog_index(self):
@@ -277,6 +288,16 @@ class EventIndexPage(RoutablePageMixin, Page, WithIntroduction):
 
     subpage_types = ['EventPage']
 
+    subnav_items = ['live', 'symposium', 'schools', 'past']
+
+    @property
+    def all_events(self):
+        # gets list of live event pages that are descendants of this page
+        events = EventPage.objects.live().descendant_of(self)
+        events = events.order_by('-date_from')
+
+        return events
+
     @property
     def live_events(self):
         # gets list of live event pages that are descendants of this page
@@ -293,52 +314,84 @@ class EventIndexPage(RoutablePageMixin, Page, WithIntroduction):
     @property
     def past_events(self):
         # gets list of live event pages that are descendants of this page
-        events = EventPage.objects.live().descendant_of(self)
+        events = self.all_events
 
         today = date.today()
-        events = events.filter(date_to__lte=today)
-        events = events.order_by('-date_from')
+        events = events.filter(Q(date_from__lte=today) | Q(date_to__lte=today))
+
+        return events
+
+    @property
+    def symposiums(self):
+        events = EventPage.objects.live().descendant_of(self).filter(
+            is_symposium=True)
+
+        if events:
+            events = events.order_by('-date_from')
+
+        return events
+
+    @property
+    def schools(self):
+        events = EventPage.objects.live().descendant_of(self).filter(
+            is_school=True)
+
+        if events:
+            events = events.order_by('-date_from')
 
         return events
 
     @route(r'^$', name='live_events')
     def get_live_events(self, request):
         events = self.live_events
-        logger.debug('Live events: {}'.format(events))
 
         return render(request, self.get_template(request),
-                      {'self': self, 'events': _paginate(request, events)})
+                      {'self': self, 'filter_type': 'live',
+                       'events': _paginate(request, events)})
 
     @route(r'^past/$', name='past_events')
     def get_past_events(self, request):
         events = self.past_events
-        logger.debug('Past events: {}'.format(events))
 
         return render(request, self.get_template(request),
                       {'self': self, 'filter_type': 'past',
-                      'events': _paginate(request, events)})
+                       'events': _paginate(request, events)})
 
-    @route(r'^category/(?P<category>[\w ]+)/$')
-    def category(self, request, category=None):
-        if not category:
-            # Invalid category filter
-            logger.error('Invalid category filter')
+    @route(r'^symposiums/$', name='symposium_events')
+    def get_symposiums(self, request):
+        events = self.symposiums
+
+        return render(request, self.get_template(request),
+                      {'self': self, 'filter_type': 'symposium',
+                       'events': _paginate(request, events)})
+
+    @route(r'^schools/$', name='schools_events')
+    def get_schools(self, request):
+        events = self.schools
+
+        return render(request, self.get_template(request),
+                      {'self': self, 'filter_type': 'schools',
+                       'events': _paginate(request, events)})
+
+    @route(r'^tag/(?P<tag>[\w\- ]+)/$')
+    def tag(self, request, tag=None):
+        if not tag:
+            # Invalid tag filter
+            logger.error('Invalid tag filter')
             return self.get_live_events(request)
 
-        events = self.events.filter(
-            categories__category__title=category)
-        events = events.order_by(date_from)
+        posts = self.all_events.filter(tags__name=tag)
 
         return render(
             request, self.get_template(request), {
-                'self': self, 'events': _paginate(request, events),
-                'filter_type': 'category', 'filter': category
+                'self': self, 'events': _paginate(request, posts),
+                'filter_type': 'tag', 'filter': tag
             }
         )
 
 EventIndexPage.content_panels = [
     FieldPanel('title', classname='full title'),
-    FieldPanel('intro', classname='full'),
+    StreamFieldPanel('intro'),
     InlinePanel('related_links', label='Related links'),
 ]
 
@@ -346,25 +399,8 @@ EventIndexPage.promote_panels = Page.promote_panels
 
 
 # EventPage
-class EventCategory(models.Model):
-    title = models.CharField(max_length=64, unique=True)
-
-    def __unicode__(self):
-        return self.title
-
-    class Meta:
-        verbose_name_plural = 'Event categories'
-
-register_snippet(EventCategory)
-
-
-class EventPageCategory(Orderable):
-    page = ParentalKey('EventPage', related_name='categories')
-    category = models.ForeignKey(EventCategory)
-
-    panels = [
-        SnippetChooserPanel('category')
-    ]
+class EventPageTag(TaggedItemBase):
+    content_object = ParentalKey('EventPage', related_name='tagged_items')
 
 
 class EventPageCarouselItem(Orderable, AbstractCarouselItem):
@@ -376,6 +412,9 @@ class EventPageRelatedLink(Orderable, AbstractRelatedLink):
 
 
 class EventPage(Page, WithFeedImage, WithStreamField):
+    tags = ClusterTaggableManager(through=EventPageTag, blank=True)
+    is_symposium = models.BooleanField()
+    is_school = models.BooleanField()
     date_from = models.DateField('Start date')
     date_to = models.DateField(
         'End date', null=True, blank=True,
@@ -402,6 +441,12 @@ EventPage.content_panels = [
     FieldPanel('title', classname='full title'),
     MultiFieldPanel([
         FieldRowPanel([
+                    FieldPanel('is_symposium', classname='col6'),
+                    FieldPanel('is_school', classname='col6'),
+                    ], classname='full'),
+    ], 'Categories'),
+    MultiFieldPanel([
+        FieldRowPanel([
             FieldPanel('date_from', classname='col6'),
             FieldPanel('date_to', classname='col6'),
         ], classname='full'),
@@ -411,7 +456,6 @@ EventPage.content_panels = [
         ], classname='full'),
     ], 'Dates'),
     FieldPanel('location'),
-    InlinePanel('categories', label='Categories'),
     InlinePanel('carousel_items', label='Carousel items'),
     StreamFieldPanel('body'),
     FieldPanel('signup_link'),
@@ -420,193 +464,33 @@ EventPage.content_panels = [
 
 EventPage.promote_panels = Page.promote_panels + [
     ImageChooserPanel('feed_image'),
+    FieldPanel('tags'),
 ]
 
 
 @receiver(pre_save, sender=EventPage)
-def default_date_to(sender, instance, **kwargs):
+def event_page_default_date_to(sender, instance, **kwargs):
     # checks the date to is empty
     if not instance.date_to:
         # sets date_to to the same as date_from
         instance.date_to = instance.date_from
 
 
-# Reviews
-# ReviewIndexPage
-class ReviewIndexPageRelatedLink(Orderable, AbstractRelatedLink):
-    page = ParentalKey('ReviewIndexPage', related_name='related_links')
+# Resources
+# ResourcesIndexPage
+class ResourcesIndexPageRelatedLink(Orderable, AbstractRelatedLink):
+    page = ParentalKey('ResourcesIndexPage', related_name='related_links')
 
 
-class ReviewIndexPage(RoutablePageMixin, Page, WithIntroduction):
+class ResourcesIndexPage(Page, WithIntroduction):
     search_fields = Page.search_fields + (
         index.SearchField('intro'),
     )
 
-    subpage_types = ['ReviewPage']
+    subpage_types = ['RichTextPage']
 
-    @property
-    def reviews(self):
-        # gets list of live review pages that are descendants of this page
-        reviews = ReviewPage.objects.live().descendant_of(self)
-
-        # orders by most recent date first
-        reviews = reviews.order_by('-date')
-
-        return reviews
-
-    @route(r'^$')
-    def all_reviews(self, request):
-        reviews = self.reviews
-        logger.debug('Reviews: {}'.format(reviews))
-
-        return render(request, self.get_template(request),
-                      {'self': self, 'reviews': _paginate(request, reviews)})
-
-    @route(r'^author/(?P<author>[\w ]+)/$')
-    def author(self, request, author=None):
-        if not author:
-            # Invalid author filter
-            logger.error('Invalid author filter')
-            return self.all_posts(request)
-
-        reviews = self.reviews.filter(owner__username=author)
-
-        return render(
-            request, self.get_template(request), {
-                'self': self, 'reviews': _paginate(request, reviews),
-                'filter_type': 'author', 'filter': author
-            }
-        )
-
-    @route(r'^category/(?P<category>[\w ]+)/$')
-    def category(self, request, category=None):
-        if not category:
-            # Invalid category filter
-            logger.error('Invalid category filter')
-            return self.all_posts(request)
-
-        reviews = self.reviews.filter(
-            categories__category__title=category)
-
-        return render(
-            request, self.get_template(request), {
-                'self': self, 'reviews': _paginate(request, reviews),
-                'filter_type': 'category', 'filter': category
-            }
-        )
-
-ReviewIndexPage.content_panels = [
+ResourcesIndexPage.content_panels = [
     FieldPanel('title', classname='full title'),
-    FieldPanel('intro', classname='full'),
+    StreamFieldPanel('intro'),
     InlinePanel('related_links', label='Related links'),
 ]
-
-ReviewIndexPage.promote_panels = Page.promote_panels
-
-
-# ReviewPage
-class ReviewPageCategory(Orderable):
-    page = ParentalKey('ReviewPage', related_name='categories')
-
-    category = models.ForeignKey(EventCategory)
-
-    panels = [
-        SnippetChooserPanel('category')
-    ]
-
-    def __unicode__(self):
-        return self.category.title
-
-
-class ReviewPageCarouselItem(Orderable, AbstractCarouselItem):
-    page = ParentalKey('ReviewPage', related_name='carousel_items')
-
-
-class ReviewPageRelatedLink(Orderable, AbstractRelatedLink):
-    page = ParentalKey('ReviewPage', related_name='related_links')
-
-
-class ReviewPage(Page, WithFeedImage, WithStreamField):
-    date = models.DateField('Post date')
-
-    search_fields = Page.search_fields + (
-        index.SearchField('body'),
-    )
-
-    subpage_types = []
-
-    @property
-    def review_index(self):
-        # finds closest ancestor which is a review index
-        return self.get_ancestors().type(ReviewIndexPage).last()
-
-ReviewPage.content_panels = [
-    FieldPanel('title', classname='full title'),
-    FieldPanel('date'),
-    InlinePanel('categories', label='Categories'),
-    StreamFieldPanel('body'),
-    InlinePanel('carousel_items', label='Carousel items'),
-    InlinePanel('related_links', label='Related links'),
-]
-
-ReviewPage.promote_panels = Page.promote_panels + [
-    ImageChooserPanel('feed_image'),
-]
-
-
-class GalleryCollection(Orderable, AbstractLinkFields):
-    page = ParentalKey('Gallery', related_name='collections')
-
-    collection = models.ForeignKey(
-        'wagtailcore.Collection', null=True, blank=True,
-        on_delete=models.SET_NULL, related_name='+'
-    )
-    description = models.CharField(max_length=255, blank=True)
-
-    panels = [
-        FieldPanel('collection'),
-        FieldPanel('description'),
-    ]
-
-    @property
-    def images(self):
-        return Image.objects.filter(collection=self.collection)
-
-    @property
-    def preview(self):
-        return self.images.first()
-
-    def __unicode__(self):
-        return self.description
-
-
-class Gallery(RoutablePageMixin, Page, WithIntroduction):
-    search_fields = Page.search_fields + (
-        index.SearchField('intro'),
-    )
-
-    subpage_types = []
-
-    @route(r'^$')
-    def gallery(self, request):
-        return render(request, self.get_template(request), {'self': self})
-
-    @route(r'^collection/(?P<collection_id>\d+)/$', name='gallery_collection')
-    def category(self, request, collection_id):
-        if not collection_id:
-            # invalid collection filter
-            logger.error('Invalid collection filter')
-            return self.gallery(request)
-
-        collection = self.collections.get(id=collection_id)
-
-        return render(request, 'cms/collection.html',
-                      {'self': self, 'collection': collection})
-
-Gallery.content_panels = [
-    FieldPanel('title', classname='full title'),
-    FieldPanel('intro', classname='full'),
-    InlinePanel('collections', label='Collections'),
-]
-
-Gallery.promote_panels = Page.promote_panels

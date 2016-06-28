@@ -1,5 +1,5 @@
 {% load wagtailcore_tags %}
 
 {% if introduction %}
-    {{ introduction|richtext }}
+    {% include "cms/includes/streamfield.html" with content=introduction %}
 {% endif %}

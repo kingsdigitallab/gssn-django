@@ -1,8 +1,8 @@
 import datetime
 
 from cms.models.pages import (
-    BlogIndexPage, BlogPost, EventIndexPage, EventPage, Gallery, HomePage,
-    IndexPage, ReviewIndexPage, ReviewPage, RichTextPage, _paginate
+    BlogIndexPage, BlogPost, EventIndexPage, EventPage, HomePage, IndexPage,
+    ResourcesIndexPage, RichTextPage, _paginate
 )
 from django.contrib.auth.models import User
 from django.test import RequestFactory, TestCase
@@ -36,9 +36,19 @@ class TestHomePage(WagtailPageTests):
 
     def test_subpage_types(self):
         self.assertAllowedSubpageTypes(HomePage, {
-            BlogIndexPage, EventIndexPage, IndexPage, ReviewIndexPage,
-            RichTextPage, Gallery}
-        )
+            IndexPage, BlogIndexPage, EventIndexPage, ResourcesIndexPage,
+            RichTextPage})
+
+    def test_get_latest_blog_posts(self):
+        hp = HomePage.objects.get(url_path='/home/')
+
+        self.assertEqual(2, hp.get_latest_blog_posts().count())
+        self.assertEqual('post-2', hp.get_latest_blog_posts().first().slug)
+
+    def test_get_live_events(self):
+        hp = HomePage.objects.get(url_path='/home/')
+
+        self.assertEqual(1, hp.get_live_events().count())
 
 
 class TestIndexPage(WagtailPageTests):
@@ -93,46 +103,65 @@ class TestEventIndexPage(WagtailPageTests):
     def test_subpage_types(self):
         self.assertAllowedSubpageTypes(EventIndexPage, {EventPage})
 
-    def test_past_events(self):
-        # property
+    def test_all_events(self):
         eip = EventIndexPage.objects.get(url_path='/home/events/')
 
-        past_events = eip.past_events
-        self.assertEqual(2, past_events.count())
-        self.assertEqual('event-1', past_events.first().slug)
-
-        # view
-        response = eip.get_past_events(self.request)
-        self.assertEqual(200, response.status_code)
+        all_events = eip.all_events
+        self.assertEqual(4, all_events.count())
+        self.assertEqual(9, all_events.first().pk)
 
     def test_live_events(self):
         # property
         eip = EventIndexPage.objects.get(url_path='/home/events/')
 
         live_events = eip.live_events
-        self.assertEqual(0, live_events.count())
-
-        event = EventPage.objects.get(pk=12)
-        event.date_from = datetime.date.today()
-        event.save()
-
-        live_events = eip.live_events
         self.assertEqual(1, live_events.count())
 
-        event = EventPage.objects.get(pk=13)
+        event = EventPage.objects.get(url_path='/home/events/event-1/')
         event.date_from = datetime.date.today()
         event.save()
 
         live_events = eip.live_events
         self.assertEqual(2, live_events.count())
+
+        event = EventPage.objects.get(url_path='/home/events/event-2/')
+        event.date_from = datetime.date.today()
+        event.save()
+
+        live_events = eip.live_events
+        self.assertEqual(3, live_events.count())
         self.assertEqual('event-1', live_events.first().slug)
 
         # view
         response = eip.get_live_events(self.request)
         self.assertEqual(200, response.status_code)
 
+    def test_past_events(self):
+        # property
+        eip = EventIndexPage.objects.get(url_path='/home/events/')
+
+        past_events = eip.past_events
+        self.assertEqual(3, past_events.count())
+        self.assertEqual(12, past_events.first().pk)
+
+        # view
+        response = eip.get_past_events(self.request)
+        self.assertEqual(200, response.status_code)
+
+    def test_symposiums(self):
+        # property
+        eip = EventIndexPage.objects.get(url_path='/home/events/')
+
+        symposiums = eip.symposiums
+        self.assertEqual(2, symposiums.count())
+        self.assertEqual(9, symposiums.first().pk)
+
+        # view
+        response = eip.get_symposiums(self.request)
+        self.assertEqual(200, response.status_code)
+
     def test_pre_save_signal(self):
-        event = EventPage.objects.get(pk=13)
+        event = EventPage.objects.get(url_path='/home/events/event-1/')
         event.date_to = None
 
         self.assertIsNone(event.date_to)
@@ -156,27 +185,8 @@ class TestEventPage(WagtailPageTests):
         self.assertEqual(expected, event.event_index.specific)
 
 
-class TestReviewIndexPage(WagtailPageTests):
+class TestResourcesIndexPage(WagtailPageTests):
     fixtures = ['test.json']
 
     def test_subpage_types(self):
-        self.assertAllowedSubpageTypes(ReviewIndexPage, {ReviewPage})
-
-    def test_reviews(self):
-        rip = ReviewIndexPage.objects.get(url_path='/home/reviews/')
-
-        self.assertEqual(1, rip.reviews.count())
-        self.assertEqual('my-first-review', rip.reviews.first().slug)
-
-
-class TestReviewPage(WagtailPageTests):
-    fixtures = ['test.json']
-
-    def test_subpage_types(self):
-        self.assertAllowedSubpageTypes(ReviewPage, {})
-
-    def test_review_index(self):
-        review = ReviewPage.objects.first()
-        expected = ReviewIndexPage.objects.get(url_path='/home/reviews/')
-
-        self.assertEqual(expected, review.review_index.specific)
+        self.assertAllowedSubpageTypes(ResourcesIndexPage, {RichTextPage})

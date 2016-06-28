@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block main %}
-{{ self.body | richtext }}
+{% include "cms/includes/streamfield.html" with content=self.body %}
 {% endblock %}
 
 {% block footer_scripts %}{% endblock %}

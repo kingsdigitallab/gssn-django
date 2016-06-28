@@ -1,13 +1,32 @@
 {% extends "cms/index_page.html" %}
 {% load wagtailcore_tags wagtailroutablepage_tags %}
 
-{% block title %}<h1 class="cat-title"><span class="bookmark eventpage"></span> {% if filter_type == 'past' %}Past{% else %}Live{% endif %} events <a href="{% if filter_type == 'past' %}{% routablepageurl self 'live_events' %}{% else %}{% routablepageurl self 'past_events' %}{% endif %}" class="button secondary float-right">Show {% if filter_type == 'past' %}live{% else %}past{% endif %} events</a></h1>{% endblock %}
+{% block title %}
+<h1 class="cat-title">
+    <span class="bookmark eventpage"></span>
+    {{ self.title }}
+</h1>
+{% endblock %}
+
+{% block subnav %}
+<ul class="subnav">
+{% for item in self.subnav_items %}
+    <li class="{% if item == filter_type %}active{% elif item == 'live' and not filter_type %}active{% endif %}">
+        <a href="{% routablepageurl self item|add:'_events' %}">{{ item|title }}</a>
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}
 
 {% block main %}
 
+{% block index_page_introduction %}
+{% include "cms/includes/introduction.html" with introduction=self.intro only %}
+{% endblock %}
+
 {% block posts_tagged_as %}
-{% if filter_type == 'category' %}
-<h4 class="filter-description">Events in <strong>{{ filter|safe }}</strong> <a href="{% pageurl self %}" class="small button float-right">Show all</a></h4>
+{% if filter_type == 'tag' %}
+<h4 class="filter-description">Events tagged as <strong>{{ filter|safe }}</strong> <a href="{% pageurl self %}" class="small button float-right">Show all</a></h4>
 {% endif %}
 {% endblock %}
 

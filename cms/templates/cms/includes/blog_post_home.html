@@ -1,0 +1,30 @@
+{% extends "cms/includes/blog_post_body.html" %}
+
+{% if post %}
+{% load cms_tags wagtailimages_tags wagtailcore_tags wagtailroutablepage_tags %}
+
+{% block blog_post_header %}{% endblock %}
+
+{% block blog_post_content %}
+<div class="row">
+    <div class="large-12 columns">
+        {% if post.feed_image %}
+        <a href="{% pageurl post %}">
+            <div class="image-date ">
+                {% image post.feed_image max-600x300 as tmp_image %}
+                <img src="{{ tmp_image.url }}" width="100%" alt="{{ tmp_image.alt }}">
+                <time datetime="{{ post.date|date:'c' }}">{{ post.date|date_as_block}}</time>
+            </div>
+        {% endif %}
+        </a>
+        <h3 class="posttitle">
+            <a href="{% pageurl post %}">{{ post.title }}</a>
+        </h3>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block share_on_twitter %}{% endblock %}
+
+{% endif %}

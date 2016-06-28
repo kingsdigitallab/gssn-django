@@ -1,9 +1,20 @@
 {% extends "cms/index_page.html" %}
-{% load wagtailcore_tags %}
+{% load cms_tags wagtailcore_tags %}
 
-{% block title %}<h1 class="cat-title"><span class="bookmark blogpost"></span> <a href="/blog">Blog</a></h1>{% endblock %}
+{% block title %}
+<h1 class="cat-title blog">
+<span class="bookmark blogpost"></span>
+<a href="{% pageurl self %}">{{ self.title }}</a>
+</h1>
+{% endblock %}
+
+{% block subnav %}{% endblock %}
 
 {% block main %}
+
+{% block index_page_introduction %}
+{% include "cms/includes/introduction.html" with introduction=self.intro only %}
+{% endblock %}
 
 {% block posts_by %}
 {% if filter_type == 'author' %}
@@ -28,3 +39,10 @@
 {% endblock %}
 
 {% endblock %}
+
+{% are_comments_allowed as allow_comments %}
+{% if allow_comments %}
+{% block footer_scripts %}
+<script id="dsq-count-scr" src="//gssn.disqus.com/count.js" async></script>
+{% endblock %}
+{% endif %}
