@@ -36,6 +36,7 @@
 //      b) Twitter
 //  11. Footer
 //      a) Sticky footer
+//      b) Cookies
 //  12. Media queries
 
 
@@ -1090,6 +1091,16 @@ footer a i.fa:hover{
 
 footer, .push {
   height: 9em;
+}
+
+// Cookies
+
+.cookies-box {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 0;
+    margin: 0;
 }
 
 /** Media queries **/
