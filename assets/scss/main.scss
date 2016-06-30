@@ -36,6 +36,7 @@
 //      b) Twitter
 //  11. Footer
 //      a) Sticky footer
+//      b) Cookies
 //  12. Media queries
 
 
@@ -52,6 +53,12 @@ h1 a,
 h2 a,
 h3 a{
     color:$black;
+}
+
+.rich-text {
+    h2, h3, h4, h5, h6 {
+        margin-top: 1rem;
+    }
 }
 
 p {margin: 0;}
@@ -1090,6 +1097,18 @@ footer a i.fa:hover{
 
 footer, .push {
   height: 9em;
+}
+
+// Cookies
+
+.cookies-box {
+    background: $primary-color;
+    opacity: 0.9;
+    position: fixed;
+    width: 100%;
+    text-align: center;
+    bottom: 0;
+    margin: 0;
 }
 
 /** Media queries **/
