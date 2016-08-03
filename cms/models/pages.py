@@ -288,7 +288,7 @@ class EventIndexPage(RoutablePageMixin, Page, WithIntroduction):
 
     subpage_types = ['EventPage']
 
-    subnav_items = ['live', 'symposium', 'schools', 'past']
+    subnav_items = ['live', 'symposia', 'schools', 'past']
 
     @property
     def all_events(self):
@@ -357,12 +357,12 @@ class EventIndexPage(RoutablePageMixin, Page, WithIntroduction):
                       {'self': self, 'filter_type': 'past',
                        'events': _paginate(request, events)})
 
-    @route(r'^symposiums/$', name='symposium_events')
+    @route(r'^symposia/$', name='symposia_events')
     def get_symposiums(self, request):
         events = self.symposiums
 
         return render(request, self.get_template(request),
-                      {'self': self, 'filter_type': 'symposium',
+                      {'self': self, 'filter_type': 'symposia',
                        'events': _paginate(request, events)})
 
     @route(r'^schools/$', name='schools_events')
