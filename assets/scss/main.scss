@@ -149,104 +149,6 @@ header {
 
 /** search input **/
 
-////
-
-// .gssn-search {
-//     position: relative;
-//     margin-top: 10px;
-//     width: 0%;
-//     min-width: 30px;
-//     height: 30px;
-//     float: right;
-//     overflow: hidden;
-
-//     -webkit-transition: width 0.3s;
-//     -moz-transition: width 0.3s;
-//     transition: width 0.3s;
-
-//     -webkit-backface-visibility: hidden;
-// }
-
-// .gssn-search-input {
-//     position: absolute;
-//     top: 0;
-//     right: 0;
-//     border: none;
-//     outline: none;
-//     background: $white;
-//     width: 100%;
-//     height: 1;
-//     margin: 0;
-//     z-index: 10;
-//     padding: 20px 35px 20px 20px;
-//     font-family: inherit;
-//     font-size: 20px;
-//     color: #2c3e50;
-// }
-
-// input[type="search"].gssn-search-input {
-//     -webkit-appearance: none;
-//     -webkit-border-radius: 0px;
-//     color: $black;
-// }
-
-// .gssn-icon-search,
-// .gssn-search-submit  {
-//     width: 30px;
-//     height: 30px;
-//     display: block;
-//     position: absolute;
-//     right: 0;
-//     top: 0;
-//     padding: 0;
-//     margin: 0;
-//     line-height: 30px;
-//     text-align: center;
-//     cursor: pointer;
-// }
-
-// .gssn-search-submit {
-//     background: $white; /* IE needs this */
-//     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE 8 */
-//     filter: alpha(opacity=0); /* IE 5-7 */
-//     opacity: 0;
-//     color: transparent;
-//     border: none;
-//     outline: none;
-//     z-index: -1;
-// }
-
-// .gssn-icon-search {
-//     color: #fff;
-//     background: transparent;
-//     z-index: 90;
-//     font-size: 1.125rem;
-//     font-family: 'FontAwesome';
-// }
-
-// .gssn-icon-search:before {
-//     content: "\f002";
-// }
-
-// .gssn-search.gssn-search-open,
-// .no-js .gssn-search {
-//     width: 200px;
-// }
-
-// .gssn-search.gssn-search-open .gssn-icon-search,
-// .no-js .gssn-search .gssn-icon-search {
-//     background: $primary-color;
-//     color: $white;
-//     z-index: 11;
-// }
-
-// .gssn-search.gssn-search-open .gssn-search-submit,
-// .no-js .gssn-search .gssn-search-submit {
-//     z-index: 90;
-// }
-
-////
-
 .form {
     margin: 0 auto;
     position: relative;
@@ -678,6 +580,18 @@ h2.posttitle {
 
 /** Blog **/
 
+.main {
+
+    a {
+        color: $secondary-color;
+        border-bottom: 1px solid $secondary-color;
+    }
+
+    a:hover {
+        border-bottom: none;
+    }
+}
+
 h1.cat-title.blog {
     margin-bottom: 1rem;
 }
@@ -705,13 +619,14 @@ article.post footer h6{
 
 //Posts
 
-.rich-text p a {
-    color: $primary-color;
-}
+// .rich-text p a {
+//     color: scale-color($primary-color, $lightness: -30%);
+//     border-bottom: 1px solid $primary-color;
+// }
 
-.rich-text p a:hover {
-    text-decoration: underline;
-}
+// .rich-text p a:hover {
+//     text-decoration: none;
+// }
 
 article .post div.responsive-object{
     padding:0;
@@ -868,12 +783,12 @@ article.post p.byline.blog {
     font-family: "Roboto Condensed", Courier, monospace;
 }
 
-.main .stream-field .rich-text ol li b a{
+.main .stream-field .rich-text ol li b a {
     font-size: 1.25rem;
     color:$black;
 }
 
-.main .stream-field .rich-text ol li b a:hover{
+.main .stream-field .rich-text ol li b a:hover {
     color: $anchor-color-hover;
 }
 
@@ -914,13 +829,13 @@ article.post p.byline.blog {
     float: left;
 }
 
-.search-results h4 a{
+.search-results h4 a {
     padding-top: .1875rem;
     font-size: 1.25rem;
     color: $black;
 }
 
-.search-results h4 a:hover{
+.search-results h4 a:hover {
     color: $anchor-color-hover;
 }
 
@@ -957,12 +872,12 @@ article.post p.byline.blog {
 }
 
 //** 404 **//
-.wrapper.error-page{
+.wrapper.error-page {
     background:$black;
     text-align: center;
 }
 
-.wrapper.error-page h1{
+.wrapper.error-page h1 {
     color: $primary-color;
     font-size: 5rem;
     border-bottom:1px solid $primary-color;
@@ -971,14 +886,14 @@ article.post p.byline.blog {
 
 }
 
-.wrapper.error-page p{
+.wrapper.error-page p {
     color: $white;
     text-align: center;
     margin:0 auto;
     font-size: 1.25rem;
 }
 
-.wrapper.error-page a button{
+.wrapper.error-page a button {
     color: $primary-color;
     border:3px solid $primary-color;
     padding:1rem 2rem;
@@ -987,7 +902,7 @@ article.post p.byline.blog {
     font-weight: bold;
 }
 
-.wrapper.error-page a button:hover{
+.wrapper.error-page a button:hover {
     color: $dark-gray;
     border:3px solid $primary-color;
     background: $primary-color;
@@ -1052,11 +967,6 @@ footer {
     background: $black;
     color: $white;
     margin-top: 2rem;
-    /**
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%; */
 }
 
 footer a {
