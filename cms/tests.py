@@ -152,9 +152,9 @@ class TestEventIndexPage(WagtailPageTests):
         # property
         eip = EventIndexPage.objects.get(url_path='/home/events/')
 
-        symposiums = eip.symposiums
-        self.assertEqual(2, symposiums.count())
-        self.assertEqual(9, symposiums.first().pk)
+        symposia = eip.symposia
+        self.assertEqual(2, symposia.count())
+        self.assertEqual(9, symposia.first().pk)
 
         # view
         response = eip.get_symposiums(self.request)
