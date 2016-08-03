@@ -2,6 +2,15 @@
 
 German Screen Studies Network website
 
+## Release 0.2
+
+Minor release
+
+* Changed anchor text styling to make links more visible
+* Changed event filter name from Symposium to Symposia
+* Changed event category url from Symposiums to Symposia
+* Fixed link to membership page in the sidebar widget
+
 ## Release 0.1
 
 First stable release deployed.
