@@ -582,13 +582,13 @@ h2.posttitle {
 
 .main {
 
-    a {
+    p a {
         color: $secondary-color;
         border-bottom: 1px solid $secondary-color;
-    }
 
-    a:hover {
-        border-bottom: none;
+        &:hover {
+            border-bottom: none;
+        }
     }
 }
 
