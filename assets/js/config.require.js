@@ -30,6 +30,8 @@ requirejs.config({
         'foundation.util.touch': '../vendor/foundation-sites/js/foundation.util.touch',
         'foundation.util.triggers': '../vendor/foundation-sites/js/foundation.util.triggers',
 
+        'js-cookie': '../vendor/js-cookie/src/js.cookie'
+
         'slick': '../vendor/slick-carousel/slick/slick',
 
         'requirejs': '../vendor/requirejs/require',
@@ -135,6 +137,12 @@ requirejs.config({
                 'foundation.util.mediaQuery'
             ],
         },
+        'js-cookie': {
+            deps: [
+                'jquery'
+            ],
+            exports: 'js-cookie'
+        },
         'ga': {
             exports: '__ga__'
         },
@@ -143,6 +151,6 @@ requirejs.config({
                 'jquery'
             ],
             exports: 'Slick'
-        },
+        }
     }
 });

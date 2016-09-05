@@ -3,6 +3,7 @@ require([
     'requirejs',
     'jquery',
     'fn',
+    'js-cookie',
     'ga',
     'sl'
 ], function(r, $) {
