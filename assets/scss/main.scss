@@ -576,6 +576,11 @@ ul.no-bullet.index li {
 
 h2.posttitle {
     margin: .5rem 0 .3125rem;
+    border-bottom: none;
+
+    a {
+        border-bottom: none;
+    }
 }
 
 /** Blog **/
@@ -604,6 +609,14 @@ h1.blog{
     padding: 0 0 .5rem 0;
 }
 
+article {
+    footer{
+        a {
+            border-bottom: none;
+        }
+    }
+}
+
 article.post footer ul {
     text-align: left;
 }
@@ -615,7 +628,7 @@ article.post footer {
 
 article.post footer h6 {
     margin-top: .75rem;
-}
+}   
 
 article .post div.responsive-object {
     padding: 0;
@@ -724,6 +737,10 @@ ul.pagination .arrow.previous {
 ul.pagination {
     text-align: center;
     border-top: 1px solid $black;
+
+    a {
+        border-bottom: none;
+    }
 }
 
 .wrapper footer {
