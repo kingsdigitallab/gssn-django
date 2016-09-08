@@ -30,7 +30,7 @@ requirejs.config({
         'foundation.util.touch': '../vendor/foundation-sites/js/foundation.util.touch',
         'foundation.util.triggers': '../vendor/foundation-sites/js/foundation.util.triggers',
 
-        'js-cookie': '../vendor/js-cookie/src/js.cookie'
+        'js-cookie': '../vendor/js-cookie/src/js.cookie',
 
         'slick': '../vendor/slick-carousel/slick/slick',
 
