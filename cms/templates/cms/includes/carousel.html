@@ -4,7 +4,10 @@
 <div class="slider-home">
     {% for item in carousel_items %}
     <div>
-        <div class="medium-12 large-8 columns">
+        <div class="medium-12 large-8 columns relative">
+            {% if item.copyright %}
+            <div class="copyright-note">{{ item.copyright|richtext }}</div>
+            {% endif %}
             <a href="{{ item.link }}" class="image">
                 {% image item.image width-1000 as carouselimage %}
                 <img src="{{ carouselimage.url }}" alt="{{ carouselimage.alt }}">
