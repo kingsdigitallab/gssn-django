@@ -409,7 +409,8 @@ a img:hover{
 
 .copyright-note {
     position: absolute;
-    right: 0;
+    // right: 0;
+    bottom: 0;
     padding: rem-calc(3) rem-calc(7);
     font-size: .875rem;
     color: $white;
