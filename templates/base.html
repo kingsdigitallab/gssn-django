@@ -66,7 +66,7 @@
     <div class="callout cookies-box" id="cookie-disclaimer" data-closable>
       <p>We use cookies to track usage and preferences.</p>
       <p><a href="/privacy-policy/" class="small button secondary closeme">Privacy Policy</a> <button class="small button success closeme" aria-label="Dismiss alert" type="button" data-close>I understand</button></p>
-      <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+      <button class="close-button closeme" aria-label="Dismiss alert" type="button" data-close>
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -76,14 +76,6 @@
     {% include 'includes/config.js' %}
   </script>
   {% require_module 'config' %}
-
-  <script type="text/javascript">
-    $(document).foundation();
-
-    $('#cookie-disclaimer .closeme').on("click", function() {
-      Cookies.set('name', 'value', { expires: 30 });
-    });
-  </script>
 
   {% block footer_scripts %}{% endblock %}
 </body>
