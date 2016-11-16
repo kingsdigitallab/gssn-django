@@ -138,9 +138,6 @@ requirejs.config({
             ],
         },
         'js-cookie': {
-            deps: [
-                'jquery'
-            ],
             exports: 'js-cookie'
         },
         'ga': {
