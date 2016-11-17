@@ -8,7 +8,7 @@ django-modelcluster
 django-redis
 django-require
 django-taggit
-elasticsearch
+elasticsearch<5
 libsass==0.10.0
 pillow
 psycopg2
