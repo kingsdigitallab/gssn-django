@@ -74,6 +74,7 @@ class HomePage(Page, WithStreamField):
         eip = self.get_children().type(EventIndexPage).first().specific
         return eip.live_events[:2]
 
+
 HomePage.content_panels = [
     FieldPanel('title', classname='full title'),
     StreamFieldPanel('body'),
@@ -97,6 +98,7 @@ class IndexPage(Page, WithFeedImage, WithIntroduction):
     ]
 
     subpage_types = ['IndexPage', 'RichTextPage']
+
 
 IndexPage.content_panels = [
     FieldPanel('title', classname='full title'),
@@ -127,6 +129,7 @@ class RichTextPage(Page, WithFeedImage):
     ]
 
     subpage_types = []
+
 
 RichTextPage.content_panels = [
     FieldPanel('title', classname='full title'),
@@ -261,6 +264,7 @@ class BlogPost(Page, WithFeedImage, WithStreamField):
         # finds closest ancestor which is a blog index
         return self.get_ancestors().type(BlogIndexPage).last()
 
+
 BlogPost.content_panels = [
     FieldPanel('title', classname='full title'),
     FieldPanel('date'),
@@ -389,6 +393,7 @@ class EventIndexPage(RoutablePageMixin, Page, WithIntroduction):
             }
         )
 
+
 EventIndexPage.content_panels = [
     FieldPanel('title', classname='full title'),
     StreamFieldPanel('intro'),
@@ -436,6 +441,7 @@ class EventPage(Page, WithFeedImage, WithStreamField):
     def event_index(self):
         # finds closest ancestor which is an event index
         return self.get_ancestors().type(EventIndexPage).last()
+
 
 EventPage.content_panels = [
     FieldPanel('title', classname='full title'),
@@ -488,6 +494,7 @@ class ResourcesIndexPage(Page, WithIntroduction):
     ]
 
     subpage_types = ['RichTextPage']
+
 
 ResourcesIndexPage.content_panels = [
     FieldPanel('title', classname='full title'),
