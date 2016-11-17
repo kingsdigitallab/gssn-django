@@ -55,10 +55,10 @@ class HomePageRelatedLink(Orderable, AbstractRelatedLink):
 class HomePage(Page, WithStreamField):
     announcement = StreamField(CMSStreamBlock())
 
-    search_fields = Page.search_fields + (
+    search_fields = Page.search_fields + [
         index.SearchField('body'),
         index.SearchField('announcement'),
-    )
+    ]
 
     subpage_types = ['IndexPage', 'BlogIndexPage', 'EventIndexPage',
                      'ResourcesIndexPage', 'RichTextPage']
@@ -92,9 +92,9 @@ class IndexPageRelatedLink(Orderable, AbstractRelatedLink):
 
 
 class IndexPage(Page, WithFeedImage, WithIntroduction):
-    search_fields = Page.search_fields + (
+    search_fields = Page.search_fields + [
         index.SearchField('intro'),
-    )
+    ]
 
     subpage_types = ['IndexPage', 'RichTextPage']
 
@@ -121,10 +121,10 @@ class RichTextPageRelatedLink(Orderable, AbstractRelatedLink):
 class RichTextPage(Page, WithFeedImage):
     body = StreamField(CMSStreamBlock())
 
-    search_fields = Page.search_fields + (
+    search_fields = Page.search_fields + [
         index.SearchField('intro'),
         index.SearchField('body'),
-    )
+    ]
 
     subpage_types = []
 
@@ -162,9 +162,9 @@ class BlogIndexPageRelatedLink(Orderable, AbstractRelatedLink):
 
 
 class BlogIndexPage(RoutablePageMixin, Page, WithIntroduction):
-    search_fields = Page.search_fields + (
+    search_fields = Page.search_fields + [
         index.SearchField('intro'),
-    )
+    ]
 
     subpage_types = ['BlogPost']
 
@@ -247,9 +247,9 @@ class BlogPost(Page, WithFeedImage, WithStreamField):
     tags = ClusterTaggableManager(through=BlogPostTag, blank=True)
     date = models.DateField('Post date')
 
-    search_fields = Page.search_fields + (
+    search_fields = Page.search_fields + [
         index.SearchField('body'),
-    )
+    ]
 
     subpage_types = []
 
@@ -282,9 +282,9 @@ class EventIndexPageRelatedLink(Orderable, AbstractRelatedLink):
 
 
 class EventIndexPage(RoutablePageMixin, Page, WithIntroduction):
-    search_fields = Page.search_fields + (
+    search_fields = Page.search_fields + [
         index.SearchField('intro'),
-    )
+    ]
 
     subpage_types = ['EventPage']
 
@@ -425,10 +425,10 @@ class EventPage(Page, WithFeedImage, WithStreamField):
     location = models.CharField(max_length=256)
     signup_link = models.URLField(null=True, blank=True)
 
-    search_fields = Page.search_fields + (
+    search_fields = Page.search_fields + [
         index.SearchField('location'),
         index.SearchField('body'),
-    )
+    ]
 
     subpage_types = []
 
@@ -483,9 +483,9 @@ class ResourcesIndexPageRelatedLink(Orderable, AbstractRelatedLink):
 
 
 class ResourcesIndexPage(Page, WithIntroduction):
-    search_fields = Page.search_fields + (
+    search_fields = Page.search_fields + [
         index.SearchField('intro'),
-    )
+    ]
 
     subpage_types = ['RichTextPage']
 
