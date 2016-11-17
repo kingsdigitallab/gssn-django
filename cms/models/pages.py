@@ -55,10 +55,10 @@ class HomePageRelatedLink(Orderable, AbstractRelatedLink):
 class HomePage(Page, WithStreamField):
     announcement = StreamField(CMSStreamBlock())
 
-    search_fields = Page.search_fields + (
+    search_fields = Page.search_fields + [
         index.SearchField('body'),
         index.SearchField('announcement'),
-    )
+    ]
 
     subpage_types = ['IndexPage', 'BlogIndexPage', 'EventIndexPage',
                      'ResourcesIndexPage', 'RichTextPage']
@@ -73,6 +73,7 @@ class HomePage(Page, WithStreamField):
     def get_live_events(self):
         eip = self.get_children().type(EventIndexPage).first().specific
         return eip.live_events[:2]
+
 
 HomePage.content_panels = [
     FieldPanel('title', classname='full title'),
@@ -92,11 +93,12 @@ class IndexPageRelatedLink(Orderable, AbstractRelatedLink):
 
 
 class IndexPage(Page, WithFeedImage, WithIntroduction):
-    search_fields = Page.search_fields + (
+    search_fields = Page.search_fields + [
         index.SearchField('intro'),
-    )
+    ]
 
     subpage_types = ['IndexPage', 'RichTextPage']
+
 
 IndexPage.content_panels = [
     FieldPanel('title', classname='full title'),
@@ -121,12 +123,13 @@ class RichTextPageRelatedLink(Orderable, AbstractRelatedLink):
 class RichTextPage(Page, WithFeedImage):
     body = StreamField(CMSStreamBlock())
 
-    search_fields = Page.search_fields + (
+    search_fields = Page.search_fields + [
         index.SearchField('intro'),
         index.SearchField('body'),
-    )
+    ]
 
     subpage_types = []
+
 
 RichTextPage.content_panels = [
     FieldPanel('title', classname='full title'),
@@ -162,9 +165,9 @@ class BlogIndexPageRelatedLink(Orderable, AbstractRelatedLink):
 
 
 class BlogIndexPage(RoutablePageMixin, Page, WithIntroduction):
-    search_fields = Page.search_fields + (
+    search_fields = Page.search_fields + [
         index.SearchField('intro'),
-    )
+    ]
 
     subpage_types = ['BlogPost']
 
@@ -247,9 +250,9 @@ class BlogPost(Page, WithFeedImage, WithStreamField):
     tags = ClusterTaggableManager(through=BlogPostTag, blank=True)
     date = models.DateField('Post date')
 
-    search_fields = Page.search_fields + (
+    search_fields = Page.search_fields + [
         index.SearchField('body'),
-    )
+    ]
 
     subpage_types = []
 
@@ -260,6 +263,7 @@ class BlogPost(Page, WithFeedImage, WithStreamField):
     def blog_index(self):
         # finds closest ancestor which is a blog index
         return self.get_ancestors().type(BlogIndexPage).last()
+
 
 BlogPost.content_panels = [
     FieldPanel('title', classname='full title'),
@@ -282,9 +286,9 @@ class EventIndexPageRelatedLink(Orderable, AbstractRelatedLink):
 
 
 class EventIndexPage(RoutablePageMixin, Page, WithIntroduction):
-    search_fields = Page.search_fields + (
+    search_fields = Page.search_fields + [
         index.SearchField('intro'),
-    )
+    ]
 
     subpage_types = ['EventPage']
 
@@ -389,6 +393,7 @@ class EventIndexPage(RoutablePageMixin, Page, WithIntroduction):
             }
         )
 
+
 EventIndexPage.content_panels = [
     FieldPanel('title', classname='full title'),
     StreamFieldPanel('intro'),
@@ -425,10 +430,10 @@ class EventPage(Page, WithFeedImage, WithStreamField):
     location = models.CharField(max_length=256)
     signup_link = models.URLField(null=True, blank=True)
 
-    search_fields = Page.search_fields + (
+    search_fields = Page.search_fields + [
         index.SearchField('location'),
         index.SearchField('body'),
-    )
+    ]
 
     subpage_types = []
 
@@ -436,6 +441,7 @@ class EventPage(Page, WithFeedImage, WithStreamField):
     def event_index(self):
         # finds closest ancestor which is an event index
         return self.get_ancestors().type(EventIndexPage).last()
+
 
 EventPage.content_panels = [
     FieldPanel('title', classname='full title'),
@@ -483,11 +489,12 @@ class ResourcesIndexPageRelatedLink(Orderable, AbstractRelatedLink):
 
 
 class ResourcesIndexPage(Page, WithIntroduction):
-    search_fields = Page.search_fields + (
+    search_fields = Page.search_fields + [
         index.SearchField('intro'),
-    )
+    ]
 
     subpage_types = ['RichTextPage']
+
 
 ResourcesIndexPage.content_panels = [
     FieldPanel('title', classname='full title'),
