@@ -10,6 +10,7 @@ Minor release
 * Changed event filter name from Symposium to Symposia
 * Changed event category url from Symposiums to Symposia
 * Fixed link to membership page in the sidebar widget
+* Fixed cookies pop-up (Sets cookie when dismissed)
 
 ## Release 0.1
 
