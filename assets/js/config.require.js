@@ -30,6 +30,8 @@ requirejs.config({
         'foundation.util.touch': '../vendor/foundation-sites/js/foundation.util.touch',
         'foundation.util.triggers': '../vendor/foundation-sites/js/foundation.util.triggers',
 
+        'jscookie': '../vendor/js-cookie/src/js.cookie',
+
         'slick': '../vendor/slick-carousel/slick/slick',
 
         'requirejs': '../vendor/requirejs/require',
@@ -124,9 +126,9 @@ requirejs.config({
                 'foundation',
                 'foundation.util.triggers',
                 'foundation.util.mediaQuery',
-                'foundation.util.accordionMenu',
-                'foundation.util.drilldown',
-                'foundation.util.dropdownMenu'
+                'foundation.accordionMenu',
+                'foundation.drilldown',
+                'foundation.dropdownMenu'
             ],
         },
         'foundation.responsiveToggle': {
@@ -134,6 +136,9 @@ requirejs.config({
                 'foundation',
                 'foundation.util.mediaQuery'
             ],
+        },
+        'jscookie': {
+            exports: 'JScookie'
         },
         'ga': {
             exports: '__ga__'
@@ -143,6 +148,6 @@ requirejs.config({
                 'jquery'
             ],
             exports: 'Slick'
-        },
+        }
     }
 });

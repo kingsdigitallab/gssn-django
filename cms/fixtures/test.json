@@ -404,8 +404,8 @@
     {
         "fields": {
             "body": "[{\"type\": \"h2\", \"value\": \"Public Symposium\"}, {\"type\": \"intro\", \"value\": \"<p>This year\\u2019s symposium focus is on Living\\n Pasts, Unfolding Futures. Since the inception of cinema, commentators \\non film have observed the medium\\u2019s special capacity to shape experiences\\n of past, present and future time. Writers on early film aesthetics \\nmarvelled at film\\u2019s modernist ability to remodel time; new cinematic \\ntechnologies (parallel montage, superimposition) collapsed past, present\\n and future into filmic moments of simultaneity; emergent genres \\u2013 \\nhistorical drama, but also fantasy film or science fiction \\u2013 made of the\\n past a usable experience in present time or, conversely, projected \\nvisions of dystopian or utopian futures.</p>\"}]",
-            "date_from": "2016-09-08",
-            "date_to": "2016-09-10",
+            "date_from": "2017-09-08",
+            "date_to": "2017-09-10",
             "feed_image": null,
             "is_symposium": true,
             "is_school": false,

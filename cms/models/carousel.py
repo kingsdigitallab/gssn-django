@@ -15,12 +15,14 @@ class AbstractCarouselItem(AbstractLinkFields):
     )
     caption = models.CharField(max_length=38, blank=True)
     description = RichTextField(blank=True)
+    copyright = RichTextField(blank=True)
 
     panels = [
         ImageChooserPanel('image'),
         FieldPanel('caption'),
         MultiFieldPanel(AbstractLinkFields.panels, 'Link'),
         FieldPanel('description'),
+        FieldPanel('copyright'),
     ]
 
     class Meta:

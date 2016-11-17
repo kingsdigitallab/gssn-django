@@ -59,15 +59,14 @@
   </div>
   {% endblock %}
 
-
   <footer>
     {% block footer %}
     {% include 'includes/footer.html' %}
     {% endblock %}
-    <div class="callout cookies-box" data-closable>
+    <div class="callout cookies-box hide" id="cookie-disclaimer" data-closable>
       <p>We use cookies to track usage and preferences.</p>
-      <p><a href="/privacy-policy/" class="small button secondary">Privacy Policy</a> <button class="small button success" aria-label="Dismiss alert" type="button" data-close>I understand</button></p>
-      <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+      <p><a href="/privacy-policy/" class="small button secondary closeme">Privacy Policy</a> <button class="small button success closeme" aria-label="Dismiss alert" type="button" data-close>I understand</button></p>
+      <button class="close-button closeme" aria-label="Dismiss alert" type="button" data-close>
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
