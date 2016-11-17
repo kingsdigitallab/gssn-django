@@ -10,8 +10,8 @@ from wagtail.wagtaildocs import urls as wagtaildocs_urls
 
 admin.autodiscover()
 
-handler404 = curry(server_error, template_name='404.html')
-handler500 = curry(server_error, template_name='500.html')
+handler404 = curry(server_error, template_name='404.html')  # noqa
+handler500 = curry(server_error, template_name='500.html')  # noqa
 
 urlpatterns = [
     url(r'^grappelli/', include('grappelli.urls')),
