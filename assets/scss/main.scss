@@ -947,7 +947,7 @@ article.post p.byline.blog {
 .widget {
     padding: 1rem;
     margin-bottom: 1rem;
-    background: scale-color($primary-color, $lightness: -70%);
+    background: $black;
     color: $white;
 
     .button {
