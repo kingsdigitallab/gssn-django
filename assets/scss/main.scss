@@ -1028,7 +1028,11 @@ footer a i.fa:hover{
 }
 
 footer, .push {
-  height: 9em;
+  height: 15em;
+}
+
+footer p{
+font-size: 0.8rem;
 }
 
 // Cookies
@@ -1052,5 +1056,8 @@ footer, .push {
     }
     .fa-clock-o {
         margin-left: 0 !important;
+    }
+    footwe ul{
+    margin:0;
     }
 }
