@@ -1001,8 +1001,13 @@ footer ul {
 }
 
 footer li {
-    margin: .5rem;
+    margin: 1rem;
 }
+
+footer li .logo a{
+    margin: 0 0.5rem;
+}
+
 
 footer a i.fa {
     font-size: 1.25rem;
