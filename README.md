@@ -2,6 +2,14 @@
 
 German Screen Studies Network website
 
+## Release 0.3
+
+Minor release
+
+* Fixed "Register now" button bug
+* Removed news section from homepage
+* Updated links section
+
 ## Release 0.2
 
 Minor release

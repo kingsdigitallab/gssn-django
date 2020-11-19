@@ -4,7 +4,7 @@ django-extensions
 django-grappelli
 django-libsass
 django-model-utils
-django-modelcluster
+django-modelcluster<=2
 django-redis
 django-require
 django-taggit
@@ -12,4 +12,4 @@ elasticsearch<5
 libsass==0.10.0
 pillow
 psycopg2
-wagtail<2
+wagtail<1.8
