@@ -86,8 +86,8 @@
 		<h4><a href="{% pageurl event %}">{{ event.title }}</a></h4>
 		{% if event.search_description %}
         <p>{{ event.search_description }} <a href="{% pageurl event %}"> &#8811;</a></p>
-		<a href="{% pageurl event %}" class="button brown-button expanded">Register now</a>
         {% endif %}
+		<a href="{% pageurl event %}" class="button brown-button expanded">Register now</a>
         {% empty %}
         <p>Sorry, there are no events planned for the near future.</p>
         {% endfor %}
