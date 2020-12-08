@@ -742,6 +742,14 @@ article.post p.byline.blog {
     margin: 0;
 }
 
+.pagination {
+    font-size: 1rem;
+    
+    .arrow {
+        font-size: 2rem;
+    }
+}
+
 ul.pagination .arrow.next {
     float: right;
 }
