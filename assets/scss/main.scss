@@ -762,8 +762,9 @@ ul.pagination .arrow.previous {
 }
 
 ul.pagination {
-    text-align: center;
     border-top: 1px solid $black;
+    padding-top: 0;
+    text-align: center;
 
     a {
         border-bottom: none;
