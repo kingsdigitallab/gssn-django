@@ -744,9 +744,12 @@ article.post p.byline.blog {
 
 .pagination {
     font-size: 1rem;
-    
+    line-height: 2;
+    padding-top: 1rem;
+
     .arrow {
         font-size: 2rem;
+        padding-top: 0;
     }
 }
 
