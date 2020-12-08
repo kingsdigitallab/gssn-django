@@ -3,7 +3,6 @@
 <div class="sidebar">
 
 	{% if 'events' not in self.url %}
-	{% block membership %}
 	<div class="widget">
 		<h3>Become a member</h3>
 		<hr>
@@ -11,7 +10,6 @@
 		<p>Find out here about the benefits of joining.</p>
 		<a href="/about/membership/" class="button brown-button expanded">Join</a>
 	</div>
-	{% endblock %}
 	{% endif %}
 
 	{% if 'about' in self.url %}
@@ -161,10 +159,6 @@
         <hr>
         <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
     </div>
-
-    {% elif 'gssn-virtual' in self.url %}
-    {% block membership %}
-    {% endblock %}
 
 	{% endif %}
 </div>
