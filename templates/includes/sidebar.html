@@ -10,6 +10,14 @@
 		<p>Find out here about the benefits of joining.</p>
 		<a href="/about/membership/" class="button brown-button expanded">Join</a>
 	</div>
+	{% elif 'gssn-virtual' not in self.url %}
+	<div class="widget">
+		<h3>Become a member</h3>
+		<hr>
+
+		<p>Find out here about the benefits of joining.</p>
+		<a href="/about/membership/" class="button brown-button expanded">Join</a>
+	</div>
 	{% endif %}
 
 	{% if 'about' in self.url %}
