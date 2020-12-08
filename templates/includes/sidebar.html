@@ -89,7 +89,7 @@
 		{% if event.search_description %}
         <p>{{ event.search_description }} <a href="{% pageurl event %}"> &#8811;</a></p>
         {% endif %}
-		<a href="{% if signup_link %}{{ signup_link }}{% else %}{% pageurl event %}{% endif %}" class="button brown-button expanded">Register now</a>
+		<a href="{% if event.signup_link %}{{ event.signup_link }}{% else %}{% pageurl event %}{% endif %}" class="button brown-button expanded">Register now</a>
         {% empty %}
         <p>Sorry, there are no events planned for the near future.</p>
         {% endfor %}
