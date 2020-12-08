@@ -41,10 +41,11 @@
     {% block event_content %}
     <section class="postcontent">
         {% include "cms/includes/streamfield.html" with content=self.body %}
+        {% if self.signup_link %}
+        <a href="{{ self.signup_link }}" class="button">{{ self.signup_link }}</a>
+        {% endif %}
     </section>
     {% endblock %}
-
-    <p>Sign up link: {{ self.signup_link }}</p>
 </article>
 
 {% block attachments %}
