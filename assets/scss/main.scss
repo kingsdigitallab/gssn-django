@@ -742,6 +742,17 @@ article.post p.byline.blog {
     margin: 0;
 }
 
+.pagination {
+    font-size: 1rem;
+    line-height: 2;
+    padding-top: 1rem;
+
+    .arrow {
+        font-size: 2rem;
+        padding-top: 0;
+    }
+}
+
 ul.pagination .arrow.next {
     float: right;
 }
@@ -751,8 +762,9 @@ ul.pagination .arrow.previous {
 }
 
 ul.pagination {
-    text-align: center;
     border-top: 1px solid $black;
+    padding-top: 0;
+    text-align: center;
 
     a {
         border-bottom: none;
