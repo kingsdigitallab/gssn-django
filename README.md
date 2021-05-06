@@ -2,6 +2,10 @@
 
 German Screen Studies Network website
 
+## Release 0.3.1
+
+* Bugfix: fixed heading link in homepage
+
 ## Release 0.3
 
 Minor release
