@@ -7,7 +7,7 @@ from cms.models.pages import (
 from django.contrib.auth.models import User
 from django.test import RequestFactory, TestCase
 from wagtail.tests.utils import WagtailPageTests
-from wagtail.wagtailcore.models import Site
+from wagtail.core.models import Site
 
 
 class TestPages(TestCase):

@@ -4,11 +4,12 @@ from django.conf import settings
 from django.template.defaultfilters import stringfilter
 from django.utils.dateformat import DateFormat
 from django.utils.safestring import mark_safe
+from wagtail.core.models import Site
 
 register = template.Library()
 
 
-@register.assignment_tag(takes_context=False)
+@register.simple_tag(takes_context=False)
 def are_comments_allowed():
     """Returns True if commenting on the site is allowed, False otherwise."""
     return getattr(settings, 'ALLOW_COMMENTS', False)
@@ -24,7 +25,7 @@ def date_as_block_filter(value):
     return mark_safe(result)
 
 
-@register.assignment_tag(takes_context=True)
+@register.simple_tag(takes_context=True)
 def get_blog_index_page(context):
     """Returns the first blog index page available in the current site."""
     site_root = get_site_root(context)
@@ -37,7 +38,7 @@ def get_blog_index_page(context):
     return None
 
 
-@register.assignment_tag(takes_context=True)
+@register.simple_tag(takes_context=True)
 def get_event_index_page(context):
     """Returns the first event index page available in the current site."""
     site_root = get_site_root(context)
@@ -50,26 +51,26 @@ def get_event_index_page(context):
     return None
 
 
-@register.assignment_tag(takes_context=False)
+@register.simple_tag(takes_context=False)
 def get_facebook_url():
     return getattr(settings, 'FACEBOOK_URL')
 
 
-@register.assignment_tag(takes_context=True)
+@register.simple_tag(takes_context=True)
 def get_request_parameters(context, exclude=None):
     """Returns a string with all the request parameters except the exclude
     parameter."""
     params = ''
     request = context['request']
 
-    for key, value in request.GET.items():
+    for key, value in list(request.GET.items()):
         if key != exclude:
             params += '&{key}={value}'.format(key=key, value=value)
 
     return params
 
 
-@register.assignment_tag(takes_context=True)
+@register.simple_tag(takes_context=True)
 def get_resources_index_page(context):
     """Returns the first resource index page available in the current site."""
     site_root = get_site_root(context)
@@ -82,32 +83,27 @@ def get_resources_index_page(context):
     return None
 
 
-@register.assignment_tag(takes_context=True)
+@register.simple_tag(takes_context=True)
 def get_site_root(context):
-    """Returns the site root Page, not the implementation-specific model used.
-    Object-comparison to self will return false as objects would differ.
-
-    :rtype: `wagtail.wagtailcore.models.Page`
-    """
-    return context['request'].site.root_page
+    return Site.find_for_request(context['request']).root_page
 
 
-@register.assignment_tag(takes_context=False)
+@register.simple_tag(takes_context=False)
 def get_twitter_name():
     return getattr(settings, 'TWITTER_NAME')
 
 
-@register.assignment_tag(takes_context=False)
+@register.simple_tag(takes_context=False)
 def get_twitter_url():
     return getattr(settings, 'TWITTER_URL')
 
 
-@register.assignment_tag(takes_context=False)
+@register.simple_tag(takes_context=False)
 def get_twitter_widget_id():
     return getattr(settings, 'TWITTER_WIDGET_ID')
 
 
-@register.assignment_tag(takes_context=True)
+@register.simple_tag(takes_context=True)
 def has_local_menu(context, current_page):
     """Returns True if the current page has a local menu, False otherwise. A
     page has a local menu, if it is not the site root, and if it is not a leaf

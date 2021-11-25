@@ -2,20 +2,21 @@ from search.views import search
 from django.conf import settings
 from django.conf.urls import handler404, handler500, include, url
 from django.contrib import admin
-from django.utils.functional import curry
+from wagtail.admin import urls as wagtailadmin_urls
+
+#from django.utils.functional import curry
 from django.views.defaults import server_error
-from wagtail.wagtailadmin import urls as wagtailadmin_urls
-from wagtail.wagtailcore import urls as wagtail_urls
-from wagtail.wagtaildocs import urls as wagtaildocs_urls
+from wagtail.core import urls as wagtail_urls
+from wagtail.documents import urls as wagtaildocs_urls
+from django.urls import include, path
 
 admin.autodiscover()
 
-handler404 = curry(server_error, template_name='404.html')  # noqa
-handler500 = curry(server_error, template_name='500.html')  # noqa
+#handler404 = curry(server_error, template_name='404.html')  # noqa
+#handler500 = curry(server_error, template_name='500.html')  # noqa
 
 urlpatterns = [
-    url(r'^grappelli/', include('grappelli.urls')),
-    url(r'^admin/', include(admin.site.urls)),
+    path('admin/', admin.site.urls),
 ]
 
 # -----------------------------------------------------------------------------
@@ -23,11 +24,11 @@ urlpatterns = [
 # -----------------------------------------------------------------------------
 
 urlpatterns += [
-    url(r'^wagtail/', include(wagtailadmin_urls)),
-    url(r'^documents/', include(wagtaildocs_urls)),
+    path('wagtail/', include(wagtailadmin_urls)),
+    path('documents/', include(wagtaildocs_urls)),
 
-    url(r'^search/', search, name='search'),
-    url(r'', include(wagtail_urls)),
+    url('search/', search, name='search'),
+    path('', include(wagtail_urls)),
 ]
 
 # -----------------------------------------------------------------------------

@@ -1,1 +1,1 @@
-from pages import *  # noqa
+from .pages import *  # noqa

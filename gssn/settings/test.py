@@ -1,4 +1,4 @@
-from base import *  # noqa
+from .base import *  # noqa
 
 DEBUG = True
 TEMPLATE_DEBUG = True
@@ -24,6 +24,6 @@ PASSWORD_HASHERS = [
 
 WAGTAILSEARCH_BACKENDS = {
     'default': {
-        'BACKEND': 'wagtail.wagtailsearch.backends.db',
+        'BACKEND': 'wagtail.search.backends.db',
     }
 }

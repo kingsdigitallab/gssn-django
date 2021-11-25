@@ -16,54 +16,28 @@
     tags:
       - system
 
-  - name: apt | add wheezy backports
-    apt_repository:
-      repo: deb http://http.debian.net/debian wheezy-backports main
-      state: present
-    tags:
-      - system
-
   - name: apt | install https transport for apt
     apt:
       pkg: apt-transport-https
-      state: installed
+      state: present
       # update_cache: yes
     tags:
       -system
 
-  - name: apt | add node key
-    become: yes
-    apt_key:
-      url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
-      state: present
-    tags:
-      - system
 
-  - name: apt | add nodejs sources
-    apt_repository:
-      repo: 'deb https://deb.nodesource.com/node wheezy main'
-      state: present
-    tags:
-      - system
 
-  - name: apt | add nodejs sourcecode sources
-    apt_repository:
-      repo: 'deb-src https://deb.nodesource.com/node wheezy main'
-      state: present
-    tags:
-      - system
 
   - name: apt | add elasticsearch key
     become: yes
     apt_key:
-      url: https://packages.elastic.co/GPG-KEY-elasticsearch
+      url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
       state: present
     tags:
       - system
 
   - name: apt | add elasticsearch sources
     apt_repository:
-      repo: 'deb http://packages.elastic.co/elasticsearch/1.6/debian stable main'
+      repo: 'deb https://artifacts.elastic.co/packages/7.x/apt stable main'
       state: present
     tags:
       - system
@@ -71,7 +45,7 @@
   - name: apt | install required system packages
     apt:
       pkg: '{{ item }}'
-      state: installed
+      state: present
       update_cache: yes
     with_items: '{{ system_packages }}'
     tags:
@@ -99,7 +73,7 @@
   tasks:
   - name: pip | setup virtualenv
     command: mkdir -p {{ python.virtualenv_location }}
-    command: virtualenv {{ python.virtualenv_location }}
+    command: python3 -m virtualenv {{ python.virtualenv_location }}
     tags:
       - python
 
