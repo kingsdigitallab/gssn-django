@@ -124,7 +124,6 @@ class RichTextPage(Page, WithFeedImage):
     body = StreamField(CMSStreamBlock())
 
     search_fields = Page.search_fields + [
-        index.SearchField('intro'),
         index.SearchField('body'),
     ]
 

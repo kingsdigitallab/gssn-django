@@ -9,6 +9,7 @@ from django.views.defaults import server_error
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from django.urls import include, path
+from cms.views import SearchView
 
 admin.autodiscover()
 
@@ -27,7 +28,7 @@ urlpatterns += [
     path('wagtail/', include(wagtailadmin_urls)),
     path('documents/', include(wagtaildocs_urls)),
 
-    url('search/', search, name='search'),
+    url(r"^search/", SearchView.as_view()),
     path('', include(wagtail_urls)),
 ]
 

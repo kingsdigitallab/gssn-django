@@ -14,7 +14,7 @@
 	<li>
 	    <div class="form">
 	        <span class="toggle"></span>
-	        <form role="search" method="get" id="searchform" action="{% url 'search' %}">
+	        <form role="search" method="get" id="searchform" action="/search">
 	            <input type="search" name='q' placeholder="{% if search_query %}{{ search_query }}{% else %}Search...{% endif %}">
 	            <button type="submit" value="" id="searchsubmit"></button>
 	        </form>

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block meta_title %}Search Results{% endblock %}
+
+{% block main %}
+
+<div class="row" role="complementary" aria-label="search list">
+    <div class="content-wrapper">
+        <div class="content">
+            <div class="content-padding">
+                <h2>Search Results: {{q}} ({{ results.paginator.count }}) </h2>
+                
+                {% if results.paginator.count %}
+                <ul>
+                    {% for result in results_qs %}
+                    <li>
+                       <h3><a href="{% pageurl result.specific %}">{{ result.specific }}</a></h3>
+                       {% if result.specific.search_description %}
+                           {{ result.specific.search_description|safe }}
+                       {% endif %}
+                   </li>
+                   {% endfor %}
+                </ul>
+
+                <div class="pagination">
+                    <span class="step-links">
+                      {% if results.has_previous %}
+                      <a class="prev" href="?q={{ q }}&page={{ results.previous_page_number }}">&laquo; Previous</a>
+                      {% endif %}
+                  
+                      <span class="current">
+                        Page {{ results.number }} of {{ results.paginator.num_pages }}.
+                      </span>
+                  
+                      {% if results.has_next %}
+                      <a class="next" href="?q={{ q }}&page={{ results.next_page_number }}">Next &raquo;</a>
+                      {% endif %}
+                    </span>
+                  </div>
+                {% else %}
+                    <div class="rich-text">
+                        <p>No results found.</p>
+                    </div>
+
+                {% endif %}
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

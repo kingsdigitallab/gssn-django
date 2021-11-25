@@ -366,7 +366,7 @@ WAGTAILSEARCH_INDEX = PROJECT_NAME
 WAGTAILSEARCH_BACKENDS = {
     'default': {
         'BACKEND':
-            'wagtail.search.backends.elasticsearch.ElasticSearch',
+            'wagtail.search.backends.elasticsearch7',
         'URLS': ['http://127.0.0.1:9200'],
         'INDEX': WAGTAILSEARCH_INDEX,
         'TIMEOUT': 5,
