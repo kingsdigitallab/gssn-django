@@ -1,14 +1,14 @@
-from __future__ import unicode_literals
+
 
 from django import forms
 
-from wagtail.wagtailcore.blocks import (
+from wagtail.core.blocks import (
     CharBlock, FieldBlock, PageChooserBlock, RawHTMLBlock, RichTextBlock,
     StreamBlock, StructBlock, TextBlock, URLBlock
 )
-from wagtail.wagtailimages.blocks import ImageChooserBlock
-from wagtail.wagtaildocs.blocks import DocumentChooserBlock
-from wagtail.wagtailembeds.blocks import EmbedBlock
+from wagtail.images.blocks import ImageChooserBlock
+from wagtail.documents.blocks import DocumentChooserBlock
+from wagtail.embeds.blocks import EmbedBlock
 
 
 class HTMLAlignmentChoiceBlock(FieldBlock):

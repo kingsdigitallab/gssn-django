@@ -1,4 +1,4 @@
-from __future__ import unicode_literals
+
 
 from datetime import date
 import logging
@@ -13,15 +13,15 @@ from django.shortcuts import render
 from modelcluster.fields import ParentalKey
 from modelcluster.tags import ClusterTaggableManager
 from taggit.models import TaggedItemBase
-from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin, route
-from wagtail.wagtailadmin.edit_handlers import (
+from wagtail.contrib.routable_page.models import RoutablePageMixin, route
+from wagtail.admin.edit_handlers import (
     FieldPanel, FieldRowPanel, InlinePanel, MultiFieldPanel, PageChooserPanel,
     StreamFieldPanel
 )
-from wagtail.wagtailcore.fields import StreamField
-from wagtail.wagtailcore.models import Orderable, Page
-from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
-from wagtail.wagtailsearch import index
+from wagtail.core.fields import StreamField
+from wagtail.core.models import Orderable, Page
+from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.search import index
 
 from .behaviours import WithFeedImage, WithIntroduction, WithStreamField
 from .carousel import AbstractCarouselItem
@@ -38,7 +38,7 @@ class HomePageCarouselItem(Orderable, AbstractCarouselItem):
 
 class HomePageFeaturedPage(Orderable):
     page = ParentalKey('HomePage', related_name='featured_pages')
-    featured_page = models.ForeignKey(Page)
+    featured_page = models.ForeignKey(Page, on_delete=models.CASCADE)
 
     panels = [
         PageChooserPanel('featured_page')
